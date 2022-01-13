@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import 'styles/welcome.css';
 
 
 
@@ -6,6 +7,7 @@ const Welcome = () => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [nickname, setNickname] = useState("");
     const [newAccount, setNewAccount] = useState(true);
     const [error, setError] = useState("");
 
@@ -18,6 +20,8 @@ const Welcome = () => {
           setEmail(value);
         } else if (name === "password") {
           setPassword(value);
+        } else if (name === "nickname") {
+          setNickname(value);
         }
       };
 
@@ -27,9 +31,10 @@ const Welcome = () => {
         try {
           let data;
           if (newAccount) {
-              console.log(email, password)
+              console.log(nickname, email, password)
             //create account
           } else {
+            console.log(email, password)
             //log in
           }
           console.log(data);
@@ -42,17 +47,28 @@ const Welcome = () => {
 
 
   return (
-    <div>
+    <>
          <div>
              <h3> Welcome! 오늘도 즐거운 하루 보내세요~ </h3>
          </div>
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="container">
+    {newAccount ? (    
+    <input
+        name="nickname"
+        type="nickname"
+        placeholder="nickname"
+        required
+        value={nickname}
+        onChange={onChange}
+        className="authInput"
+      />): <></>}
       <input
         name="email"
         type="email"
         placeholder="Email"
         required
         value={email}
+        className="authInput"
         onChange={onChange}
       />
       <input
@@ -61,28 +77,30 @@ const Welcome = () => {
         placeholdeer="Password"
         required
         value={password}
+        className="authInput"
         onChange={onChange}
       />
       <input
         type="submit"
+        className="authInput authSubmit"
         value={newAccount ? "Create Account" : "Sign In"}
       />
-      {error}
+       {error && <span className="authError">{error}</span>}
     </form>
-    <span onClick={toggleAccount}>
-      {newAccount ? "Sign In" : "Create Account"}
+    <span onClick={toggleAccount} className="authSwitch">
+      {newAccount ? "Sign In" : "아직 계정이 없으신가요?"}
     </span>
 
-    <div>
-        <button name="google">
+    <div className="authBtns">
+        <button name="google"  className="authBtn">
           Continue with Google
         </button>
-        <button name="github">
+        <button name="github"  className="authBtn">
           Continue with Github
         </button>
       </div>
 
-    </div>
+    </>
   );
 }
 

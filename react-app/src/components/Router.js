@@ -6,7 +6,7 @@ import {
     Link
   } from "react-router-dom";
 
-import Home from "./Home"; //환경변수 설정에 path를 안 넣어놓긴 했다. 나중에 수정!
+import Home from "./Home"; 
 import Storage from "./Storage";
 import Welcome from "./Welcome";
 
