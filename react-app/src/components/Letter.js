@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import BASE_URL from './BASE_URL';
 
 const Letter = () => {
     const [text, setText] = useState([]);
-    
     return (
         <div>
             <h2>
@@ -12,7 +12,7 @@ const Letter = () => {
             <button
                 onClick={() => {
                     // axios.get(`/api/letter`)
-                    axios.get("http://127.0.0.1:8000/letter/")
+                    axios.get(BASE_URL+"/letter/getLetters")
                         .then(response => {
                             console.log(response.data);
                         })

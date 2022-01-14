@@ -3,7 +3,7 @@ from .serializers import UserSerializer
 from .models import User
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from rest_framework import generics
+from rest_framework import generics, status
 from django.contrib.auth.hashers import check_password
 
 # 회원가입
@@ -19,7 +19,7 @@ def getUsers(request):
     serializer = UserSerializer(users, many=True)
     return Response(serializer.data)
 
-# 회원가입 (여기서 이메일 중복확인 해야함??)
+# 회원가입  # 이미 있는 이메일 확인도 여기서??
 @api_view(['POST'])
 def signup(request):
     serializer = UserSerializer(data = request.data)
@@ -34,9 +34,9 @@ def login(request):
     user = User.objects.filter(email = request.data['email'])
     print(len(user))
     if len(user)==1:
-        if check_password(request.data['password'], user[0].password):
+        if check_password(request.data['password'], user[0].password):  #id로 유저 아이디 접근 가능
             return Response("correct passwd")
         return Response("wrong passwd")
-    return Response("wrong email!!")
+    return Response("wrong email")
     
 # 이메일 중복 확인
