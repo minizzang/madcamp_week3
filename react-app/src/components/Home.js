@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, {Component} from "react";
 
 const Home = () => {
-    const [text, setText] = useState([]);
-    
-    return (
-        <div>
-            <h2>
-                홈화면임당
-            </h2>
-        </div>
-    );
+  return (
+    <div className="App">
+    <header className="App-header">
+    </header>
+
+    <p>Here is Home</p>
+  </div>
+  );
 };
 
 export default Home;
