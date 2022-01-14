@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
+.noresize {
+  resize: vertical; /* 상하만 가능 */
+}

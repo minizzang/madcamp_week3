@@ -59,7 +59,7 @@ const Write = () => {
         selectsStart
         value={startDate}
         onChange={(date) => setStartDate(date)}
-        dateFormat="yyyy년 M월 d일"
+        dateFormat="yyyy년 M월 d일에 메시지가 열립니다."
         customInput={<ExampleCustomInput />}
       />
 
@@ -69,9 +69,9 @@ const Write = () => {
         className="authInput"
         required
         value={contents}
-        onChange={onChange} className="authInput"/>
+        onChange={onChange} className="authInput noresize"/> {/* 사용자가 리사이징 못하도록 noresize 적용 : 세로로만 변형 가능 */}
 
-        <input type='text' placeholder=" 00이가"
+        <input type='text' placeholder="이름을 입력해주세요"
                 name="sender"
                 className="authInput"
                 required
