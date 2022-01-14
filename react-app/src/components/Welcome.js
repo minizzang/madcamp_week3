@@ -1,5 +1,8 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import 'styles/welcome.css';
+import BASE_URL from "./BASE_URL";
+
 
 const Welcome = () => {
 
@@ -27,15 +30,44 @@ const Welcome = () => {
       const onSubmit = async (event) => {
         event.preventDefault();
         try {
-          let data;
           if (newAccount) {
-              console.log(nickname, email, password)
-            //create account
+            axios.post(BASE_URL+"/account/signup", {
+              email: email,
+              nickname: nickname,
+              password: password
+            }).then(response => {
+              console.log(response);
+              // 유저의 레터 스페이스로 보내줘야 함.
+            }).catch(error => {
+              console.log("signup errror!"+error);
+            });
           } else {
-            console.log(email, password)
+            console.log(email, password);
             //log in
+            axios.post(BASE_URL+"/account/login", {
+              email: email,
+              password: password
+            }).then(response => {
+              console.log(response);
+              switch (response.data) {
+                case "correct passwd" :
+                  console.log("correct");
+                  // 유저의 레터 스페이스로 보내줘야 함.
+                  break;
+                case "wrong passwd" :
+                  console.log("wrong passwd");
+                  // 비밀번호 틀렸음 알림
+                  break;
+                case "wrong email" :
+                  console.log("wrong email");
+                  // 없는 사용자(이메일) 알림
+                  break;
+                default : break;
+              }
+            }).catch(error => {
+              console.log("login errror!"+error);
+            });
           }
-          console.log(data);
         } catch (error) {
           setError(error.message);
         }
