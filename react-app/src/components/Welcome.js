@@ -53,6 +53,7 @@ const Welcome = () => {
                 case "correct passwd" :
                   console.log("correct");
                   // 유저의 레터 스페이스로 보내줘야 함.
+                  // props로 유저 아이디 보내기
                   break;
                 case "wrong passwd" :
                   console.log("wrong passwd");

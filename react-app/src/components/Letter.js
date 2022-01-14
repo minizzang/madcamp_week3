@@ -23,6 +23,19 @@ const Letter = () => {
             >
                 편지 확인
             </button>
+            <button
+                onClick={() => {
+                    axios.get(BASE_URL+"/letter/sendEmail")
+                        .then(response => {
+                            console.log(response.data);
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                }}
+            >
+                메일 보내기
+            </button>
         </div>
     );
 };
