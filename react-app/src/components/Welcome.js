@@ -9,6 +9,7 @@ const Welcome = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [nickname, setNickname] = useState("");
+    const [isLogin, setIsLogin] = useState(false) //로그인 상태 관리용
     const [newAccount, setNewAccount] = useState(false);
     const [error, setError] = useState("");
 
@@ -26,6 +27,20 @@ const Welcome = () => {
         }
       };
 
+      // 코드를 따왔슴! 
+      useEffect(() => {
+        if(sessionStorage.getItem('user_id') === null){
+        // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 없다면
+          console.log('isLogin ?? :: ', isLogin)
+        } else {
+        // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
+        // 로그인 상태 변경
+          setIsLogin(true)
+          console.log('isLogin ?? :: ', isLogin)
+        }
+      })
+      
+
       //onSubmit 함수다. create account라고 되어 있으면 계정을 생성한다. 백엔드와 연결
       const onSubmit = async (event) => {
         event.preventDefault();
@@ -38,6 +53,7 @@ const Welcome = () => {
             }).then(response => {
               console.log(response);
               // 유저의 레터 스페이스로 보내줘야 함.
+              document.location.href = '/' // 내 페이지로 이동! -> 아이디 나중에 넣기
             }).catch(error => {
               console.log("signup errror!"+error);
             });
@@ -52,7 +68,8 @@ const Welcome = () => {
               switch (response.data) {
                 case "correct passwd" :
                   console.log("correct");
-                  // 유저의 레터 스페이스로 보내줘야 함.
+                  sessionStorage.setItem('user data', response.data); //유저 데이터를 session storage에 저장
+                  document.location.href = '/' // 내 페이지로 이동! -> 나중에 아이디 넣어서 특정 페이지로.
                   break;
                 case "wrong passwd" :
                   console.log("wrong passwd");
