@@ -3,40 +3,19 @@ import 'styles/storage.css';
 
 const Storage = () => {
   return (
-
-    <div class="containerd">
-    <div class="post">
-        <div class="header_post">
-            <img src="https://images.pexels.com/photos/2529973/pexels-photo-2529973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt=""/>
-            </div> 
-
-        <div class="body_post">
-            <div class="post_content">
-
-                <h1>Lorem Ipsum</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci animi assumenda cumque deserunt
-                    dolorum ex exercitationem.</p>
-
-                <div class="container_infos">
-                    <div class="postedBy">
-                        <span>author</span>
-                        John Doe
-                    </div>
-
-                    <div class="container_tags">
-                        <span>tags</span>
-                        <div class="tags">
-                            <ul>
-                                <li>design</li>
-                                <li>front end</li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
+<div class="container">
+        <div class="box">
+            <div class="imgBox">
+                <img src="https://img.freepik.com/free-photo/portrait-handsome-young-man-makes-okay-gesture-demonstrates-agreement-likes-idea-smiles-happily-wears-optical-glasses-yellow-hat-t-shirt-models-indoor-its-fine-thank-you-hand-sign_273609-30676.jpg?size=626&ext=jpg" alt=""/>
+            </div>
+            <div class="imgBox">
+                <h2>7월</h2>
+            </div>
+            <div class="content">
+                <h2>72장</h2>
+                <span>의 카드가 있어요!</span>
             </div>
         </div>
-    </div>
 </div>
   );
 }
