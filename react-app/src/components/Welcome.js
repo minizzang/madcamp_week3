@@ -85,7 +85,7 @@ const Welcome = () => {
   return (
     <>
          <div>
-             <h3> Welcome! 오늘도 즐거운 하루 보내세요~ </h3>
+             <p className="welcomeTxt"> Welcome! 오늘도 즐거운 하루 보내세요~ </p>
          </div>
     <form onSubmit={onSubmit} className="container">
     {newAccount ? (    
