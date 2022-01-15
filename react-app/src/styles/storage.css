@@ -17,33 +17,38 @@ body {
   min-height: 100vh;
   background-color: #f0f0f0;
   font-family: 'Poppins', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.container {
+.container_grid {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  display: grid;
+  width: 1200px;
+  border-top: 1px solid #686868;
+  grid-template-columns: repeat(6, 1fr);
 }
 
-.container .box {
+.storage_year{
+  font-size: 2rem;
+  padding-bottom: 2rem;
+  width: 8em;
+  border-bottom: 0.5rem solid ;
+}
+
+
+.box {
   position: relative;
-  width: 30rem;
-  height: 30rem;
+  cursor: pointer;
+  width: 10rem;
+  height: 15rem;
   margin: 4rem;
 
 }
 
-
-.container .box:hover .imgBox {
+.container_grid .box:hover .imgBox {
   transform: translate(-3.5rem, -3.5rem);
 }
 
-.container .box:hover .content {
+.container_grid .box:hover .content {
   transform: translate(3.5rem, 3.5rem);
 }
 
@@ -58,8 +63,8 @@ body {
 }
 
 .imgBox img {
-  width: 30rem;
-  height: 30rem;
+  width: 10rem;
+  height: 15rem;
   object-fit: cover;
   resize: both;
   border-radius : 20px;
@@ -100,10 +105,13 @@ body {
 }
 
 @media (max-width: 600px) {
-  .container .box:hover .content {
+  .container_grid .box:hover .content {
     transform: translate(0, 3.5rem);
   }
-  .container .box:hover .imgBox {
+  .container_grid .box:hover .imgBox {
     transform: translate(0, -3.5rem);
   }
 }
+
+/*그리드를 짜자!!*/
+
