@@ -1,0 +1,50 @@
+.back {
+	position: fixed;
+	top: 0; left:0;
+	margin: 0;
+	padding: 0;
+	width:100%;
+	height: 100%;
+	background: white;
+	animation: backdiv 1s infinite;
+}
+@keyframes backdiv {
+	50% {background: #ffe6f2;}
+}
+.heart {
+	background-color: pink;
+	height: 50px;
+	width: 50px;
+	margin: auto;
+	transform: rotate(-45deg);
+	animation: beat 1s infinite;
+}
+
+.heart div:nth-child(2) {animation-delay: .1s;}
+.heart div:nth-child(3) {animation-delay: .2s;}
+
+@keyframes beat {
+	0% {transform: scale(1) rotate(-45deg)}
+	50% {transform: scale(0.6) rotate(-45deg)}
+}
+.heart::after {
+	background-color: pink;
+	content: '';
+	border-radius: 50%;
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 0;
+	left: 25px;
+}
+
+.heart::before {
+	background-color: pink;
+	content: '';
+	border-radius: 50%;
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: -25px;
+	left: 0px;
+}

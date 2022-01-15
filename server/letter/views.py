@@ -18,7 +18,8 @@ def getAllLetters(request):
     return Response(serializer.data)
 
 
-# 편지 쓰기     # client에서 post 보낼 때 opened = False로 보내기
+# 편지 쓰기
+# client에서 post 보낼 때 opened = False로 보내기
 @api_view(['POST'])
 def postLetter(request):
     serializer = LetterSerializer(data = request.data)
