@@ -6,6 +6,8 @@ from django.http import Http404
 from .serializers import LetterSerializer
 from .models import Letter
 from django.core.mail import EmailMessage
+from django.db.models import Q
+import datetime
 
 # 모든 편지 보기 (개발용)
 @api_view(['GET'])
@@ -26,13 +28,26 @@ def postLetter(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# 유저에게 온 모든 편지 보기
-# BASEURL/letter/getMyLetters/{id}
+# (open_date가 지난) 유저에게 온 모든 편지 보기
+# BASEURL/letter/getMyValidLetters/{id}
 @api_view(['GET'])
-def getMyLetters(request, param):
+def getMyValidLetters(request, param):
     print(param)
     # 등록된 유저의 id인지 확인하기
-    letters = Letter.objects.filter(recipient=param)
+    date_now = datetime.datetime.now().strftime('%Y-%m-%d')
+    letters = Letter.objects.filter(Q(recipient=param) & Q(open_date__lte = date_now))
+    if (len(letters)==0) :
+        return Response("편지가 없어요")
+    serializer = LetterSerializer(letters, many=True)
+    return Response(serializer.data)
+
+
+# (open_date가 지나지 않은) 유저에게 온 모든 편지 보기
+# BASEURL/letter/getMyInvalidLetters/{id}
+@api_view(['GET'])
+def getMyInvalidLetters(request, param):
+    date_now = datetime.datetime.now().strftime('%Y-%m-%d')
+    letters = Letter.objects.filter(Q(recipient=param) & Q(open_date__gt = date_now))
     if (len(letters)==0) :
         return Response("편지가 없어요")
     serializer = LetterSerializer(letters, many=True)
