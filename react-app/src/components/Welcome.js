@@ -12,6 +12,7 @@ const Welcome = () => {
     const [isLogin, setIsLogin] = useState(false) //로그인 상태 관리용
     const [newAccount, setNewAccount] = useState(false);
     const [error, setError] = useState("");
+    const [isCorrect, setIsCorrect] = useState("") //아이디, 비밀번호 확인용
 
     //입력할때 이메일이랑 패스워드 설정
     const onChange = (event) => {
@@ -26,20 +27,6 @@ const Welcome = () => {
           setNickname(value);
         }
       };
-
-      // 코드를 따왔슴! 
-      useEffect(() => {
-        if(sessionStorage.getItem('user_id') === null){
-        // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 없다면
-          console.log('isLogin ?? :: ', isLogin)
-        } else {
-        // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
-        // 로그인 상태 변경
-          setIsLogin(true)
-          console.log('isLogin ?? :: ', isLogin)
-        }
-      })
-      
 
       //onSubmit 함수다. create account라고 되어 있으면 계정을 생성한다. 백엔드와 연결
       const onSubmit = async (event) => {
@@ -68,16 +55,17 @@ const Welcome = () => {
               switch (response.data) {
                 case "correct passwd" :
                   console.log("correct");
+                  setIsCorrect("Correct")
                   sessionStorage.setItem('user data', response.data); //유저 데이터를 session storage에 저장
                   document.location.href = '/' // 내 페이지로 이동! -> 나중에 아이디 넣어서 특정 페이지로.
                   break;
                 case "wrong passwd" :
                   console.log("wrong passwd");
-                  // 비밀번호 틀렸음 알림
+                  setIsCorrect("wrongPW") //하단에 비번 틀렸다고 표시 
                   break;
                 case "wrong email" :
                   console.log("wrong email");
-                  // 없는 사용자(이메일) 알림
+                  setIsCorrect("wrongEM") //하단에 이메일 틀렸다고 표시 
                   break;
                 default : break;
               }
@@ -134,6 +122,12 @@ const Welcome = () => {
       />
        {error && <span className="authError">{error}</span>}
     </form>
+
+    <span className="authError">
+     { isCorrect == "wrongPW" ? "비밀번호가 틀렸습니다" : ""}
+     { isCorrect == "wrongEM" ? "등록되지 않은 이메일입니다" : ""}
+    </span>
+
     <span onClick={toggleAccount} className="authSwitch">
       {newAccount ? "Sign In" : "아직 계정이 없으신가요?"}
     </span>
