@@ -27,7 +27,7 @@ DEBUG = True
 
 # ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 # ALLOWED_HOSTS = ['172.10.18.161']
-ALLOWED_HOSTS = ['127.0.0.1:3000', '127.0.0.1', '127.0.0.1:8000', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1:3000', '127.0.0.1', '127.0.0.1:8000', 'localhost', '192.249.18.161']
 
 # AUTH_USER_MODEL = 'users.CustomUser'
 
@@ -161,3 +161,12 @@ STATIC_ROOT = BASE_DIR / 'static'   # 먀??
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = "smtp.gmail.com"
+# EMAIL_HOST_USER = '계정'
+# EMAIL_HOST_PASSWORD = '비밀번호'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# # SERVER_EMAIL = '계정'
+# DEFAULT_FROM_EMAIL = '아이디'

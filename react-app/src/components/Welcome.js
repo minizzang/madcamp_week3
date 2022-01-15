@@ -67,7 +67,11 @@ const Welcome = () => {
                   console.log("wrong email");
                   setIsCorrect("wrongEM") //하단에 이메일 틀렸다고 표시 
                   break;
-                default : break;
+                default : //response.data에 user의 id가 넘겨져 옴.
+                  console.log(response.data);
+                  sessionStorage.setItem('user data', response.data); //유저 데이터를 session storage에 저장
+                  document.location.href = `/${response.data}` // 내 페이지로 이동! -> 나중에 아이디 넣어서 특정 페이지로.
+                  break;
               }
             }).catch(error => {
               console.log("login errror!"+error);
