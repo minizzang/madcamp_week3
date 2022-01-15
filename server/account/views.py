@@ -49,6 +49,22 @@ def login(request):
     return Response("wrong email")          # 등록되지 않은 email
     
 
+# 유저 닉네임, 메모 가져오기
+@api_view(['GET'])
+def getUserInfo(request, param):
+    user = User.objects.filter(id=param).values('nickname', 'memo')
+    return Response(user)
+
+
+# 메모 변경하기
+@api_view(['POST'])
+def updateUserMemo(request):
+    user = User.objects.get(id=request.data['id'])
+    user.memo = request.data['memo']
+    user.save()
+    
+    return Response("memo updated")
+
 
 # 유효한 user의 id인지 확인
 # @api_view(['GET'])

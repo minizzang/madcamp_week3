@@ -12,6 +12,7 @@ class Letter(models.Model):
         default=timezone.now)
     open_date = models.DateField(
         blank=False, null=False)
+    opened = models.BooleanField(default=False)
     # letter_type
 
     def send_letter(self):

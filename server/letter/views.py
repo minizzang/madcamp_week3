@@ -18,7 +18,7 @@ def getAllLetters(request):
     return Response(serializer.data)
 
 
-# 편지 쓰기
+# 편지 쓰기     # client에서 post 보낼 때 opened = False로 보내기
 @api_view(['POST'])
 def postLetter(request):
     serializer = LetterSerializer(data = request.data)
@@ -28,18 +28,17 @@ def postLetter(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# (open_date가 지난) 유저에게 온 모든 편지 보기
+# (open_date가 지난 && opened = False인) 유저에게 온 모든 편지 보기
 # BASEURL/letter/getMyValidLetters/{id}
 @api_view(['GET'])
 def getMyValidLetters(request, param):
-    print(param)
-    # 등록된 유저의 id인지 확인하기
+    # 등록된 유저의 id인지 확인하기 ??
     date_now = datetime.datetime.now().strftime('%Y-%m-%d')
-    letters = Letter.objects.filter(Q(recipient=param) & Q(open_date__lte = date_now))
+    letters = Letter.objects.filter(Q(recipient=param) & Q(open_date__lte = date_now) & Q(opened = False)).values()
     if (len(letters)==0) :
         return Response("편지가 없어요")
-    serializer = LetterSerializer(letters, many=True)
-    return Response(serializer.data)
+    # serializer = LetterSerializer(letters, many=True)
+    return Response(letters)
 
 
 # (open_date가 지나지 않은) 유저에게 온 편지의 닉네임, open_date 받기
@@ -61,6 +60,17 @@ def getLetters(request, param):
     if (len(letters)==0) :
         return Response("편지가 없어요")
     return Response(letters)
+
+
+# 편지 열었을 때 opened 상태 변경하기
+@api_view(['POST'])
+def setOpened(request):
+    letter = Letter.objects.get(id = request.data['id'])
+    letter.opened = True
+    letter.save()
+
+    return Response("opened True")
+
     
 
 # 메일 보내기 test

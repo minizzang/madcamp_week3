@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from .views import getAllLetters, postLetter, getMyValidLetters, getMyInvalidLetters, getLetters
+from .views import getAllLetters, postLetter, getMyValidLetters, getMyInvalidLetters, getLetters, setOpened
 
 urlpatterns = [
     # path('', LetterList.as_view()),
@@ -9,7 +9,7 @@ urlpatterns = [
     path('getMyValidLetters/<str:param>', getMyValidLetters),
     path('getMyInvalidLetters/<str:param>', getMyInvalidLetters),
     path('getLetters/<str:param>', getLetters),
-    
+    path('setOpened', setOpened),
     # path('sendEmail', sendEmail),
 ]
 

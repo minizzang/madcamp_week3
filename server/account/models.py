@@ -40,6 +40,7 @@ class User(AbstractBaseUser):
     # id = get_random_string(length=10)   # 이거 되는건가??
     email = models.EmailField(default='', max_length=100, null=False, blank=False, unique=True)
     nickname = models.CharField(default='', max_length=100, null=False, blank=False, unique=False)
+    memo = models.CharField(default='', max_length=200)
 
     # User 모델의 필수 field
     is_active = models.BooleanField(default=True)    
