@@ -7,13 +7,14 @@ from .serializers import LetterSerializer
 from .models import Letter
 from django.core.mail import EmailMessage
 
-# 모든 편지 보기
+# 모든 편지 보기 (개발용)
 @api_view(['GET'])
 def getLetters(request):
     letters = Letter.objects.all()
 
     serializer = LetterSerializer(letters, many=True)
     return Response(serializer.data)
+
 
 # 편지 쓰기
 @api_view(['POST'])
@@ -24,7 +25,9 @@ def postLetter(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 # 유저에게 온 모든 편지 보기
+# BASEURL/letter/getMyLetters/{id}
 @api_view(['GET'])
 def getMyLetters(request, param):
     print(param)

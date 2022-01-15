@@ -12,6 +12,7 @@ class UserManager(BaseUserManager):
         if not password:
             raise ValueError('must have user password')
         user = self.model(
+            id = get_random_string(length=10),
             email = self.normalize_email(email),
             nickname = nickname
         )
@@ -34,10 +35,11 @@ class UserManager(BaseUserManager):
 
         
 class User(AbstractBaseUser):
-    # id = models.AutoField(primary_key = True)
-    id = get_random_string(length=10)   # 이거 되는건가??
-    email = models.EmailField(default='', max_length=100, null=False, blank=False)
-    nickname = models.CharField(default='', max_length=100, null=False, blank=False, unique=True)
+    id = models.CharField(primary_key = True, max_length=10, null=False, blank=False)
+    # user_id = models.CharField(max_length=10, null=False, blank=False)
+    # id = get_random_string(length=10)   # 이거 되는건가??
+    email = models.EmailField(default='', max_length=100, null=False, blank=False, unique=True)
+    nickname = models.CharField(default='', max_length=100, null=False, blank=False, unique=False)
 
     # User 모델의 필수 field
     is_active = models.BooleanField(default=True)    

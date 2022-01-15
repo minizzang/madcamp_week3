@@ -6,7 +6,7 @@ urlpatterns = [
     # path('', LetterList.as_view()),
     path('getLetters', getLetters),
     path('postLetter', postLetter),
-    path('getMyLetters/<int:param>', getMyLetters),
+    path('getMyLetters/<str:param>', getMyLetters),
     # path('sendEmail', sendEmail),
 ]
 

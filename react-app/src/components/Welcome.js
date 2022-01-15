@@ -66,11 +66,6 @@ const Welcome = () => {
             }).then(response => {
               console.log(response);
               switch (response.data) {
-                case "correct passwd" :
-                  console.log("correct");
-                  sessionStorage.setItem('user data', response.data); //유저 데이터를 session storage에 저장
-                  document.location.href = '/' // 내 페이지로 이동! -> 나중에 아이디 넣어서 특정 페이지로.
-                  break;
                 case "wrong passwd" :
                   console.log("wrong passwd");
                   // 비밀번호 틀렸음 알림
@@ -79,7 +74,11 @@ const Welcome = () => {
                   console.log("wrong email");
                   // 없는 사용자(이메일) 알림
                   break;
-                default : break;
+                default : //response.data에 user의 id가 넘겨져 옴.
+                  console.log(response.data);
+                  sessionStorage.setItem('user data', response.data); //유저 데이터를 session storage에 저장
+                  document.location.href = `/${response.data}` // 내 페이지로 이동! -> 나중에 아이디 넣어서 특정 페이지로.
+                  break;
               }
             }).catch(error => {
               console.log("login errror!"+error);
