@@ -12,12 +12,18 @@ class UserCreate(generics.CreateAPIView):
     serializer_class = UserSerializer
 
 # 모든 유저 확인용
+# @api_view(['GET'])
+# def getUsers(request):
+#     users = User.objects.all()
+
+#     serializer = UserSerializer(users, many=True)
+#     return Response(serializer.data)
+
 @api_view(['GET'])
 def getUsers(request):
     users = User.objects.all()
 
-    serializer = UserSerializer(users, many=True)
-    return Response(serializer.data)
+    return Response(users[9].id)
 
 # 회원가입  # 이미 있는 이메일 확인도 여기서??
 @api_view(['POST'])

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.utils.crypto import get_random_string
 
 class UserManager(BaseUserManager):
     # 일반 유저 생성
@@ -33,7 +34,8 @@ class UserManager(BaseUserManager):
 
         
 class User(AbstractBaseUser):
-    id = models.AutoField(primary_key = True)
+    # id = models.AutoField(primary_key = True)
+    id = get_random_string(length=10)   # 이거 되는건가??
     email = models.EmailField(default='', max_length=100, null=False, blank=False)
     nickname = models.CharField(default='', max_length=100, null=False, blank=False, unique=True)
 
