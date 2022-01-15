@@ -23,21 +23,25 @@ body {
   position: relative;
   display: grid;
   width: 1200px;
+  border-top: 1px solid #686868;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(3, 1fr);
 }
+
+.storage_year{
+  font-size: 2rem;
+  padding-bottom: 2rem;
+  width: 8em;
+  border-bottom: 0.5rem solid ;
+}
+
 
 .box {
   position: relative;
+  cursor: pointer;
   width: 10rem;
   height: 15rem;
   margin: 4rem;
 
-}
-
-.box:nth-child(1) {
-	grid-column: 1 / 7;
-	grid-row: 1 / 2;
 }
 
 .container_grid .box:hover .imgBox {
