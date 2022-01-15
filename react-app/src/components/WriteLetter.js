@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import DatePicker from "react-datepicker";
-import 'react-datepicker/dist/react-datepicker.css'
+import 'react-datepicker/dist/react-datepicker.css';
+import axios from "axios";
+import BASE_URL from "./BASE_URL";
 
 const Write = () => {
-    
+
+    const { id } = useParams();
     const [sender, setSender] = useState("");
     const [contents, setContents] = useState("");
     const [error, setError] = useState("");
@@ -14,38 +18,51 @@ const Write = () => {
         {value}
       </button>
     ));
-    
+
     //입력할때 이메일이랑 패스워드 설정
     const onChange = (event) => {
-                const {
-                target: { name, value },
-                } = event;
-                if (name === "sender") {
-                    setSender(value);
-                } else if (name === "contents") {
-                    setContents(value);
-                }
-            };
+      const {
+        target: { name, value },
+        } = event;
+        if (name === "sender") {
+            setSender(value);
+        } else if (name === "contents") {
+            setContents(value);
+        }
+    };
     
-          //onSubmit 함수다. 버튼이 눌리면 보내는이, 받는이, 작성일, 작성내용이 표시됨.  
-        const onSubmit = async (event) => {
-            console.log(contents);
-            event.preventDefault();
-            try {
-              console.log(sender, contents,dateToString(startDate));
-                //save data to db
-                // Example data
-                // sender : 보내는이, reciver : 받는이 contents : 여기는 컨텐츠 startDate : 2022-01-14
-            } catch (error) {
-              setError(error.message);
-            }
-          };
+      //onSubmit 함수다. 버튼이 눌리면 보내는이, 받는이, 작성일, 작성내용이 표시됨.  
+    const onSubmit = async (event) => {
+      event.preventDefault();
+      try {
 
-          const dateToString = (date) => {
-            return date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')
+        console.log(sender, contents, dateToString(startDate));
+          //save data to db
+          // Example data
+          // sender : 보내는이, reciver : 받는이 contents : 여기는 컨텐츠 startDate : 2022-01-14
+        axios.post(BASE_URL+"/letter/postLetter", {
+          recipient : id,
+          author : sender,
+          title : "편지왔숑!",
+          text : contents,
+          open_date : dateToString(startDate)
+        }).then(response => {
+          if (response.data == "post succeed"){
+            // 편지 전송 완료 -> 해당 유저의 레터 스페이스로 보내기
+            console.log("편지 전송됨.");
           }
-          //시간을 년-월-일 형식으로 변환해주는 함수
+        }).catch(error => {
+          console.log("postLetter errror! "+error);
+        });
+      } catch (error) {
+        setError(error.message);
+      }
+    };
 
+    const dateToString = (date) => {
+      return date.getFullYear() + '-' + (date.getMonth() + 1).toString().padStart(2, '0') + '-' + date.getDate().toString().padStart(2, '0')
+    }
+    //시간을 년-월-일 형식으로 변환해주는 함수
 
   return (
       <>

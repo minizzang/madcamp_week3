@@ -40,7 +40,8 @@ const Welcome = () => {
             }).then(response => {
               console.log(response);
               // 유저의 레터 스페이스로 보내줘야 함.
-              document.location.href = '/' // 내 페이지로 이동! -> 아이디 나중에 넣기
+              sessionStorage.setItem('user_id', response.data); //유저 id를 session storage에 저장
+              document.location.href = `/${response.data}` // 내 페이지로 이동! -> 아이디 나중에 넣기
             }).catch(error => {
               console.log("signup errror!"+error);
             });
@@ -53,12 +54,6 @@ const Welcome = () => {
             }).then(response => {
               console.log(response);
               switch (response.data) {
-                case "correct passwd" :
-                  console.log("correct");
-                  setIsCorrect("Correct")
-                  sessionStorage.setItem('user data', response.data); //유저 데이터를 session storage에 저장
-                  document.location.href = '/' // 내 페이지로 이동! -> 나중에 아이디 넣어서 특정 페이지로.
-                  break;
                 case "wrong passwd" :
                   console.log("wrong passwd");
                   setIsCorrect("wrongPW") //하단에 비번 틀렸다고 표시 
@@ -69,7 +64,9 @@ const Welcome = () => {
                   break;
                 default : //response.data에 user의 id가 넘겨져 옴.
                   console.log(response.data);
-                  sessionStorage.setItem('user data', response.data); //유저 데이터를 session storage에 저장
+                  //localStorage??
+                  sessionStorage.setItem('user_id', response.data); //유저 id를 session storage에 저장
+                  setIsCorrect("correct")
                   document.location.href = `/${response.data}` // 내 페이지로 이동! -> 나중에 아이디 넣어서 특정 페이지로.
                   break;
               }
