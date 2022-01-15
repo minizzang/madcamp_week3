@@ -11,7 +11,7 @@ import datetime
 
 # 모든 편지 보기 (개발용)
 @api_view(['GET'])
-def getLetters(request):
+def getAllLetters(request):
     letters = Letter.objects.all()
 
     serializer = LetterSerializer(letters, many=True)
@@ -42,16 +42,25 @@ def getMyValidLetters(request, param):
     return Response(serializer.data)
 
 
-# (open_date가 지나지 않은) 유저에게 온 모든 편지 보기
+# (open_date가 지나지 않은) 유저에게 온 편지의 닉네임, open_date 받기
 # BASEURL/letter/getMyInvalidLetters/{id}
 @api_view(['GET'])
 def getMyInvalidLetters(request, param):
     date_now = datetime.datetime.now().strftime('%Y-%m-%d')
-    letters = Letter.objects.filter(Q(recipient=param) & Q(open_date__gt = date_now))
+    letters = Letter.objects.filter(Q(recipient=param) & Q(open_date__gt = date_now)).values('author', 'open_date')
     if (len(letters)==0) :
         return Response("편지가 없어요")
-    serializer = LetterSerializer(letters, many=True)
-    return Response(serializer.data)
+    return Response(letters)
+
+
+# (타인용) 유저에게 온 편지의 닉네임, open_date 받기
+# BASEURL/letter/getMyInvalidLetters/{id}
+@api_view(['GET'])
+def getLetters(request, param):
+    letters = Letter.objects.filter(recipient=param).values('author', 'open_date')
+    if (len(letters)==0) :
+        return Response("편지가 없어요")
+    return Response(letters)
     
 
 # 메일 보내기 test
