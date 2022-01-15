@@ -13,6 +13,13 @@ const Home = () => {
     <p>Here is Home</p>
     <p>Hello, {id}</p>
 
+    <button
+      onClick={()=>{
+        document.location.href = `/${id}/write`
+      }}>
+      편지 쓰기
+    </button>
+
   </div>
   );
 };

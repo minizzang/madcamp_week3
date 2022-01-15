@@ -10,8 +10,8 @@ class Letter(models.Model):
     text = models.TextField()
     created_date = models.DateTimeField(    #필요한가?
         default=timezone.now)
-    open_date = models.DateTimeField(
-        blank=True, null=True)
+    open_date = models.DateField(
+        blank=False, null=False)
     # letter_type
 
     def send_letter(self):
