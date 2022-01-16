@@ -35,7 +35,7 @@ def postLetter(request):
 def getMyValidLetters(request, param):
     # 등록된 유저의 id인지 확인하기 ??
     date_now = datetime.datetime.now().strftime('%Y-%m-%d')
-    letters = Letter.objects.filter(Q(recipient=param) & Q(open_date__lte = date_now) & Q(opened = False)).values()
+    letters = Letter.objects.filter(Q(recipient=param) & Q(open_date__lte = date_now) & Q(opened = False)).values().order_by('-open_date')
     if (len(letters)==0) :
         return Response("편지가 없어요")
     # serializer = LetterSerializer(letters, many=True)
@@ -47,7 +47,7 @@ def getMyValidLetters(request, param):
 @api_view(['GET'])
 def getMyInvalidLetters(request, param):
     date_now = datetime.datetime.now().strftime('%Y-%m-%d')
-    letters = Letter.objects.filter(Q(recipient=param) & Q(open_date__gt = date_now)).values('author', 'open_date')
+    letters = Letter.objects.filter(Q(recipient=param) & Q(open_date__gt = date_now)).values('author', 'open_date').order_by('-open_date')
     if (len(letters)==0) :
         return Response("편지가 없어요")
     return Response(letters)
