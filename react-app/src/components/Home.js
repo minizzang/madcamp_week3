@@ -14,8 +14,8 @@ const Home = () => {
   const curr_user = sessionStorage.getItem('user_id');
   const [nickname, setNickname] = useState("");
   const [memo, setMemo] = useState("");
-  const [letterInvalidCnt, setLetterInvalidCnt] = useState("0");
-  const [letterValidCnt, setLetterValidCnt] = useState("0");
+  const [letterInvalidCnt, setLetterInvalidCnt] = useState(0);
+  const [letterValidCnt, setLetterValidCnt] = useState(0);
   // letterInvalidInfo는 아직 날짜가 안 지난 편지, letterValidInfo는 날짜가 지나서 볼 수 있는 편지
   const [letterInvalidInfo, setLetterInvalidInfo] = useState([]);
   const [letterValidInfo, setLetterValidInfo] = useState([]);
@@ -46,14 +46,17 @@ const Home = () => {
     axios.get(BASE_URL+`/letter/getMyInvalidLetters/${id}`)
     .then(response => {
       console.log(response.data)
-      setLetterInvalidCnt(response.data.length)
-      setLetterInvalidInfo(response.data.map(item => {
-        return {
-          sender: item.author,
-          open_date: item.open_date
-        };  
-      }))
-      
+      if (response.data == "편지가 없어요") {
+        console.log("no letter")
+      } else {
+        setLetterInvalidCnt(response.data.length)
+        setLetterInvalidInfo(response.data.map(item => {
+          return {
+            sender: item.author,
+            open_date: item.open_date
+          };  
+        }))
+      }
     })
     .catch(error => {
         console.log(error);
@@ -62,13 +65,18 @@ const Home = () => {
     // (open_date 지난 && opened = False인) 유저에게 온 모든 편지 받기
     axios.get(BASE_URL+`/letter/getMyValidLetters/${id}`)
     .then(response => {
-      setLetterValidCnt(response.data.length)
-      setLetterValidInfo(response.data.map(item => {
-        return {
-          sender: item.author,
-          open_date: item.open_date
-        };  
-      }))
+      if (response.data == "편지가 없어요") {
+        console.log("no letter!")
+      } else {
+        setLetterValidCnt(response.data.length)
+        setLetterValidInfo(response.data.map(item => {
+          return {
+            sender: item.author,
+            open_date: item.open_date
+          };  
+        }))
+      }
+      
     })
     .catch(error => {
         console.log(error);
