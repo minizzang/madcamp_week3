@@ -75,7 +75,7 @@ const Write = () => {
     //시간을 년-월-일 형식으로 변환해주는 함수
 
 
-    // 체크됐는지 확인해서 애니메이션 진행 -> 똑같은 함수 두개라 나중에 코드 개선
+    //======설정된 편지지 바꾸는 함수 ===
   const onSelectPaper = (event) => {
 
     document.querySelectorAll(`div[type=paper]`).forEach(el => el.className = "btn"); //모든걸 버튼으로 바꿔주기!
@@ -84,16 +84,16 @@ const Write = () => {
     document.querySelector(`form[type=writeContainer]`).classList.add('animate');
     setTimeout(function(){
       document.querySelector(`form[type=writeContainer]`).classList.remove('animate');
-    },700); //컨테이너를 queryselector로 가져와서 classlist에 animate 추가 -> 애니메이션 실행
+    },700); //컨테이너를 queryselector로 가져와서 classlist에 animate 추가 -> 애니메이션 실행, reset animation
 
     event.target.className = "btn_selected" //내가 선택한 건 selected로 바꿔주기!
-    const {
-      target: { name },
-      } = event;
-      setpaperType(name);
-    
-      document.querySelector(`div[type=letterPaper]`).className = name;
+
+    setpaperType(event.target.getAttribute('name'));    //event.target.getAttribute('name') 이게 paper1, paper2임.
+    document.querySelector(`div[type=letterPaper]`).classList = ['send_letter'] //리스트 리셋
+    document.querySelector(`div[type=letterPaper]`).classList.add(event.target.getAttribute('name')); //paper1, paper2 등으로 클래스 추가해서 배경변경
   };
+
+  //======설정된 이펙트 바꾸는 함수 ===
 
   const onSelectEffect = (event) => {
     document.querySelectorAll(`div[type=effect]`).forEach(el => el.className = "btn"); //모든걸 버튼으로 바꿔주기!
@@ -105,12 +105,9 @@ const Write = () => {
     },700); //컨테이너를 queryselector로 가져와서 classlist에 animate 추가 -> 애니메이션 실행
 
     event.target.className = "btn_selected" //내가 선택한 건 selected로 바꿔주기!
-    //reset animation
 
-    const {
-      target: { name },
-      } = event;
-        setEffectType(name);
+    setEffectType(event.target.getAttribute('name'));
+    console.log(event.target.getAttribute('name'));
   };
   
 

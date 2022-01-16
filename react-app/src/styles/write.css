@@ -8,10 +8,18 @@
     grid-template-columns: 2fr 1fr 6fr 1fr 2fr;
   }
 
-
   .send_letter{
     padding: 2em;
     background-color: #ffd6da;
+  }
+
+  .paper1{
+    background-image: url(images/add_card.png);
+
+  }
+
+  .paper2{
+    background-image: url(images/christmas.jpg);
   }
 
   .writeContainer {
