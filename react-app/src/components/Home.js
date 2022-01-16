@@ -28,9 +28,9 @@ const Home = () => {
     setMemo(e.target.value)
   }
 
-  const getLettersFromDB = () => {
+  const getLettersFromDB = async () => {
   // (open_date 지나지 않은) 유저에게 온 편지 닉네임, open_date 받기
-      axios.get(BASE_URL+`/letter/getMyInvalidLetters/${id}`)
+      await axios.get(BASE_URL+`/letter/getMyInvalidLetters/${id}`)
       .then(response => {
         // console.log(response.data)
         if (response.data == "편지가 없어요") {
@@ -50,7 +50,7 @@ const Home = () => {
       })
 
       // (open_date 지난 && opened = False인) 유저에게 온 모든 편지 받기
-      axios.get(BASE_URL+`/letter/getMyValidLetters/${id}`)
+      await axios.get(BASE_URL+`/letter/getMyValidLetters/${id}`)
       .then(response => {
         if (response.data == "편지가 없어요") {
           console.log("no letter!")
@@ -265,10 +265,15 @@ const Home = () => {
   }, []);
 
   useEffect(()=>{
-    console.log("loading" + loading)
-    console.log(letterValidInfo)
-    console.log(letterInvalidInfo)
-  }, [letterValidInfo, letterInvalidInfo])
+    if (!loading) {
+
+      // 민채 여기서 하세요!!
+      console.log("loading" + loading)
+      console.log(letterValidInfo)
+      console.log(letterInvalidInfo)
+    }
+    
+  }, [loading])
 
   return (
   <>
