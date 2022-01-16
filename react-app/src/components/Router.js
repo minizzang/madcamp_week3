@@ -11,6 +11,7 @@ import Letter from "./Letter";
 import Storage from "./Storage";
 import Welcome from "./Welcome";
 import Write from "./WriteLetter";
+import Show from "./ShowLetter";
 
 //로그인 되어있다면 바로 메인으로 이동할 수 있도록 처리하기. Router에서. 
 
@@ -20,10 +21,8 @@ const AppRouter = ({isLoggedIn}) => {
         <Routes>
             <Route path="/:id" element={<Home />} />  {/*  지금은 기본 path인데,  나중에 username으로 각 user 페이지에 접근 가능하도록 해야 할 듯. */}
             <Route path="/storage" element={<Storage/>} /> {/*  저장소 */}
-            {isLoggedIn ?
-            <Route path="/:id" element={<Home />} /> :
             <Route path="/welcome" element={<Welcome />} /> 
-            } {/*  로그인 상태에 따라 welcome으로 갈지 본인 home으로 갈 지 결정 */}
+            <Route path="/:id/show" element={<Show />} /> 
             <Route path="/:id/write" element={<Write />} />{/* 익명 작성이 가능하다면 Id/write 형식 or write/id 형식으로 누구에게 쓰는 건지 특정하게 해야 할 듯 */}
             <Route path="/letter" element={<Letter />} />  {/* 나중에 로그인 된 상태라면 개인 페이지로 이동 가능하게 만들 수 있을 듯*/}
         </Routes>

@@ -4,17 +4,21 @@ import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from "axios";
 import BASE_URL from "./BASE_URL";
+import 'styles/write.css';
 
 const Write = () => {
 
     const { id } = useParams();
     const [sender, setSender] = useState("");
     const [contents, setContents] = useState("");
+    const [subject, setSubject] = useState("");
+    const [paperType, setpaperType] = useState("");
+    const [btnSelected, setbtnSelected] = useState("AAAAAA");
     const [error, setError] = useState("");
     const [startDate, setStartDate] = useState(new Date());
 
     const ExampleCustomInput = React.forwardRef(({ value, onClick }, ref) => (
-      <button className="authInput" onClick={onClick} ref={ref}>
+      <button className="writeInput" onClick={onClick} ref={ref}>
         {value}
       </button>
     ));
@@ -29,6 +33,9 @@ const Write = () => {
         } else if (name === "contents") {
             setContents(value);
         }
+        else if (name === "subject") {
+          setSubject(value);
+      }
     };
     
       //onSubmit 함수다. 버튼이 눌리면 보내는이, 받는이, 작성일, 작성내용이 표시됨.  
@@ -36,7 +43,7 @@ const Write = () => {
       event.preventDefault();
       try {
 
-        console.log(sender, contents, dateToString(startDate));
+        console.log(subject, sender, contents, dateToString(startDate));
           //save data to db
           // Example data
           // sender : 보내는이, reciver : 받는이 contents : 여기는 컨텐츠 startDate : 2022-01-14
@@ -64,41 +71,89 @@ const Write = () => {
     }
     //시간을 년-월-일 형식으로 변환해주는 함수
 
+    // 체크됐는지 확인해서 애니메이션 진행
+  const onSelect = (event) => {
+    const {
+      target: { name },
+      } = event;
+        setpaperType(name);
+        setColor('#CCCCCC');
+
+        this.setState({
+          text: "변경 성공!",
+        });
+  };
+
   return (
       <>
 
-      <p>Let's write a letter!</p>
+      <div class = "write_letter_box">
 
-      <form onSubmit={onSubmit} className="container">
+      <div class = "custom_tab">
+        <h3>편지지를 골라요!</h3>
+        <button className="btn" className ={btnSelected} name="paper1" onClick={onSelect} >편지지 1</button>
+        <button className="btn" name="paper2" onClick={onSelect}>편지지 2</button>
+        <button className="btn" name="paper3" onClick={onSelect}>편지지 3</button>
+        <button className="btn" name="paper4" onClick={onSelect}>편지지 4</button>
+      </div>
 
-        <DatePicker
+      <div class = "Blank"></div>
+
+      <div class="send_letter">
+
+      <DatePicker
         selected={startDate}
         selectsStart
         value={startDate}
         onChange={(date) => setStartDate(date)}
         dateFormat="yyyy년 M월 d일에 메시지가 열립니다."
+        popperPlacement="left-start"
         customInput={<ExampleCustomInput />}
       />
+
+
+      <form onSubmit={onSubmit} className="writeContainer">
+        
+
+      <input type='text' placeholder="편지 제목을 입력해주세요"
+                      name="subject"
+                      required
+                      value={subject}
+                      onChange={onChange}
+                      className="writeInput"/>
 
         <textarea placeholder="내용을 적어주세요"
         type="contents"
         name="contents"
-        className="authInput"
+        className="writeInput contentsbox"
+        rows="20"
         required
         value={contents}
-        onChange={onChange} className="authInput noresize"/> {/* 사용자가 리사이징 못하도록 noresize 적용 : 세로로만 변형 가능 */}
+        onChange={onChange} /> {/* 사용자가 리사이징 못하도록 noresize 적용 : 세로로만 변형 가능 */}
 
-        <input type='text' placeholder="이름을 입력해주세요"
+        <input type='text' placeholder="보내는 분 이름을 입력해주세요"
                 name="sender"
-                className="authInput"
+                className="writeInput"
                 required
                 value={sender}
-                onChange={onChange}className="authInput"/>
+                onChange={onChange}/>
         <input
         type="submit"
-        className="authInput authSubmit"
+        className="writeInput writeSubmit"
         value={"보내기"}/>
         </form>
+
+        </div>
+
+        <div class = "Blank"></div>
+
+        <div class = "custom_tab">
+          <h3>효과를 골라요!</h3>
+          </div>
+
+        </div>
+
+
     </>
   );
 }
