@@ -83,7 +83,7 @@ const Write = () => {
         setpaperType(name);
   };
 
-  const onSelecEffect = (event) => {
+  const onSelectEffect = (event) => {
 
     document.querySelectorAll(`div[type=effect]`).forEach(el => el.className = "btn"); //모든걸 버튼으로 바꿔주기!
 
@@ -159,10 +159,10 @@ const Write = () => {
 
         <div class = "custom_tab">
           <h3>효과를 골라요!</h3>
-          <div className="btn" type= "effect" name="effect1" onClick={onSelecEffect}>효과 1</div>
-          <div className="btn" type= "effect" name="effect2" onClick={onSelecEffect}>효과 2</div>
-          <div className="btn" type= "effect" name="effect3" onClick={onSelecEffect}>효과 3</div>
-          <div className="btn" type= "effect" name="effect4" onClick={onSelecEffect}>효과 4</div>
+          <div className="btn" type= "effect" name="effect1" onClick={onSelectEffect}>효과 1</div>
+          <div className="btn" type= "effect" name="effect2" onClick={onSelectEffect}>효과 2</div>
+          <div className="btn" type= "effect" name="effect3" onClick={onSelectEffect}>효과 3</div>
+          <div className="btn" type= "effect" name="effect4" onClick={onSelectEffect}>효과 4</div>
           </div>
 
         </div>

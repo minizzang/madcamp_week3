@@ -1,7 +1,10 @@
 .write_letter_box {
-    position: relative;
     display: grid;
-    width: 1200px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    height : 100vh;
+    
     grid-template-columns: 2fr 1fr 6fr 1fr 2fr;
   }
 

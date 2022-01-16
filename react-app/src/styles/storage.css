@@ -19,6 +19,12 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+.letter_box{
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .container_grid {
   position: relative;
   display: grid;
