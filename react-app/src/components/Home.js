@@ -12,7 +12,13 @@ const Home = () => {
   const [memo, setMemo] = useState("");
   const [letterInvalidCnt, setLetterInvalidCnt] = useState("0");
   const [letterValidCnt, setLetterValidCnt] = useState("0");
-  const [letterInfo, setLetterInfo] = useState([]);
+  // letterInvalidInfo는 아직 날짜가 안 지난 편지, letterValidInfo는 날짜가 지나서 볼 수 있는 편지
+  const [letterInvalidInfo, setLetterInvalidInfo] = useState([]);
+  const [letterValidInfo, setLetterValidInfo] = useState([]);
+
+  const handleChange = (e) => {
+    setMemo(e.target.value)
+  }
 
   // console.log("curr_user : "+curr_user);
   // curr_user가 null이라면 아무도 로그인 하지 않은 상태. 아니면 누군가의 id가 저장되어 있음.
@@ -37,7 +43,7 @@ const Home = () => {
     .then(response => {
       console.log(response.data)
       setLetterInvalidCnt(response.data.length)
-      setLetterInfo(response.data.map(item => {
+      setLetterInvalidInfo(response.data.map(item => {
         return {
           sender: item.author,
           open_date: item.open_date
@@ -53,11 +59,12 @@ const Home = () => {
     axios.get(BASE_URL+`/letter/getMyValidLetters/${id}`)
     .then(response => {
       setLetterValidCnt(response.data.length)
-      
-      setLetterInfo(letterInfo => letterInfo.concat(response.data.map(item => ({
-        sender: item.author,
-        open_date: item.open_date
-      }))))
+      setLetterValidInfo(response.data.map(item => {
+        return {
+          sender: item.author,
+          open_date: item.open_date
+        };  
+      }))
     })
     .catch(error => {
         console.log(error);
@@ -172,7 +179,9 @@ const Home = () => {
           onClick={()=>{
             navigator.clipboard.writeText(`192.249.18.161/${id}`);
             alert("링크가 복사되었습니다. 친구에게 공유해보세요!")
-            console.log(letterInfo)
+
+            console.log(letterValidInfo)
+            console.log(letterInvalidInfo)
           }
           }>링크 복사</button>
         <div class="title_menu">
@@ -184,6 +193,19 @@ const Home = () => {
     <div class="memo">
       <p>" {memo} "</p>
     </div>
+    <input type="text" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>
+    <button
+      onClick={()=>{
+        // db에 메모 수정된 것 저장
+        axios.post(BASE_URL+"/account/updateUserMemo", {
+          id : id,
+          memo : memo
+        }).then(response => {
+          console.log(response);
+        }).catch(error => {
+          console.log("updateUserMemo errror!"+error);
+        });
+      }}>수정하기</button>
     
     <div class="contents">
       <p class="stacked_letter_text">쌓인 편지 <span id="before_open_letter">{letterInvalidCnt+letterValidCnt}</span> 개</p>
