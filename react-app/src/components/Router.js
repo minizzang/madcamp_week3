@@ -12,6 +12,7 @@ import Storage from "./Storage";
 import Welcome from "./Welcome";
 import Write from "./WriteLetter";
 import Test from "./test";
+import Show from "./ShowLetter";
 
 //로그인 되어있다면 바로 메인으로 이동할 수 있도록 처리하기. Router에서. 
 

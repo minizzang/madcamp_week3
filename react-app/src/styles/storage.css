@@ -19,6 +19,12 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
+.letter_box{
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .container_grid {
   position: relative;
   display: grid;
@@ -106,10 +112,10 @@ body {
 
 @media (max-width: 600px) {
   .container_grid .box:hover .content {
-    transform: translate(0, 3.5rem);
+    transform: translate(0, 2.5rem);
   }
   .container_grid .box:hover .imgBox {
-    transform: translate(0, -3.5rem);
+    transform: translate(0, -2.5rem);
   }
 }
 
