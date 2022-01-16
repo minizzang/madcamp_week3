@@ -1,6 +1,10 @@
 import React, {Component, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import 'styles/home.css';
+import Slider from 'react-touch-drag-slider';
+import { createPortal } from "react-dom";
+import Letter from "./Letter";
+import LetterItem from "../LetterItem";
 
 const Home = () => {
 
@@ -46,7 +50,6 @@ const Home = () => {
           } else {
             this.carouselArray.push(this.carouselArray.shift());
           }
-          
           this.updateGallery();
         }
       
@@ -68,6 +71,12 @@ const Home = () => {
             document.querySelector(`.gallery-controls-${control}`).innerText = control;
           });
         }
+
+
+        ////
+        
+
+        ///
       
       
         // Add a click event listener to trigger setCurrentState method to rearrange carousel
@@ -80,9 +89,17 @@ const Home = () => {
               e.preventDefault();
       
               if (control.className == 'gallery-controls-add') {
+
+                
+
+
+                //Add 버튼일 경우
+                //ontrols = ['previous', 'add', 'next']
                 const newItem = document.createElement('img');
                 const latestItem = this.carouselArray.length;
                 const latestIndex = this.carouselArray.findIndex(item => item.getAttribute('data-index') == this.carouselArray.length)+1;
+
+
       
                 // Assign the necessary properties for new gallery item
                 Object.assign(newItem,{
@@ -90,13 +107,35 @@ const Home = () => {
                   src: `http://fakeimg.pl/300/?text=${this.carouselArray.length+1}`
                 });
                 newItem.setAttribute('data-index', this.carouselArray.length+1);
+
+                
+                const letterItem = document.createElement('div');
+                //const letterItem = new LetterItem(`밈${this.carouselArray.length+1}`,"날짜",this.carouselArray.length+1);
+                //console.log(letterItem);
+                Object.assign(letterItem,{
+                  className: 'gallery-item'
+                })
+
+                letterItem.setAttribute('data-index', this.carouselArray.length+1);
+                const nickname = document.createElement('span');
+                nickname.innerText = `밈${latestItem+1}\n`;
+                const dueDate = document.createElement('span');
+                dueDate.innerText = `2020.${latestIndex}`;
+
+                letterItem.appendChild(nickname);
+                letterItem.appendChild(dueDate);
+          
+                
       
                 // Then add it to the carouselArray and update the gallery
-                this.carouselArray.splice(latestIndex, 0, newItem);
-                document.querySelector(`[data-index="${latestItem}"]`).after(newItem);
+                //this.carouselArray.splice(latestIndex, 0, newItem);
+                this.carouselArray.splice(latestIndex, 0, letterItem);
+                //document.querySelector(`[data-index="${latestItem}"]`).after(newItem);
+                document.querySelector(`[data-index="${latestItem}"]`).after(letterItem);
                 this.updateGallery();
       
               } else {
+                // 아닐 경우
                 this.setCurrentState(control);
               }
       
