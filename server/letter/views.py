@@ -72,6 +72,16 @@ def setOpened(request):
 
     return Response("opened True")
 
+# (open_date가 지난 && opened = True인) 유저에게 온 모든 편지 보기
+# BASEURL/letter/getSavedLetters/{id}
+@api_view(['GET'])
+def getSavedLetters(request, param):
+    date_now = datetime.datetime.now().strftime('%Y-%m-%d')
+    letters = Letter.objects.filter(Q(recipient=param) & Q(open_date__lte = date_now) & Q(opened = True)).values()
+    if (len(letters)==0) :
+        return Response("편지가 없어요")
+    # serializer = LetterSerializer(letters, many=True)
+    return Response(letters)
     
 
 # 메일 보내기 test

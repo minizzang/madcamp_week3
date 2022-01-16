@@ -50,12 +50,15 @@ const Write = () => {
         axios.post(BASE_URL+"/letter/postLetter", {
           recipient : id,
           author : sender,
-          title : "편지왔숑!",
+          title : subject,
           text : contents,
           open_date : dateToString(startDate)
         }).then(response => {
           if (response.data == "post succeed"){
             // 편지 전송 완료 -> 해당 유저의 레터 스페이스로 보내기
+            alert("편지가 무사히 전송되었습니다!")
+            window.location.href = `/mypage/${id}`
+            
             console.log("편지 전송됨.");
           }
         }).catch(error => {
