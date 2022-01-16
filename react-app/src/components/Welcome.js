@@ -85,10 +85,11 @@ const Welcome = () => {
 
   return (
     <>
-         <div>
-             <p className="welcomeTxt"> Welcome! 오늘도 즐거운 하루 보내세요~ </p>
-         </div>
-    <form onSubmit={onSubmit} className="container">
+    <div className="wrapWelcome">
+    <div>
+      <p className="welcomeTxt"> Welcome! 오늘도 즐거운 하루 보내세요~ </p>
+    </div>
+    <form onSubmit={onSubmit} className="welcomeContainer">
     {newAccount ? (    
     <input
         name="nickname"
@@ -142,7 +143,7 @@ const Welcome = () => {
           Continue with Github
         </button>
       </div>
-
+      </div>
     </>
   );
 }

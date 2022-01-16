@@ -13,6 +13,15 @@
     background-color: #ffd6da;
   }
 
+  .paper1{
+    background-image: url(images/add_card.png);
+
+  }
+
+  .paper2{
+    background-image: url(images/christmas.jpg);
+  }
+
   .writeContainer {
     width: 100%;
   }

@@ -33,8 +33,19 @@
   form {
     width: 100%;
   }
+  
+  .wrapWelcome{
+    min-height: 100vh;
+    display: flex;
+    margin: 0 auto;
+    margin-top: 0 auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
 
-  .container {
+  .welcomeContainer {
     width: 100%;
     max-width: 320px;
     display: flex;
