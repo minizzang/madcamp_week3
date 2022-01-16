@@ -57,7 +57,7 @@ def getMyInvalidLetters(request, param):
 # BASEURL/letter/getLetters/{id}
 @api_view(['GET'])
 def getLetters(request, param):
-    letters = Letter.objects.filter(recipient=param).values('author', 'open_date')
+    letters = Letter.objects.filter(Q(recipient=param) & Q(opened = False)).values('author', 'open_date')
     if (len(letters)==0) :
         return Response("편지가 없어요")
     return Response(letters)

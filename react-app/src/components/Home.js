@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import BASE_URL from "./BASE_URL";
 import 'styles/home.css';
+import moment from 'moment';
 import Slider from 'react-touch-drag-slider';
 import { createPortal } from "react-dom";
 import Letter from "./Letter";
@@ -19,9 +20,54 @@ const Home = () => {
   // letterInvalidInfo는 아직 날짜가 안 지난 편지, letterValidInfo는 날짜가 지나서 볼 수 있는 편지
   const [letterInvalidInfo, setLetterInvalidInfo] = useState([]);
   const [letterValidInfo, setLetterValidInfo] = useState([]);
+  const [letterInfo, setLetterInfo] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const handleChange = (e) => {
     setMemo(e.target.value)
+  }
+
+  const getLettersFromDB = () => {
+  // (open_date 지나지 않은) 유저에게 온 편지 닉네임, open_date 받기
+      axios.get(BASE_URL+`/letter/getMyInvalidLetters/${id}`)
+      .then(response => {
+        // console.log(response.data)
+        if (response.data == "편지가 없어요") {
+          console.log("no letter")
+        } else {
+          setLetterInvalidCnt(response.data.length)
+          setLetterInvalidInfo(response.data.map(item => {
+            return {
+              sender: item.author,
+              open_date: item.open_date
+            };  
+          }))
+        }
+      })
+      .catch(error => {
+          console.log(error);
+      })
+
+      // (open_date 지난 && opened = False인) 유저에게 온 모든 편지 받기
+      axios.get(BASE_URL+`/letter/getMyValidLetters/${id}`)
+      .then(response => {
+        if (response.data == "편지가 없어요") {
+          console.log("no letter!")
+        } else {
+          setLetterValidCnt(response.data.length)
+          setLetterValidInfo(response.data.map(item => {
+            return {
+              sender: item.author,
+              open_date: item.open_date
+            };  
+          }))
+        }
+      })
+      .catch(error => {
+          console.log(error);
+      })
+
+      setLoading(false)
   }
 
   // console.log("curr_user : "+curr_user);
@@ -42,45 +88,45 @@ const Home = () => {
           console.log(error);
       })
 
-    // (open_date 지나지 않은) 유저에게 온 편지 닉네임, open_date 받기
-    axios.get(BASE_URL+`/letter/getMyInvalidLetters/${id}`)
-    .then(response => {
-      // console.log(response.data)
-      if (response.data == "편지가 없어요") {
-        console.log("no letter")
-      } else {
-        setLetterInvalidCnt(response.data.length)
-        setLetterInvalidInfo(response.data.map(item => {
-          return {
-            sender: item.author,
-            open_date: item.open_date
-          };  
-        }))
-      }
-    })
-    .catch(error => {
-        console.log(error);
-    })
+    getLettersFromDB()
 
-    // (open_date 지난 && opened = False인) 유저에게 온 모든 편지 받기
-    axios.get(BASE_URL+`/letter/getMyValidLetters/${id}`)
-    .then(response => {
-      if (response.data == "편지가 없어요") {
-        console.log("no letter!")
-      } else {
-        setLetterValidCnt(response.data.length)
-        setLetterValidInfo(response.data.map(item => {
-          return {
-            sender: item.author,
-            open_date: item.open_date
-          };  
-        }))
-      }
-      
-    })
-    .catch(error => {
-        console.log(error);
-    })
+    // 유저에게 온 모든 편지의 닉네임, open_date 받기
+    // axios.get(BASE_URL+`/letter/getLetters/${id}`)
+    // .then(response => {
+    //   if (response.data == "편지가 없어요") {
+    //     console.log("no letter!")
+    //   } else {
+    //     const today = moment().format('YYYY-MM-DD')
+    //     response.data.map(item => {
+    //       console.log(item.open_date)
+    //       // console.log(moment().format('YYYY-MM-DD'))
+
+    //       if (item.open_date <= today) {
+    //         setLetterValidInfo([...letterValidInfo, {
+    //           sender : item.author,
+    //           open_date : item.open_date
+    //         }])
+    //         // console.log(item.author)
+            
+    //       } else {
+    //         setLetterInvalidInfo([...letterInvalidInfo, {
+    //           sender : item.author,
+    //           open_date : item.open_date
+    //         }])
+    //       }
+    //     }) 
+        
+    //     // setLetterInfo(response.data.map(item => {
+    //     //   return {
+    //     //     sender: item.author,
+    //     //     open_date: item.open_date
+    //     //   };
+    //     // }))
+    //   }
+    // })
+    // .catch(error => {
+    //     console.log(error);
+    // })
 
     
       class Carousel{
@@ -216,6 +262,12 @@ const Home = () => {
 
 
   }, []);
+
+  useEffect(()=>{
+    console.log("loading" + loading)
+    console.log(letterValidInfo)
+    console.log(letterInvalidInfo)
+  }, [letterValidInfo, letterInvalidInfo])
 
   return (
   <>
