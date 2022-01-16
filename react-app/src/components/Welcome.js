@@ -42,7 +42,7 @@ const Welcome = () => {
               console.log(response);
               // 유저의 레터 스페이스로 보내줘야 함.
               sessionStorage.setItem('user_id', response.data); //유저 id를 session storage에 저장
-              document.location.href = `/${response.data}` // 내 페이지로 이동! -> 아이디 나중에 넣기
+              document.location.href = `mypage/${response.data}` // 내 페이지로 이동! -> 아이디 나중에 넣기
             }).catch(error => {
               console.log("signup errror!"+error);
             });
@@ -68,7 +68,7 @@ const Welcome = () => {
                   //localStorage??
                   sessionStorage.setItem('user_id', response.data); //유저 id를 session storage에 저장
                   setIsCorrect("correct")
-                  document.location.href = `/${response.data}` // 내 페이지로 이동! -> 나중에 아이디 넣어서 특정 페이지로.
+                  document.location.href = `mypage/${response.data}` // 내 페이지로 이동! -> 나중에 아이디 넣어서 특정 페이지로.
                   break;
               }
             }).catch(error => {

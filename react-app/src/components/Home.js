@@ -246,9 +246,9 @@ const Home = () => {
           <span id="storage"
             onClick={()=>{
               if (curr_user == id) {
-                document.location.href = `/${id}/storage` // 유저의 보관함으로 이동 (로그인 유저와 같아야 함)
+                document.location.href = `/storage/${id}` // 유저의 보관함으로 이동 (로그인 유저와 같아야 함)
               } else {
-                console.log("alert 띄우거나, 실제 로그인한 유저의 보관함으로 이동?")
+                alert("자신의 보관함만 열람 가능합니다.")
               }
             }}>보관함</span>
         </div>
@@ -300,7 +300,7 @@ const Home = () => {
 
     <button
       onClick={()=>{
-        document.location.href = `/${id}/write`
+        document.location.href = `/write/${id}`
       }}>
       편지 쓰기
     </button>
