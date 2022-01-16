@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import axios from "axios";
 import BASE_URL from "./BASE_URL";
 import 'styles/write.css';
+import 'styles/bubble.css';
 
 const Write = () => {
 
@@ -16,6 +17,8 @@ const Write = () => {
     const [effectType, setEffectType] = useState("");
     const [error, setError] = useState("");
     const [startDate, setStartDate] = useState(new Date());
+
+    let imgArr= [];
 
     const ExampleCustomInput = React.forwardRef(({ value, onClick }, ref) => (
       <button className="writeInput" onClick={onClick} ref={ref}>
@@ -71,29 +74,44 @@ const Write = () => {
     }
     //시간을 년-월-일 형식으로 변환해주는 함수
 
-    // 체크됐는지 확인해서 애니메이션 진행
+
+    // 체크됐는지 확인해서 애니메이션 진행 -> 똑같은 함수 두개라 나중에 코드 개선
   const onSelectPaper = (event) => {
 
     document.querySelectorAll(`div[type=paper]`).forEach(el => el.className = "btn"); //모든걸 버튼으로 바꿔주기!
+
+    document.querySelector(`form[type=writeContainer]`).classList.remove('animate');
+    document.querySelector(`form[type=writeContainer]`).classList.add('animate');
+    setTimeout(function(){
+      document.querySelector(`form[type=writeContainer]`).classList.remove('animate');
+    },700); //컨테이너를 queryselector로 가져와서 classlist에 animate 추가 -> 애니메이션 실행
 
     event.target.className = "btn_selected" //내가 선택한 건 selected로 바꿔주기!
     const {
       target: { name },
       } = event;
-        setpaperType(name);
+      setpaperType(name);
+    
+      document.querySelector(`div[type=letterPaper]`).className = name;
   };
 
   const onSelectEffect = (event) => {
-
     document.querySelectorAll(`div[type=effect]`).forEach(el => el.className = "btn"); //모든걸 버튼으로 바꿔주기!
 
+    document.querySelector(`form[type=writeContainer]`).classList.remove('animate');
+    document.querySelector(`form[type=writeContainer]`).classList.add('animate');
+    setTimeout(function(){
+      document.querySelector(`form[type=writeContainer]`).classList.remove('animate');
+    },700); //컨테이너를 queryselector로 가져와서 classlist에 animate 추가 -> 애니메이션 실행
+
     event.target.className = "btn_selected" //내가 선택한 건 selected로 바꿔주기!
+    //reset animation
+
     const {
       target: { name },
       } = event;
         setEffectType(name);
   };
-
   
 
   return (
@@ -102,15 +120,15 @@ const Write = () => {
 
       <div class = "custom_tab">
         <h3>편지지를 골라요!</h3>
-        <div className="btn" type= "paper" name="paper1" onClick={ onSelectPaper}>편지지 1</div>
-        <div className="btn" type= "paper" name="paper2" onClick={ onSelectPaper}>편지지 2</div>
-        <div className="btn" type= "paper" name="paper3" onClick={ onSelectPaper}>편지지 3</div>
-        <div className="btn" type= "paper" name="paper4" onClick={ onSelectPaper}>편지지 4</div>
+        <div className="btn" type= "paper" name="paper1" onClick={onSelectPaper}>편지지 1</div>
+        <div className="btn" type= "paper" name="paper2" onClick={onSelectPaper}>편지지 2</div>
+        <div className="btn" type= "paper" name="paper3" onClick={onSelectPaper}>편지지 3</div>
+        <div className="btn" type= "paper" name="paper4" onClick={onSelectPaper}>편지지 4</div>
       </div>
 
       <div class = "Blank"></div>
 
-      <div class="send_letter">
+      <div class="send_letter" type="letterPaper">
 
       <DatePicker
         selected={startDate}
@@ -123,7 +141,7 @@ const Write = () => {
       />
 
 
-      <form onSubmit={onSubmit} className="writeContainer">
+      <form onSubmit={onSubmit} type="writeContainer" className="writeContainer bubbly-button">
         
 
       <input type='text' placeholder="편지 제목을 입력해주세요"
