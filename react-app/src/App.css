@@ -40,3 +40,14 @@
 .noresize {
   resize: vertical; /* 상하만 가능 */
 }
+
+
+@font-face {
+  font-family: "Kkomi";
+  src: url("./fonts/KNPSKkomi.otf");
+}
+
+@font-face {
+  font-family: "AppleGothic";
+  src: url("./fonts/AppleSDGothicNeoB.ttf");
+}

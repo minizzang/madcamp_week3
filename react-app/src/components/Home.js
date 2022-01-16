@@ -11,7 +11,7 @@ import LetterItem from "../LetterItem";
 const Home = () => {
 
   const { id } = useParams(); // url의 파라미터로 넘겨져 온 것.
-  const curr_user = sessionStorage.getItem('user_id');
+  const curr_user = sessionStorage.getItem('user_id');  // 현재 로그인한 유저
   const [nickname, setNickname] = useState("");
   const [memo, setMemo] = useState("");
   const [letterInvalidCnt, setLetterInvalidCnt] = useState(0);
@@ -45,7 +45,7 @@ const Home = () => {
     // (open_date 지나지 않은) 유저에게 온 편지 닉네임, open_date 받기
     axios.get(BASE_URL+`/letter/getMyInvalidLetters/${id}`)
     .then(response => {
-      console.log(response.data)
+      // console.log(response.data)
       if (response.data == "편지가 없어요") {
         console.log("no letter")
       } else {
@@ -232,15 +232,34 @@ const Home = () => {
           }
           }>링크 복사</button>
         <div class="title_menu">
-          <span id="welcome">Welcome !</span>
-          <span id="storage">보관함</span>
+          {
+            id === curr_user
+            ?
+              <span id="welcome">{nickname}님</span>
+            :
+              <span id="welcome"
+              onClick={()=>{
+                document.location.href = `/welcome`       //로그인 여부에 따라 다르게
+              }}>로그인/회원가입</span>
+          }
+          
+          <span id="storage"
+            onClick={()=>{
+              if (curr_user == id) {
+                document.location.href = `/${id}/storage` // 유저의 보관함으로 이동 (로그인 유저와 같아야 함)
+              } else {
+                console.log("alert 띄우거나, 실제 로그인한 유저의 보관함으로 이동?")
+              }
+            }}>보관함</span>
         </div>
       </div>
     </div>
     <div class="memo">
       <p>" {memo} "</p>
     </div>
+    <span>"</span>
     <input type="text" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>
+    <span>"</span>
     <button
       onClick={()=>{
         // db에 메모 수정된 것 저장

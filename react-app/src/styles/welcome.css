@@ -134,11 +134,6 @@
     text-decoration: underline;
   }
 
-  @font-face {
-    font-family: "Kkomi";
-    src: url("../fonts/KNPSKkomi.otf");
-  }
-
   .welcomeTxt {
     font-family: "kkomi";
     font-size: 20px;

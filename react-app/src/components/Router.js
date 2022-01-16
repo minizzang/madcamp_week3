@@ -20,7 +20,7 @@ const AppRouter = ({isLoggedIn}) => {
     <BrowserRouter>
         <Routes>
             <Route path="/:id" element={<Home />} />  {/*  지금은 기본 path인데,  나중에 username으로 각 user 페이지에 접근 가능하도록 해야 할 듯. */}
-            <Route path="/storage" element={<Storage/>} /> {/*  저장소 */}
+            <Route path="/:id/storage" element={<Storage/>} /> {/*  저장소 */}
             {isLoggedIn ?
             <Route path="/:id" element={<Home />} /> :
             <Route path="/welcome" element={<Welcome />} /> 
