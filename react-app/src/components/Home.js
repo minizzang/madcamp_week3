@@ -1,5 +1,5 @@
 import React, {Component, useEffect, useState} from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from 'axios';
 import BASE_URL from "./BASE_URL";
 import 'styles/home.css';
@@ -353,12 +353,12 @@ const Home = () => {
       </div>
     </div>
 
-    <button
-      onClick={()=>{
-        document.location.href = `/write/${id}`
-      }}>
-      편지 쓰기
-    </button>
+    {/*    <button
+      // onClick={()=>{
+      //   document.location.href = `/write/${id}`
+      // }}>    </button>*/}
+      
+      <Link to="write"> 편지 쓰기</Link>
   </>
 
   );

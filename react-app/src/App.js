@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import AppRouter from "./components/Router";
+import {
+  BrowserRouter,
+} from "react-router-dom";
+
 
 
 function App() {
@@ -21,9 +25,11 @@ function App() {
 
   return (
     <div>
+          <BrowserRouter>
         <AppRouter
         isLoggedIn={isLogin}
         />
+        </BrowserRouter>
     </div>
   );
 }

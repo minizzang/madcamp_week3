@@ -6,6 +6,8 @@ import axios from "axios";
 import BASE_URL from "./BASE_URL";
 import 'styles/write.css';
 import 'styles/bubble.css';
+import 'styles/transition.css';
+
 
 const Write = () => {
 
