@@ -76,6 +76,7 @@
   }
   
   .gallery-item {
+    background-color: aqua;
     height: 150px;
     opacity: 0;
     position: absolute;
