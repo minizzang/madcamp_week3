@@ -1,11 +1,19 @@
-import React, {Component, useEffect} from "react";
+import React, {Component, useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
+import axios from 'axios';
+import BASE_URL from "./BASE_URL";
 import 'styles/home.css';
 
 const Home = () => {
 
-  const { id } = useParams();
+  const { id } = useParams(); // url의 파라미터로 넘겨져 온 것.
   const curr_user = sessionStorage.getItem('user_id');
+  const [nickname, setNickname] = useState("");
+  const [memo, setMemo] = useState("");
+  const [letterInvalidCnt, setLetterInvalidCnt] = useState("0");
+  const [letterValidCnt, setLetterValidCnt] = useState("0");
+  const [letterInfo, setLetterInfo] = useState([]);
+
   // console.log("curr_user : "+curr_user);
   // curr_user가 null이라면 아무도 로그인 하지 않은 상태. 아니면 누군가의 id가 저장되어 있음.
   useEffect(()=>{
@@ -14,6 +22,47 @@ const Home = () => {
     const galleryControls = ['previous', 'add', 'next'];
     const galleryItems = document.querySelectorAll('.gallery-item');
     
+    // 유저의 닉네임, 메모 불러오기
+    axios.get(BASE_URL+`/account/getUserInfo/${id}`)
+      .then(response => {
+        setNickname(response.data[0].nickname)
+        setMemo(response.data[0].memo)
+      })
+      .catch(error => {
+          console.log(error);
+      })
+
+    // (open_date 지나지 않은) 유저에게 온 편지 닉네임, open_date 받기
+    axios.get(BASE_URL+`/letter/getMyInvalidLetters/${id}`)
+    .then(response => {
+      console.log(response.data)
+      setLetterInvalidCnt(response.data.length)
+      setLetterInfo(response.data.map(item => {
+        return {
+          sender: item.author,
+          open_date: item.open_date
+        };  
+      }))
+      
+    })
+    .catch(error => {
+        console.log(error);
+    })
+
+    // (open_date 지난 && opened = False인) 유저에게 온 모든 편지 받기
+    axios.get(BASE_URL+`/letter/getMyValidLetters/${id}`)
+    .then(response => {
+      setLetterValidCnt(response.data.length)
+      
+      setLetterInfo(letterInfo => letterInfo.concat(response.data.map(item => ({
+        sender: item.author,
+        open_date: item.open_date
+      }))))
+    })
+    .catch(error => {
+        console.log(error);
+    })
+
     
       class Carousel{
         constructor(container, items, controls) {
@@ -118,7 +167,14 @@ const Home = () => {
   <>
     <div class="title-bar">
       <div>
-        <span class= "title"><span id="name">민채</span> 님의 레터스페이스 입니다.</span>
+        <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
+        <button
+          onClick={()=>{
+            navigator.clipboard.writeText(`192.249.18.161/${id}`);
+            alert("링크가 복사되었습니다. 친구에게 공유해보세요!")
+            console.log(letterInfo)
+          }
+          }>링크 복사</button>
         <div class="title_menu">
           <span id="welcome">Welcome !</span>
           <span id="storage">보관함</span>
@@ -126,12 +182,12 @@ const Home = () => {
       </div>
     </div>
     <div class="memo">
-      <p>" 편지 좀 써줘 친구들아 사랑해 🧡 "</p>
+      <p>" {memo} "</p>
     </div>
     
     <div class="contents">
-      <p class="stacked_letter_text">쌓인 편지 <span id="before_open_letter">10</span> 개</p>
-      <p class="unlock_info"><span id="unlocked_letter">4</span>의 편지가 열렸어요 !</p>
+      <p class="stacked_letter_text">쌓인 편지 <span id="before_open_letter">{letterInvalidCnt+letterValidCnt}</span> 개</p>
+      <p class="unlock_info"><span id="unlocked_letter">{letterValidCnt}</span>개의 편지가 열렸어요 !</p>
       <div id= "content_zone" class="gallery">
         <div class="gallery-container">
           <img class="gallery-item gallery-item-1" src="http://fakeimg.pl/300/?text=1" data-index="1"/>

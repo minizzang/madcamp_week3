@@ -54,7 +54,7 @@ def getMyInvalidLetters(request, param):
 
 
 # (타인용) 유저에게 온 편지의 닉네임, open_date 받기
-# BASEURL/letter/getMyInvalidLetters/{id}
+# BASEURL/letter/getLetters/{id}
 @api_view(['GET'])
 def getLetters(request, param):
     letters = Letter.objects.filter(recipient=param).values('author', 'open_date')
