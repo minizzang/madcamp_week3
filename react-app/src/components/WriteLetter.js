@@ -10,6 +10,8 @@ import 'styles/transition.css';
 import stamp_back from '../images/stamp_back.png'
 import stamp_heart from '../images/stamp_heart.png'
 import stamp_star from '../images/stamp_star.png'
+import stamp_cloud from '../images/stamp_cloud.png'
+import stamp_party from '../images/stamp_party.png'
 
 
 const Write = () => {
@@ -20,8 +22,8 @@ const Write = () => {
     const [sender, setSender] = useState("");
     const [contents, setContents] = useState("");
     const [subject, setSubject] = useState("");
-    const [paperType, setpaperType] = useState("");
-    const [effectType, setEffectType] = useState("");
+    const [paperType, setpaperType] = useState(0);
+    const [effectType, setEffectType] = useState(0);
     const [error, setError] = useState("");
     const [startDate, setStartDate] = useState(new Date());
     const [stampImg, setStampImg] = useState(null);
@@ -138,17 +140,13 @@ const Write = () => {
         setStampImg(<img src={stamp_heart} id="stamp-front" className="stamp-front"></img>)
         break;
       case "effect3" :
+        setStampImg(<img src={stamp_cloud} id="stamp-front" className="stamp-front"></img>)
         break;
       case "effect4" :
+        setStampImg(<img src={stamp_party} id="stamp-front" className="stamp-front"></img>)
         break;
     }
   };
-
-  function ChangeImg(){
-    console.log(document.getElementById("stamp-front").src)
-    document.getElementById("stamp-front").setAttribute("images/stamp_heart")
-    console.log(document.getElementById("stamp-front").src)
-  }
   
 
   return (
@@ -176,7 +174,7 @@ const Write = () => {
               selectsStart
               value={startDate}
               onChange={(date) => setStartDate(date)}
-              dateFormat="yyyy년 M월 d일에 메시지가 열립니다."
+              dateFormat="yyyy년 M월 d일에 편지가 열립니다."
               popperPlacement="right-start"
               customInput={<ExampleCustomInput />}
             />

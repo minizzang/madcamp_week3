@@ -1,4 +1,4 @@
-import 'styles/test.css';
+import 'styles/test1.css';
 import 'animate.css';
 import { useState } from 'react/cjs/react.development';
 

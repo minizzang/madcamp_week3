@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import React, {Component, createElement, useEffect, useState} from "react";
+import React, {Component, createElement, useEffect, useState, useRef } from "react";
 import axios from 'axios';
 import BASE_URL from "./BASE_URL";
 import 'styles/home.css';
@@ -14,10 +14,11 @@ import Flippy from "react-flippy";
 import {FrontSide, BackSide} from "react-flippy";
 import styles from '../styles/home.css';
 import PopupDom from '../PopupDom';
-import Test from "./test";
+import Test1 from "./test1";
 import Test2 from "./test2";
 import Test4 from "./test4";
 import Test5 from "./test5";
+import Test3 from "./test3";
 
 const Home = () => {
 
@@ -27,12 +28,15 @@ const Home = () => {
   const [memo, setMemo] = useState("");
   const [letterInvalidCnt, setLetterInvalidCnt] = useState(0);
   const [letterValidCnt, setLetterValidCnt] = useState(0);
+  const [letterValidContents, setLetterValidContents] = useState([]);
   // letterInvalidInfo는 아직 날짜가 안 지난 편지, letterValidInfo는 날짜가 지나서 볼 수 있는 편지
   const [letterInvalidInfo, setLetterInvalidInfo] = useState([]);
   const [letterValidInfo, setLetterValidInfo] = useState([]);
-  const [letterValidContents, setLetterValidContents] = useState([]);
   const [letterInfo, setLetterInfo] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [width, setWidth] = useState("");
+  const virtualMemo = useRef();
+  const memoRef = useRef();
 
   const [letterList, setLetterList] = useState([]);
 
@@ -41,7 +45,7 @@ const Home = () => {
   //popup
   const [isOpenPopup,setIsOpenPopup] = useState(false);
 
-  const [background_effect_type, setBackgroundEffect] = useState(1);
+  const [background_effect_type, setBackgroundEffect] = useState(0);
 
   const openPopup = () =>{
     setIsOpenPopup(true);
@@ -53,6 +57,9 @@ const Home = () => {
 
   const handleChange = (e) => {
     setMemo(e.target.value)
+    const temp = window.getComputedStyle(virtualMemo.current).width;
+    memoRef.current.style = `width: ${String(Number(temp.slice(0, temp.length - 2))+10)}px`;
+    // memoRef.current.style = `width: ${temp}`;
   }
 
   const getLettersFromDB = async () => {
@@ -91,12 +98,13 @@ const Home = () => {
           }))
           setLetterValidContents(response.data.map(item => {
             return {
+              id: item.id,
               sender: item.author,
               written_date: item.created_date,
               title: item.title,
               text: item.text,
               paper_type: item.paper_type,
-              effect_type: item.effect_type
+              effect_type: item.effect_type,
             }
           }))
         }
@@ -111,8 +119,6 @@ const Home = () => {
   // console.log("curr_user : "+curr_user);
   // curr_user가 null이라면 아무도 로그인 하지 않은 상태. 아니면 누군가의 id가 저장되어 있음.
   useEffect(()=>{
-
-  
     
     // 유저의 닉네임, 메모 불러오기
     axios.get(BASE_URL+`/account/getUserInfo/${id}`)
@@ -126,52 +132,16 @@ const Home = () => {
 
     getLettersFromDB()
 
-    // 유저에게 온 모든 편지의 닉네임, open_date 받기
-    // axios.get(BASE_URL+`/letter/getLetters/${id}`)
-    // .then(response => {
-    //   if (response.data == "편지가 없어요") {
-    //     console.log("no letter!")
-    //   } else {
-    //     const today = moment().format('YYYY-MM-DD')
-    //     response.data.map(item => {
-    //       console.log(item.open_date)
-    //       // console.log(moment().format('YYYY-MM-DD'))
-
-    //       if (item.open_date <= today) {
-    //         setLetterValidInfo([...letterValidInfo, {
-    //           sender : item.author,
-    //           open_date : item.open_date
-    //         }])
-    //         // console.log(item.author)
-            
-    //       } else {
-    //         setLetterInvalidInfo([...letterInvalidInfo, {
-    //           sender : item.author,
-    //           open_date : item.open_date
-    //         }])
-    //       }
-    //     }) 
-        
-    //     // setLetterInfo(response.data.map(item => {
-    //     //   return {
-    //     //     sender: item.author,
-    //     //     open_date: item.open_date
-    //     //   };
-    //     // }))
-    //   }
-    // })
-    // .catch(error => {
-    //     console.log(error);
-    // })
-
-    
-
-
-
-
   }, []);
   
+  useEffect(() => {
+    const temp = window.getComputedStyle(virtualMemo.current).width;
+    setWidth(`width: ${String(Number(temp.slice(0, temp.length - 2)) + 5)}px`);
+  }, [memo]);
 
+  useEffect(() => {
+    memoRef.current.style = width;
+  }, [width])
 
   useEffect(()=>{
     const galleryContainer = document.querySelector('.gallery-container');
@@ -197,9 +167,12 @@ const Home = () => {
           el.classList.remove('gallery-item-3');
           el.classList.remove('gallery-item-4');
           el.classList.remove('gallery-item-5');
+
+          el.classList.add('invalid_2');
         });
     
         this.carouselArray.slice(0, 5).forEach((el, i) => {
+          el.classList.remove('invalid_2');
           el.classList.add(`gallery-item-${i+1}`);
 
         });
@@ -323,7 +296,7 @@ const Home = () => {
     
             } else {
               // 아닐 경우
-
+              console.log(curIdx);
               this.setCurrentState(control);
 
             }
@@ -353,11 +326,10 @@ const Home = () => {
       console.log("loading" + loading)
       console.log(letterValidInfo)
       console.log(letterInvalidInfo)
-      // console.log(letterValidContents)
 
       let j;
 
-      for(j = 0 ; j < letterInvalidInfo.length; j++){
+      for(j = 0 ; j < letterInvalidInfo.length; j++){ //invalid
         const letter = document.createElement('div');
 
           Object.assign(letter, {
@@ -388,12 +360,21 @@ const Home = () => {
 
         const letterContainer = document.createElement('div');
         letterContainer.className="letterContainer"
+        letter.classList.add('invalid');
+        
         letterContainer.appendChild(front);
         letterContainer.appendChild(back);
 
         letterContainer.addEventListener('click',click);
 
+        letterContainer.style.background="rgb(200,200,200)"
+
         letter.appendChild(letterContainer);
+
+        
+
+        //elem.style.transform = "rotateY(0deg) scale(1.0)";
+        
 
         //letter.appendChild(sender);
         //letter.appendChild(line);
@@ -411,7 +392,7 @@ const Home = () => {
 
       let i;
 
-      for(i = 0 ; i < letterValidInfo.length; i++){
+      for(i = 0 ; i < letterValidInfo.length; i++){ //valid
         const letter = document.createElement('div');
         if(i==0){
           Object.assign(letter, {
@@ -433,20 +414,26 @@ const Home = () => {
 
 
         letter.setAttribute('data-index', i+j);
-        const sender = document.createElement('span');
+        const sender_front = document.createElement('span');
         const DueDate = document.createElement('span');
-        sender.innerText = letterValidInfo[i].sender;
+        sender_front.innerText = letterValidInfo[i].sender;
         DueDate.innerText = letterValidInfo[i].open_date;
         DueDate.className = "open_date_text"
-        sender.className = "sender_text"
+        sender_front.className = "sender_text_front"
         const line = document.createElement('br');
 
+        const sender_back = document.createElement('span');
+        sender_back.innerText = letterValidInfo[i].sender;
+        sender_front.className = "sender_text_back"
+        sender_front.title = letterValidContents[i].id
+        sender_front.id = letterValidContents[i].paper_type
+        DueDate.id = letterValidContents[i].effect_type
         const front = document.createElement('div');
         front.className = 'letter_front';
         const back = document.createElement('div');
         back.className = 'letter_back';
 
-        front.appendChild(sender);
+        front.appendChild(sender_front);
         front.appendChild(line);
         front.appendChild(DueDate);
 
@@ -467,13 +454,13 @@ const Home = () => {
         // 태그 텍스트 설정
         title.innerText = letterValidContents[i].title
         text.innerText = letterValidContents[i].text
-        //sender.innerText 위에서 디비에서 받아왔음
+        //sender_back.innerText 위에서 디비에서 받아왔음
         written_date.innerText = letterValidContents[i].written_date.substr(0,10)
 
         //아까 만들었던 div태그에 자식 요소로 추가 
         content.appendChild(title);
         content.appendChild(text);
-        content.appendChild(sender);
+        content.appendChild(sender_back);
         content.appendChild(written_date);
 
         //div 태그를 div class= letter_back의 자식 요소로 추가
@@ -488,7 +475,12 @@ const Home = () => {
         letterContainer.appendChild(front);
         letterContainer.appendChild(back);
 
-        letterContainer.addEventListener('click',click);
+        letterContainer.style.background="rgb(200,173,226)"
+
+        if (id == curr_user){
+          letterContainer.addEventListener('click',click);
+        }
+        
         
 
         letter.appendChild(letterContainer);
@@ -517,25 +509,36 @@ const Home = () => {
   }, [loading])
 
   function click(event) {
+    // console.log(event.currentTarget)
     let elem = event.currentTarget;
+    console.log(elem)
+    console.log(elem.childNodes[0].firstChild.id) // paper_type
+    console.log(elem.childNodes[0].lastChild.id)  // effect_type
     if (elem.style.transform == "rotateY(180deg) scale(2)") {
               elem.style.transform = "rotateY(0deg) scale(1.0)";
               closePopup();
               
-
               //opened
           } else {
               elem.style.transform = "rotateY(180deg) scale(2.0)";
-              console.log(elem);
-              setBackgroundEffect(1);
-
+              // console.log(elem);
+              // console.log("opened");
+              setBackgroundEffect(Number(elem.childNodes[0].lastChild.id));
+              
               openPopup();
               elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
+              
+              
 
-
-
-            
-
+              // 카드 오픈 시에 넣기, 카드 오픈 시 유저 확인도 하기
+              axios.post(BASE_URL+"/letter/setOpened", {
+                id: Number(elem.childNodes[0].firstChild.title)
+              }).then(response => {
+                console.log(response);
+              }).catch(error => {
+                console.log("setOpened errror!"+error);
+              });
+              
               /*const content = document.getElementsByClassName('letter_content');
               for (let p = 0; p < content.length; p++){
                 content[p].style.transform = "scale(0.3)";
@@ -543,6 +546,8 @@ const Home = () => {
 
           }
       }
+
+      
 
   const transparent_style = {
     opacity: 0
@@ -570,12 +575,16 @@ const Home = () => {
 function BackgroundType(){
 
   if(background_effect_type == 1){
-    return <PopupDom><Test5></Test5></PopupDom>
+    return <PopupDom><Test></Test></PopupDom>
   } else if(background_effect_type ==2){
     return <PopupDom><Test2></Test2></PopupDom>
-  } else if(background_effect_type ==4){
+  } else if(background_effect_type == 3){
+    return <PopupDom><Test3></Test3></PopupDom>}
+    else if(background_effect_type ==4){
     return <PopupDom><Test4></Test4></PopupDom>
-  }
+  } else if(background_effect_type ==5){
+    return <PopupDom><Test5></Test5></PopupDom>
+  } 
 }
 
 
@@ -583,28 +592,31 @@ function BackgroundType(){
   <div id="monitor" class = "mainPage">
     <div id="screen">
     <div class="title-bar">
-      {isOpenPopup && BackgroundType()}
-      
-        <div className="title-holder">
-          <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
-          <button
-            onClick={()=>{
-              navigator.clipboard.writeText(`192.249.18.161/mypage/${id}`);
-              alert("링크가 복사되었습니다. 친구에게 공유해보세요!")
-
-              // console.log(letterValidInfo)
-              // console.log(letterInvalidInfo)
-            }
-            }
-            className="btn_copy">링크 복사</button>
+      {isOpenPopup && BackgroundType() }
+      <div className="title-holder">
+        <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
+        <button
+          onClick={()=>{
+            navigator.clipboard.writeText(`192.249.18.161/mypage/${id}`);
+            alert("링크가 복사되었습니다. 친구에게 공유해보세요!")
+            console.log(window.getComputedStyle(virtualMemo.current).width);
+            // console.log(letterValidInfo)
+            // console.log(letterInvalidInfo)
+          }}
+          className="btn_copy">링크 복사</button>
         </div>
-        
         <div class="title_menu">
           {
             id === curr_user
             ?
               <span id="welcome">{nickname}님</span>
-            :
+            : 
+              (curr_user != null) ? 
+              <span id="welcome"
+              onClick={()=>{
+                document.location.href = `/mypage/${curr_user}`       //로그인 여부에 따라 다르게
+              }}>내 레터스페이스</span>
+             : 
               <span id="welcome"
               onClick={()=>{
                 document.location.href = `/welcome`       //로그인 여부에 따라 다르게
@@ -613,36 +625,44 @@ function BackgroundType(){
           
           <span id="storage"
             onClick={()=>{
-              if (curr_user == id) {
-                document.location.href = `/storage/${id}` // 유저의 보관함으로 이동 (로그인 유저와 같아야 함)
-              } else {
-                alert("자신의 보관함만 열람 가능합니다.")
-              }
+              // if (curr_user == id) {
+                document.location.href = `/storage/${curr_user}` // 유저의 보관함으로 이동 (로그인 유저와 같아야 함)
+              // } else {
+                // alert("자신의 보관함만 열람 가능합니다.")
+              // }
             }}>보관함</span>
         </div>
-      
-    </div>
-    
-    <div className="memo-holder">
-      <span className="memo-ddaoom-left">"</span>
-      <input type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>
-      <span className="memo-ddaoom-right">"</span>
+      </div>
 
+    <div class="memo-holder">
+    <div style={{ position: "absolute", top: "0px", display: "inline-block", visibility: "hidden" }} className="memo" ref={virtualMemo}>{memo}</div>
+    <span className="memo-ddaoom-left">"</span>
+      {(id == curr_user)? 
+      <input ref={memoRef} type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>
+      :
+      <input ref={memoRef} disabled="disabled" type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>}
+      
+      <span className="memo-ddaoom-right">"</span>
+    {(id == curr_user)? 
       <button
         onClick={()=>{
           // db에 메모 수정된 것 저장
-          axios.post(BASE_URL+"/account/updateUserMemo", {
-            id : id,
-            memo : memo
-          }).then(response => {
-            console.log(response);
-          }).catch(error => {
-            console.log("updateUserMemo errror!"+error);
-          });
+          
+            axios.post(BASE_URL+"/account/updateUserMemo", {
+              id : id,
+              memo : memo
+            }).then(response => {
+              console.log(response);
+              alert("메모가 수정되었습니다.")
+            }).catch(error => {
+              console.log("updateUserMemo errror!"+error);
+            });
         }}
-        className="btn_edit">수정<br/>하기</button>
+        className="btn_edit">수정<br/>하기</button> : 
+          <div/>
+    }
+      
     </div>
-    
     
     <div class="contents">
       <p class="stacked_letter_text">쌓인 편지 <span id="before_open_letter">{letterInvalidCnt+letterValidCnt}</span> 개</p>
