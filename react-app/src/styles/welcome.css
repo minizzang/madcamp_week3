@@ -55,7 +55,7 @@
   .formInput {
     width: 100%;
     padding: 10px 20px;
-    border-radius: 20px;
+    border-radius: 10px;
     border: 1px solid black;
     text-align: center;
     background-color: white;
@@ -112,18 +112,19 @@
   .authInput {
     max-width: 320px;
     width: 100%;
-    padding: 10px;
-    border-radius: 30px;
+    padding: 1em;
+    border-radius: 2px;
     background-color: rgba(255, 255, 255, 1);
-    margin-bottom: 10px;
-    font-size: 12px;
+    margin-bottom: 1em;
+    font-size: 1em;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     color: black;
   }
   
   .authSubmit {
     text-align: center;
-    background: #ffb1b8;
-    color: white;
+    background: #E1DAFF;
+    color: black;
     margin-top: 10px;
     cursor: pointer;
   }
@@ -136,7 +137,7 @@
   }
   
   .authSwitch {
-    color: #ffb1b8;
+    color: #7451FF;
     cursor: pointer;
     margin-top: 10px;
     margin-bottom: 50px;
@@ -146,6 +147,12 @@
   }
 
   .welcomeTxt {
-    font-family: "kkomi";
-    font-size: 20px;
+    font-family: "Kkomi";
+    font-size: 3em;
+    margin-bottom: 50px;
+  }
+
+  @font-face {
+    font-family: "Kkomi";
+    src: url("../fonts/KNPSKkomi.otf");
   }

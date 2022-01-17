@@ -197,7 +197,7 @@
 
   .letter_content{
     backface-visibility: hidden;
-    position: absolute;
+    position: relative;
   }
 
   .heart{
@@ -216,8 +216,8 @@
   
   
   .gallery-item{
-
-      align-items: center;
+    
+    align-items: center;
     vertical-align: middle;
     transition: transform 1s;
     transform-style: preserve-3d;
@@ -239,7 +239,7 @@
     z-index: 0;
 
   }
-  
+
   .gallery-item-1 > .letterContainer{
  
     transition: 0.5s;

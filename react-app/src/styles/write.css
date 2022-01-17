@@ -1,15 +1,41 @@
+.write_page{
+  height : 100%;
+  padding-top:3em
+}
+
 .write_letter_box {
     display: grid;
     justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
-    height : 100hx;
-    
+    position:relative;
+    z-index: 0;
+    height : 100%;
     grid-template-columns: 2fr 1fr 6fr 1fr 2fr;
   }
 
+.btn_container{
+  padding: 3em 2em 3em 2em;
+  border-radius: 1em;
+  width:100%;
+  background-color: #ffffff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.tab_subject{
+  text-align: center;
+  font-size: 1.2em;
+  width:100%;
+  border-radius: 1em;
+  padding: 1.5em;
+  margin:2em 0 2em;
+  background-color: #ffffff;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
   .send_letter{
     padding: 2em;
+    border-radius: 2em;
     background-color: #ffd6da;
   }
 
@@ -38,8 +64,9 @@
     padding: 15px;
     border-radius: 30px;
     margin-bottom: 10px;
-    font-size: 12px;
+    font-size: 1.5em;
     color: black;
+    font-family: "Kkomi";
   }
   
   .writeSubmit {
@@ -52,8 +79,9 @@
 
   .contentsbox{
       resize:none;
-      font-size: 1.5rem;
-      padding: 15px;
+      border:none;
+      font-size: 1.5em;
+      padding: 1em;
       margin-bottom: 10px;
 
     text-rendering: auto;
@@ -85,51 +113,50 @@
   .btn {
     text-align: center;
     width: 100%;
-    margin: 0.5em;
-    border: 2px solid #155799;
     padding: 0.4em 1em;
+    margin-bottom: 1em;
     font-size: 1.15em;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: #155799;
+    color: #000000;
     background-color: #F1F2F2;
     transition: all 0.25s ease-in-out;
+    box-shadow: rgba(99, 99, 99, 0.4) 0px 2px 8px 0px;
   }
 
   .btn:hover {
-    background-color: #155799;
-    border-color: #155799;
+    background-color: #937FE2;
+    border-color: #937FE2;
     color: #F1F2F2;
   }
   .btn:active {
-    background-color: #155799;
-    border-color: #155799;
+    background-color: #937FE2;
+    border-color: #937FE2;
     color: #F1F2F2;
     box-shadow: none;
   }
 
   .btn:visited {
-    background-color: #155799;
-    border-color: #155799;
+    background-color: #937FE2;
+    border-color: #937FE2;
   }
   
 
   .btn_selected {
-
     text-align: center;
     width: 100%;
-    margin: 0.5em;
-    border: 2px solid #155799;
+    margin-bottom: 1em;
     padding: 0.4em 1em;
     font-size: 1.15em;
     letter-spacing: 1px;
     text-transform: uppercase;
-    color: #155799;
-    background-color: #155799;
+    color: #937FE2;
+    background-color: #937FE2;
     transition: all 0.25s ease-in-out;
     color: #F1F2F2;
-    outline: 5px auto #155799;
-    
+    outline: 5px auto #937FE2;
+    box-shadow: rgba(99, 99, 99, 0.4) 0px 2px 8px 0px;
+
   }
 
 
@@ -145,7 +172,7 @@
     margin-left: 15px;
     position: relative;
     background-image: url(images/stamp_back.png);
-    /* background-color: #155799; */
+    /* background-color: #937FE2; */
   }
 
   .stamp {
@@ -165,4 +192,9 @@
   .stamp-img {
     width: 100px;
     height: 100px;
+  }
+
+  @font-face {
+    font-family: "Kkomi";
+    src: url("../fonts/KNPSKkomi.otf");
   }
