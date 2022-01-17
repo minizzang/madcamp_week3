@@ -524,7 +524,7 @@ const Home = () => {
           } else {
               elem.style.transform = "rotateY(180deg) scale(2.0)";
               console.log(elem);
-              setBackgroundEffect(2);
+              setBackgroundEffect(1);
 
               openPopup();
               elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
