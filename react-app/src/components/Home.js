@@ -396,11 +396,11 @@ const Home = () => {
         <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
         <button
           onClick={()=>{
-            navigator.clipboard.writeText(`192.249.18.161/${id}`);
+            navigator.clipboard.writeText(`192.249.18.161/mypage/${id}`);
             alert("링크가 복사되었습니다. 친구에게 공유해보세요!")
 
-            console.log(letterValidInfo)
-            console.log(letterInvalidInfo)
+            // console.log(letterValidInfo)
+            // console.log(letterInvalidInfo)
           }
           }>링크 복사</button>
         <div class="title_menu">
@@ -453,7 +453,7 @@ const Home = () => {
           <div style={transparent_style} class="gallery-item gallery-item-1" data-index="1"/>
           <div style={transparent_style} class="gallery-item gallery-item-2" data-index="2"/>
           <img class="gallery-item gallery-item-3" data-index="3" src={plusImage} onClick={()=>{
-        document.location.href = `/write/${id}`}}/>
+        document.location.href = `/mypage/${id}/write`}}/>
 
         </div>
         <div class="gallery-controls">
