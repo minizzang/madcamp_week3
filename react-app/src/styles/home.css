@@ -99,6 +99,13 @@
     z-index: 0;
     text-align: center;
   }
+
+  .plus-box{
+    border-radius: 30px;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+  }
   
   .gallery-item-1 {
     font-size: 15%;
