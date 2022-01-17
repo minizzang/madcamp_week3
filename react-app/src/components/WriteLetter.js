@@ -32,7 +32,7 @@ const Write = () => {
     let imgArr= [];
 
     const ExampleCustomInput = React.forwardRef(({ value, onClick }, ref) => (
-      <button className="writeInput" onClick={onClick} ref={ref}>
+      <button className="dateInput" onClick={onClick} ref={ref}>
         {value}
       </button>
     ));

@@ -45,9 +45,14 @@
   }
 
   .paper2{
-    background-image: url(images/christmas.jpg);
+    background-image: url(images/add_card.png);
+    background-size: cover;
   }
 
+  .paper3{
+    background-image: url(https://image.freepik.com/free-vector/tropical-summer-design_53876-93060.jpg);
+    background-size: cover;
+  }
   .effect1{
     animation-duration: 3s;
     animation-name: slidein;
@@ -59,13 +64,25 @@
     width: 100%;
   }
 
-    .writeInput {
+  .writeInput {
     width: 100%;
     padding: 15px;
     border-radius: 30px;
     margin-bottom: 10px;
     font-size: 1.5em;
     color: black;
+    background-color: rgba( 255, 255, 255, 0.7 );
+    font-family: "Kkomi";
+  }
+
+  .dateInput {
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: black;
+    background-color: white;
     font-family: "Kkomi";
   }
   
@@ -83,9 +100,10 @@
       font-size: 1.5em;
       padding: 1em;
       margin-bottom: 10px;
+      border: none;
 
     text-rendering: auto;
-    color: -internal-light-dark(black, white);
+    background-color: rgba( 255, 255, 255, 0.7 );
         letter-spacing: normal;
         word-spacing: normal;
         line-height: normal;
