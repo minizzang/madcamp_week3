@@ -13,6 +13,8 @@ class Letter(models.Model):
     open_date = models.DateField(
         blank=False, null=False)
     opened = models.BooleanField(default=False)
+    paper_type = models.IntegerField(default=0)
+    effect_type = models.IntegerField(default=0)
     # letter_type
 
     def send_letter(self):

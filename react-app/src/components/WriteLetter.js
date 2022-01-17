@@ -7,6 +7,9 @@ import BASE_URL from "./BASE_URL";
 import 'styles/write.css';
 import 'styles/bubble.css';
 import 'styles/transition.css';
+import stamp_back from '../images/stamp_back.png'
+import stamp_heart from '../images/stamp_heart.png'
+import stamp_star from '../images/stamp_star.png'
 
 
 const Write = () => {
@@ -19,6 +22,7 @@ const Write = () => {
     const [effectType, setEffectType] = useState("");
     const [error, setError] = useState("");
     const [startDate, setStartDate] = useState(new Date());
+    const [stampImg, setStampImg] = useState(null);
 
     let imgArr= [];
 
@@ -57,7 +61,9 @@ const Write = () => {
           author : sender,
           title : subject,
           text : contents,
-          open_date : dateToString(startDate)
+          open_date : dateToString(startDate),
+          paper_type : paperType,
+          effect_type : effectType
         }).then(response => {
           if (response.data == "post succeed"){
             // 편지 전송 완료 -> 해당 유저의 레터 스페이스로 보내기
@@ -80,6 +86,10 @@ const Write = () => {
     //시간을 년-월-일 형식으로 변환해주는 함수
 
 
+  const getIntTypes = (type) => {
+    const intType = Number(type.substr(-1, 1))
+    return intType
+  }
     //======설정된 편지지 바꾸는 함수 ===
   const onSelectPaper = (event) => {
 
@@ -92,8 +102,8 @@ const Write = () => {
     },700); //컨테이너를 queryselector로 가져와서 classlist에 animate 추가 -> 애니메이션 실행, reset animation
 
     event.target.className = "btn_selected" //내가 선택한 건 selected로 바꿔주기!
-
-    setpaperType(event.target.getAttribute('name'));    //event.target.getAttribute('name') 이게 paper1, paper2임.
+    
+    setpaperType(getIntTypes(event.target.getAttribute('name')));    //event.target.getAttribute('name') 이게 paper1, paper2임.
     document.querySelector(`div[type=letterPaper]`).classList = ['send_letter'] //리스트 리셋
     document.querySelector(`div[type=letterPaper]`).classList.add(event.target.getAttribute('name')); //paper1, paper2 등으로 클래스 추가해서 배경변경
   };
@@ -111,9 +121,32 @@ const Write = () => {
 
     event.target.className = "btn_selected" //내가 선택한 건 selected로 바꿔주기!
 
-    setEffectType(event.target.getAttribute('name'));
-    console.log(event.target.getAttribute('name'));
+    setEffectType(getIntTypes(event.target.getAttribute('name')));
+    // console.log(event.target.getAttribute('name'));
+    // document.querySelector(`textarea[type=contents]`).classList = ['writeInput contentsbox'] //리스트 리셋
+    // console.log(document.querySelector(`textarea[type=contents]`).classList)
+    // document.querySelector(`textarea[type=contents]`).classList.add(event.target.getAttribute('name')); //effect1, effect2 등으로 클래스 추가해서 배경변경
+
+    
+    switch (event.target.getAttribute('name')) {
+      case "effect1" : 
+        setStampImg(<img src={stamp_star} id="stamp-front" className="stamp-front"></img>)
+        break;
+      case "effect2" :
+        setStampImg(<img src={stamp_heart} id="stamp-front" className="stamp-front"></img>)
+        break;
+      case "effect3" :
+        break;
+      case "effect4" :
+        break;
+    }
   };
+
+  function ChangeImg(){
+    console.log(document.getElementById("stamp-front").src)
+    document.getElementById("stamp-front").setAttribute("images/stamp_heart")
+    console.log(document.getElementById("stamp-front").src)
+  }
   
 
   return (
@@ -132,47 +165,55 @@ const Write = () => {
 
       <div class="send_letter" type="letterPaper">
 
-      <DatePicker
-        selected={startDate}
-        selectsStart
-        value={startDate}
-        onChange={(date) => setStartDate(date)}
-        dateFormat="yyyy년 M월 d일에 메시지가 열립니다."
-        popperPlacement="left-start"
-        customInput={<ExampleCustomInput />}
-      />
+          <div className="align-row">
+            <DatePicker
+              selected={startDate}
+              selectsStart
+              value={startDate}
+              onChange={(date) => setStartDate(date)}
+              dateFormat="yyyy년 M월 d일에 메시지가 열립니다."
+              popperPlacement="left-start"
+              customInput={<ExampleCustomInput />}
+            />
+            <div className="stamp-container">
+              <img src={stamp_back} className="stamp"></img>
+              {stampImg}
+              {/* <img src={stampImg} id="stamp-front" className="stamp-front"></img> */}
+            </div>
+            
+            
+          </div>
 
+          <form onSubmit={onSubmit} type="writeContainer" className="writeContainer bubbly-button">
+            
 
-      <form onSubmit={onSubmit} type="writeContainer" className="writeContainer bubbly-button">
-        
+          <input type='text' placeholder="편지 제목을 입력해주세요"
+                          name="subject"
+                          required
+                          value={subject}
+                          onChange={onChange}
+                          className="writeInput"/>
 
-      <input type='text' placeholder="편지 제목을 입력해주세요"
-                      name="subject"
-                      required
-                      value={subject}
-                      onChange={onChange}
-                      className="writeInput"/>
+            <textarea placeholder="내용을 적어주세요"
+            type="contents"
+            name="contents"
+            className="writeInput contentsbox"
+            rows="20"
+            required
+            value={contents}
+            onChange={onChange} /> {/* 사용자가 리사이징 못하도록 noresize 적용 : 세로로만 변형 가능 */}
 
-        <textarea placeholder="내용을 적어주세요"
-        type="contents"
-        name="contents"
-        className="writeInput contentsbox"
-        rows="20"
-        required
-        value={contents}
-        onChange={onChange} /> {/* 사용자가 리사이징 못하도록 noresize 적용 : 세로로만 변형 가능 */}
-
-        <input type='text' placeholder="보내는 분 이름을 입력해주세요"
-                name="sender"
-                className="writeInput"
-                required
-                value={sender}
-                onChange={onChange}/>
-        <input
-        type="submit"
-        className="writeInput writeSubmit"
-        value={"보내기"}/>
-        </form>
+            <input type='text' placeholder="보내는 분 이름을 입력해주세요"
+                    name="sender"
+                    className="writeInput"
+                    required
+                    value={sender}
+                    onChange={onChange}/>
+            <input
+            type="submit"
+            className="writeInput writeSubmit"
+            value={"보내기"}/>
+            </form>
         </div>
 
         <div class = "Blank"></div>

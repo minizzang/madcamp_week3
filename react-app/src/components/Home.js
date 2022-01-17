@@ -10,6 +10,9 @@ import Letter from "./Letter";
 import LetterItem from "../LetterItem";
 import plusImage from "../images/add_card.png";
 import styled from "styled-components";
+import Flippy from "react-flippy";
+import {FrontSide, BackSide} from "react-flippy";
+import styles from '../styles/home.css';
 
 const Home = () => {
 
@@ -75,7 +78,7 @@ const Home = () => {
 
       setLoading(false)
   }
-
+ 
   // console.log("curr_user : "+curr_user);
   // curr_user가 null이라면 아무도 로그인 하지 않은 상태. 아니면 누군가의 id가 저장되어 있음.
   useEffect(()=>{
@@ -169,7 +172,15 @@ const Home = () => {
     
         this.carouselArray.slice(0, 5).forEach((el, i) => {
           el.classList.add(`gallery-item-${i+1}`);
+
         });
+
+        
+        
+
+
+
+
       }
     
       // Update the current order of the carouselArray and gallery
@@ -178,13 +189,14 @@ const Home = () => {
         if (direction.className == 'gallery-controls-previous' && curIdx >0) {
 
           curIdx--;
-          console.log(curIdx)
+          // console.log(curIdx)
           this.carouselArray.unshift(this.carouselArray.pop());
         } else if (direction.className == 'gallery-controls-next' && curIdx <this.carouselArray.length-3){
           curIdx++;
-          console.log(curIdx)
+          // console.log(curIdx)
           this.carouselArray.push(this.carouselArray.shift());
         }
+
         this.updateGallery();
       }
     
@@ -289,6 +301,7 @@ const Home = () => {
     
             } else {
               // 아닐 경우
+
               this.setCurrentState(control);
 
             }
@@ -303,8 +316,12 @@ const Home = () => {
     //exampleCarousel.setControls();
     // exampleCarousel.setNav();
     exampleCarousel.useControls();
+
+
+
     if (!loading) {
-      
+
+
       // 민채 여기서 하세요!!
       console.log("loading" + loading)
       console.log(letterValidInfo)
@@ -329,11 +346,38 @@ const Home = () => {
         DueDate.className = "open_date_text"
         const line = document.createElement('br');
 
-        letter.appendChild(sender);
-        letter.appendChild(line);
-        letter.appendChild(DueDate);
+        const front = document.createElement('div');
+        front.className = 'letter_front';
+        const back = document.createElement('div');
+        back.className = 'letter_back';
+
+        front.appendChild(sender);
+        front.appendChild(line);
+        front.appendChild(DueDate);
+
+        letter.appendChild(front);
+        letter.appendChild(back);
+
+        const letterContainer = document.createElement('div');
+        letterContainer.className="letterContainer"
+        letterContainer.appendChild(front);
+        letterContainer.appendChild(back);
+
+        letterContainer.addEventListener('click',click);
+
+        letter.appendChild(letterContainer);
+
+        //letter.appendChild(sender);
+        //letter.appendChild(line);
+        //letter.appendChild(DueDate);
+        //letter.addEventListener('click',click)
+        //letter.onClick= click;
+
+
+        console.log(letter);
 
         letterList.push(letter);
+        //letterList.push(filpCard);
       }
 
 
@@ -368,10 +412,68 @@ const Home = () => {
         sender.className = "sender_text"
         const line = document.createElement('br');
 
+        const front = document.createElement('div');
+        front.className = 'letter_front';
+        const back = document.createElement('div');
+        back.className = 'letter_back';
 
-        letter.appendChild(sender);
-        letter.appendChild(line);
-        letter.appendChild(DueDate);
+        front.appendChild(sender);
+        front.appendChild(line);
+        front.appendChild(DueDate);
+
+        //편지 내용 불러오기
+        const content = document.createElement('div'); //편지 내용 감싸기 위한 div태그
+        content.className = "letter_content";
+        
+        const title = document.createElement('p');
+        const text = document.createElement('p');
+        // const sender (위에서 이미 정의됨 )
+        const written_date = document.createElement('p');
+
+        // 태그에 아이디 추가
+        //title.id = "";
+        //text.id = "";
+        //written_date.id = "";
+        
+        // 태그 텍스트 설정
+        title.innerText = "이건 타이틀입니다"
+        text.innerText = "이건 편지 내용 (text) 입니다"
+        //sender.innerText 위에서 디비에서 받아왔음
+        written_date.innerText = "이건 작성일 입니다"
+
+        //아까 만들었던 div태그에 자식 요소로 추가 
+        content.appendChild(title);
+        content.appendChild(text);
+        content.appendChild(sender);
+        content.appendChild(written_date);
+
+
+
+        //div 태그를 div class= letter_back의 자식 요소로 추가
+        back.appendChild(content);
+
+        //편지 페이지에 앞 뒤면 자식 요소로 추가
+        letter.appendChild(front);
+        letter.appendChild(back);
+
+        const letterContainer = document.createElement('div');
+        letterContainer.className="letterContainer"
+        letterContainer.appendChild(front);
+        letterContainer.appendChild(back);
+
+        letterContainer.addEventListener('click',click);
+
+        letter.appendChild(letterContainer);
+
+
+        //letter.addEventListener('click',click)
+
+
+        //letter.appendChild(sender);
+        //letter.appendChild(line);
+        //letter.appendChild(DueDate);
+
+        
 
         letterList.push(letter);
       }
@@ -380,14 +482,39 @@ const Home = () => {
 
       exampleCarousel.setLetterView();
 
-      console.log(letterList.length);
+      // console.log(letterList.length);
 
     }
     
   }, [loading])
 
+  function click(event) {
+    let elem = event.currentTarget;
+    if (elem.style.transform == "rotateY(180deg) scale(3)") {
+              elem.style.transform = "rotateY(0deg) scale(1.0)";
+              
+
+              //opened
+          } else {
+              elem.style.transform = "rotateY(180deg) scale(3.0)";
+              const content = document.getElementsByClassName('letter_content');
+              for (let p = 0; p < content.length; p++){
+                content[p].style.transform = "scale(0.3)";
+              }
+          }
+      }
+
   const transparent_style = {
     opacity: 0
+  }
+  const FlippyStyle = {
+    width: "300px",
+    height: "300px",
+    textAlign: "center",
+    color: "#000",
+    fontFamily: "sans-serif",
+    fontSize: "30px",
+    justifyContent: "center"
   }
 
   const StyledLink = styled(Link)`
@@ -409,11 +536,11 @@ const Home = () => {
         <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
         <button
           onClick={()=>{
-            navigator.clipboard.writeText(`192.249.18.161/${id}`);
+            navigator.clipboard.writeText(`192.249.18.161/mypage/${id}`);
             alert("링크가 복사되었습니다. 친구에게 공유해보세요!")
 
-            console.log(letterValidInfo)
-            console.log(letterInvalidInfo)
+            // console.log(letterValidInfo)
+            // console.log(letterInvalidInfo)
           }
           }>링크 복사</button>
         <div class="title_menu">

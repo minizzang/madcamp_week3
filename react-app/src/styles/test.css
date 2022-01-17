@@ -56,3 +56,13 @@
 	--animate-duration: 2s;
 	--animate-repeat: 20;
 }
+
+.animate__animated.animate__bounceIn {
+	--animate-duration: 6s;
+	--animate-repeat: 20;
+}
+
+.animate__animated.animate__tada {
+	--animate-duration: 3s;
+	--animate-repeat: 20;
+}
