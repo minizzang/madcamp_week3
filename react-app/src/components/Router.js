@@ -52,6 +52,7 @@ const AppRouter = ({isLoggedIn}) => {
               <Route path="test5" element={<Test5/> }/>
               <Route path="test3" element={<Test3/> }/>
               <Route path="test_animation" element={<Test_animation/> }/>
+              <Route path="/*" element={<Welcome />} />
           </Routes>
         </CSSTransition>
       </TransitionGroup>

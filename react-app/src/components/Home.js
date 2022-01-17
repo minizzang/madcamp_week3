@@ -575,7 +575,7 @@ const Home = () => {
 function BackgroundType(){
 
   if(background_effect_type == 1){
-    return <PopupDom><Test></Test></PopupDom>
+    return <PopupDom><Test1></Test1></PopupDom>
   } else if(background_effect_type ==2){
     return <PopupDom><Test2></Test2></PopupDom>
   } else if(background_effect_type == 3){
