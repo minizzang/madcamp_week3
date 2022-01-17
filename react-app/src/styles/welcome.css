@@ -146,6 +146,11 @@
   }
 
   .welcomeTxt {
-    font-family: "kkomi";
+    font-family: "Kkomi";
     font-size: 20px;
+  }
+
+  @font-face {
+    font-family: "Kkomi";
+    src: url("../fonts/KNPSKkomi.otf");
   }

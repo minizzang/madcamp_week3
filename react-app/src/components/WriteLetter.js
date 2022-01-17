@@ -227,8 +227,6 @@ const Write = () => {
           </div>
 
         </div>
-
-
     </>
   );
 }
