@@ -16,6 +16,7 @@ import styles from '../styles/home.css';
 import PopupDom from '../PopupDom';
 import Test from "./test";
 import Test2 from "./test2";
+import Test4 from "./test4";
 
 const Home = () => {
 
@@ -201,13 +202,6 @@ const Home = () => {
           el.classList.add(`gallery-item-${i+1}`);
 
         });
-
-        
-        
-
-
-
-
       }
     
       // Update the current order of the carouselArray and gallery
@@ -345,7 +339,6 @@ const Home = () => {
     exampleCarousel.useControls();
 
 
-
     if (!loading) {
 
       const background_effect = document.createElement('div');
@@ -354,7 +347,6 @@ const Home = () => {
       background_effect.id = "background_effect";
 
       monitor.appendChild(background_effect);
-
 
       // 민채 여기서 하세요!!
       console.log("loading" + loading)
@@ -483,8 +475,6 @@ const Home = () => {
         content.appendChild(sender);
         content.appendChild(written_date);
 
-
-
         //div 태그를 div class= letter_back의 자식 요소로 추가
         back.appendChild(content);
 
@@ -582,6 +572,8 @@ function BackgroundType(){
     return <PopupDom><Test></Test></PopupDom>
   } else if(background_effect_type ==2){
     return <PopupDom><Test2></Test2></PopupDom>
+  } else if(background_effect_type ==4){
+    return <PopupDom><Test4></Test4></PopupDom>
   }
 }
 
