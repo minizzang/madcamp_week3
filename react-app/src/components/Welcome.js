@@ -99,6 +99,7 @@ const Welcome = () => {
         value={nickname}
         onChange={onChange}
         className="authInput"
+        autoComplete="off"
       />): <></>}
       <input
         name="email"
@@ -108,6 +109,7 @@ const Welcome = () => {
         value={email}
         className="authInput"
         onChange={onChange}
+        autoComplete="off"
       />
       <input
         name="password"
@@ -117,6 +119,7 @@ const Welcome = () => {
         value={password}
         className="authInput"
         onChange={onChange}
+        autoComplete="off"
       />
       <input
         type="submit"

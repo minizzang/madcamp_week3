@@ -10,6 +10,9 @@ import 'styles/transition.css';
 import stamp_back from '../images/stamp_back.png'
 import stamp_heart from '../images/stamp_heart.png'
 import stamp_star from '../images/stamp_star.png'
+import stamp_cloud from '../images/stamp_cloud.png'
+import stamp_party from '../images/stamp_party.png'
+import stamp_bus from '../images/stamp_bus.png'
 
 
 const Write = () => {
@@ -29,7 +32,7 @@ const Write = () => {
     let imgArr= [];
 
     const ExampleCustomInput = React.forwardRef(({ value, onClick }, ref) => (
-      <button className="writeInput" onClick={onClick} ref={ref}>
+      <button className="dateInput" onClick={onClick} ref={ref}>
         {value}
       </button>
     ));
@@ -138,17 +141,16 @@ const Write = () => {
         setStampImg(<img src={stamp_heart} id="stamp-front" className="stamp-front"></img>)
         break;
       case "effect3" :
+        setStampImg(<img src={stamp_cloud} id="stamp-front" className="stamp-front"></img>)
         break;
       case "effect4" :
+        setStampImg(<img src={stamp_party} id="stamp-front" className="stamp-front"></img>)
+        break;
+      case "effect5" :
+        setStampImg(<img src={stamp_bus} id="stamp-front" className="stamp-front"></img>)
         break;
     }
   };
-
-  function ChangeImg(){
-    console.log(document.getElementById("stamp-front").src)
-    document.getElementById("stamp-front").setAttribute("images/stamp_heart")
-    console.log(document.getElementById("stamp-front").src)
-  }
   
 
   return (
@@ -162,6 +164,7 @@ const Write = () => {
           <div className="btn" type= "paper" name="paper2" onClick={onSelectPaper}>편지지 2</div>
           <div className="btn" type= "paper" name="paper3" onClick={onSelectPaper}>편지지 3</div>
           <div className="btn" type= "paper" name="paper4" onClick={onSelectPaper}>편지지 4</div>
+          <div className="btn" type= "paper" name="paper5" onClick={onSelectPaper}>편지지 5</div>
         </div>
 
       </div>
@@ -176,7 +179,7 @@ const Write = () => {
               selectsStart
               value={startDate}
               onChange={(date) => setStartDate(date)}
-              dateFormat="yyyy년 M월 d일에 메시지가 열립니다."
+              dateFormat="yyyy년 M월 d일에 편지가 열립니다."
               popperPlacement="right-start"
               customInput={<ExampleCustomInput />}
             />
@@ -197,7 +200,8 @@ const Write = () => {
                           required
                           value={subject}
                           onChange={onChange}
-                          className="writeInput"/>
+                          className="writeInput"
+                          autoComplete="off"/>
 
             <textarea placeholder="내용을 적어주세요"
             type="contents"
@@ -213,7 +217,8 @@ const Write = () => {
                     className="writeInput"
                     required
                     value={sender}
-                    onChange={onChange}/>
+                    onChange={onChange}
+                    autoComplete="off"/>
             <input
             type="submit"
             className="writeInput writeSubmit"
@@ -230,6 +235,7 @@ const Write = () => {
             <div className="btn" type= "effect" name="effect2" onClick={onSelectEffect}>효과 2</div>
             <div className="btn" type= "effect" name="effect3" onClick={onSelectEffect}>효과 3</div>
             <div className="btn" type= "effect" name="effect4" onClick={onSelectEffect}>효과 4</div>
+            <div className="btn" type= "effect" name="effect5" onClick={onSelectEffect}>효과 5</div>
           </div>
           </div>
 

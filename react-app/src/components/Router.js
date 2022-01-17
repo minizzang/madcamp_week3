@@ -18,6 +18,8 @@ import Welcome from "./Welcome";
 import Write from "./WriteLetter";
 import Test1 from "./test1";
 import Test2 from "./test2";
+import Test4 from "./test4";
+import Test5 from "./test5";
 import Test3 from "./test3";
 import Test_animation from "./test_animation"
 
@@ -46,8 +48,11 @@ const AppRouter = ({isLoggedIn}) => {
               <Route path="/letter" element={<Letter />} />  {/* 나중에 로그인 된 상태라면 개인 페이지로 이동 가능하게 만들 수 있을 듯*/}
               <Route path="test1" element={<Test1/> }/>
               <Route path="test2" element={<Test2/> }/>
+              <Route path="test4" element={<Test4/> }/>
+              <Route path="test5" element={<Test5/> }/>
               <Route path="test3" element={<Test3/> }/>
               <Route path="test_animation" element={<Test_animation/> }/>
+              <Route path="/*" element={<Welcome />} />
           </Routes>
         </CSSTransition>
       </TransitionGroup>

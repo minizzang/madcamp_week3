@@ -1,0 +1,110 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito:400,700,300);
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+}
+body .page {
+  margin: 0 auto;
+}
+body .content_hor {
+  width: 33.33%;
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+  height: 100vh;
+  max-width: 300px;
+}
+
+body .circle_inner__layer {
+  width: 600px;
+  height: 200px;
+  transition: all 0.4s;
+  position: absolute;
+  left: -200px;
+}
+
+body .circle_inner__layer img {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+body .circle {
+  position: absolute;
+  margin: auto;
+  transform: translateY(-50%);
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+body .circle:hover h3 {
+  transition: all 0.2s 0.04s;
+}
+body .circle:hover h2 {
+  transition: all 0.2s;
+}
+.circle_inner__layer:nth-of-type(1) {
+  width: 50000px;
+  height: 100vh;
+  left:-5000px;
+  background: url('images/city_background.png');
+  background-repeat: repeat-x;
+  animation: slide2 20s linear infinite;
+}
+.circle_inner__layer:nth-of-type(2) {
+    background: url('images/road.png');
+    background-repeat: repeat-x;
+    width: 500vw;
+    height: 100vh;
+    left:-2500px;
+    top: -8em;
+    animation: slide 6s linear infinite;
+    object-fit: fill;
+}
+.circle_inner__layer:nth-of-type(3) {
+    background: url('images/bus.png');
+    background-repeat: repeat-x;
+    width: 500vw;
+    height: 100vh;
+    top: -12em;
+  animation: slide3 2s linear infinite;
+}
+
+.circle_inner__layer:nth-of-type(4) {
+    background: url('images/bus.png');
+    background-repeat: repeat-x;
+    width: 500vw;
+    height: 100vh;
+    top: -7em;
+  animation: slide3 5s linear infinite;
+}
+
+@keyframes slide {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(-2492.12px); /* The image width */
+  }
+}
+
+@keyframes slide2 {
+    0% {
+      transform: translate(0);
+    }
+    100% {
+      transform: translate(-3176px); /* The image width */
+    }
+  }
+
+  @keyframes slide3 {
+    0% {
+        transform: translate(-5005.12px); /* The image width */
+    }
+    100% {
+      transform: translate(0px); /* The image width */
+    }
+  }

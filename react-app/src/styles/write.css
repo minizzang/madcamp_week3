@@ -40,12 +40,23 @@
   }
 
   .paper1{
-    background-image: url(images/add_card.png);
-
+    background-color:#EDB2B5;
   }
 
   .paper2{
-    background-image: url(images/christmas.jpg);
+    background-color:#E6C596;
+  }
+
+  .paper3{
+    background-color:#BDDE8C;
+  }
+
+  .paper4{
+    background-color:#8BBBE0;
+  }
+
+  .paper5{
+    background-color:#C9B6DE;
   }
 
   .effect1{
@@ -59,19 +70,31 @@
     width: 100%;
   }
 
-    .writeInput {
+  .writeInput {
     width: 100%;
     padding: 15px;
     border-radius: 30px;
     margin-bottom: 10px;
     font-size: 1.5em;
     color: black;
+    background-color: rgba( 255, 255, 255, 0.7 );
+    font-family: "Kkomi";
+  }
+
+  .dateInput {
+    width: 100%;
+    padding: 15px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: black;
+    background-color: white;
     font-family: "Kkomi";
   }
   
   .writeSubmit {
     text-align: center;
-    background: #ffb1b8;
+    background: #ffe2e4;
     color: white;
     margin-top: 10px;
     cursor: pointer;
@@ -83,9 +106,10 @@
       font-size: 1.5em;
       padding: 1em;
       margin-bottom: 10px;
+      border: none;
 
     text-rendering: auto;
-    color: -internal-light-dark(black, white);
+    background-color: rgba( 255, 255, 255, 0.7 );
         letter-spacing: normal;
         word-spacing: normal;
         line-height: normal;
