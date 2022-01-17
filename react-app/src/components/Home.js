@@ -14,7 +14,7 @@ import Flippy from "react-flippy";
 import {FrontSide, BackSide} from "react-flippy";
 import styles from '../styles/home.css';
 import PopupDom from '../PopupDom';
-import Test from "./test";
+import Test1 from "./test1";
 import Test2 from "./test2";
 
 const Home = () => {
@@ -536,7 +536,7 @@ const Home = () => {
           } else {
               elem.style.transform = "rotateY(180deg) scale(2.0)";
               console.log(elem);
-              setBackgroundEffect(1);
+              setBackgroundEffect(2);
 
               openPopup();
               elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
@@ -579,7 +579,7 @@ const Home = () => {
 function BackgroundType(){
 
   if(background_effect_type == 1){
-    return <PopupDom><Test></Test></PopupDom>
+    return <PopupDom><Test1></Test1></PopupDom>
   } else if(background_effect_type ==2){
     return <PopupDom><Test2></Test2></PopupDom>
   }
