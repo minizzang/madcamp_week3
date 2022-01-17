@@ -28,6 +28,15 @@
 
   }
 
+  .letterContainer{
+    vertical-align: middle;
+    transition: transform 1s;
+    transform-style:preserve-3d;
+
+
+    background: rgb(238, 221, 255);
+  }
+
   #before_open_letter{
     color:rgb(151, 105, 194); 
     font-size: 30px;
@@ -67,17 +76,16 @@
     width: 100%;
   }
 
-
   
   .gallery-container {
     align-items: center;
     display: flex;
+    justify-content: center;
     height: 400px;
     margin: 0 auto;
     max-width: 1200px;
     position: relative;
   }
-
 
   .sender_text{
       text-align: center;
@@ -87,11 +95,52 @@
   .open_date_text{
       color: white;
   }
+  .card {
+    position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+    }
+
+
+
+  .letter_front, .letter_back {
+    display:block;
+	width:100%;
+    height:initial;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+  }
+
+  .letter_content{
+    backface-visibility: hidden;
+    position: absolute;
+  }
   
-  .gallery-item {
-    border-radius: 30px;
-    background-color: rgb(160, 144, 202);
-    height: 150px;
+  .letter_front {
+    align-items: center;
+  }
+  
+  .letter_back {
+    background: lightgreen;
+    z-index: 10;
+    align-items: center;
+    transform: rotateY(180deg);
+  }
+  
+  
+  .gallery-item{
+
+      align-items: center;
+    vertical-align: middle;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    border-radius: 3px;
+    height: 100px;
     opacity: 0;
     position: absolute;
     transition: all 0.3s ease-in-out;
@@ -99,8 +148,32 @@
     z-index: 0;
     text-align: center;
   }
+
+  .gallery-item-1 > .letterContainer{
+ 
+    transition: 0.5s;
+    height: 100px;
+  }
+  .gallery-item-2> .letterContainer{
+    height: 200px;
+    transition: 0.5s;
+  }
+  .gallery-item-3>.letterContainer{
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1), 0 0 60px rgba(0, 0, 0, 0.05), 0 0 110px rgba(0, 0, 0, 0.025), 0 0 100px rgba(0, 0, 0, 0.01);
+    height: 300px;
+    transition: 0.5s;
+  }
+  .gallery-item-4>.letterContainer{
+    height: 200px;
+    transition: 0.5s;
+  }
+  .gallery-item-5> .letterContainer{
+    height: 100px;
+    transition: 0.5s;
+  }
   
   .gallery-item-1 {
+    pointer-events: none;
     font-size: 15%;
     left: 15%;
     opacity: .4;
@@ -108,11 +181,12 @@
   }
   
   .gallery-item-2,
-  .gallery-item-4 {
+  .gallery-item-4{
+    pointer-events: none;
     font-size: 20px;
-    height: 240px;
+    height: 200px;
     opacity: 1;
-    width: 160px;
+    width: 200px;
     z-index: 1;
   }
   
@@ -124,12 +198,12 @@
   .gallery-item-3 {
     
     font-size: 25px;
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.6), 0 0 60px rgba(255, 255, 255, 0.45), 0 0 110px rgba(255, 255, 255, 0.25), 0 0 100px rgba(255, 255, 255, 0.1);
+
     height: 300px;
     opacity: 1;
     left: 50%;
     transform: translateX(-50%);
-    width: 200px;
+    width: 300px;
     z-index: 2;
   }
   
@@ -139,6 +213,7 @@
   }
   
   .gallery-item-5 {
+    pointer-events: none;
     left: 85%;
     opacity: .4;
     transform: translateX(-50%);
