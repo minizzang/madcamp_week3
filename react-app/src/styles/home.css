@@ -163,13 +163,16 @@
   cursor: pointer;
     }
 
-    /*#background_effect{
-     position:relative;   
+    #background_effect{
+     position:relative;  
+     width:100%;
+     height: 80%;
     }
     #screen{
-        width:fit-content;
+        width:100%;
+        height: 80%;
         position:absolute;
-    }*/
+    }
 
 
 
