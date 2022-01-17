@@ -24,6 +24,7 @@ const Home = () => {
   // letterInvalidInfo는 아직 날짜가 안 지난 편지, letterValidInfo는 날짜가 지나서 볼 수 있는 편지
   const [letterInvalidInfo, setLetterInvalidInfo] = useState([]);
   const [letterValidInfo, setLetterValidInfo] = useState([]);
+  const [letterValidContents, setLetterValidContents] = useState([]);
   const [letterInfo, setLetterInfo] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -68,6 +69,16 @@ const Home = () => {
               sender: item.author,
               open_date: item.open_date
             };  
+          }))
+          setLetterValidContents(response.data.map(item => {
+            return {
+              sender: item.author,
+              written_date: item.created_date,
+              title: item.title,
+              text: item.text,
+              paper_type: item.paper_type,
+              effect_type: item.effect_type
+            }
           }))
         }
       })
@@ -325,6 +336,7 @@ const Home = () => {
       console.log("loading" + loading)
       console.log(letterValidInfo)
       console.log(letterInvalidInfo)
+      // console.log(letterValidContents)
 
       let j;
 
@@ -435,10 +447,10 @@ const Home = () => {
         //written_date.id = "";
         
         // 태그 텍스트 설정
-        title.innerText = "이건 타이틀입니다"
-        text.innerText = "이건 편지 내용 (text) 입니다"
+        title.innerText = letterValidContents[i].title
+        text.innerText = letterValidContents[i].text
         //sender.innerText 위에서 디비에서 받아왔음
-        written_date.innerText = "이건 작성일 입니다"
+        written_date.innerText = letterValidContents[i].written_date.substr(0,10)
 
         //아까 만들었던 div태그에 자식 요소로 추가 
         content.appendChild(title);
