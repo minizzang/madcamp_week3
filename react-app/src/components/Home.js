@@ -9,11 +9,13 @@ import { createPortal } from "react-dom";
 import Letter from "./Letter";
 import LetterItem from "../LetterItem";
 import plusImage from "../images/add_card.png";
+import styled from "styled-components";
 import Flippy from "react-flippy";
 import {FrontSide, BackSide} from "react-flippy";
 import styles from '../styles/home.css';
 import PopupDom from '../PopupDom';
 import Test from "./test";
+import Test2 from "./test2";
 
 const Home = () => {
 
@@ -35,6 +37,8 @@ const Home = () => {
 
   //popup
   const [isOpenPopup,setIsOpenPopup] = useState(false);
+
+  const [background_effect_type, setBackgroundEffect] = useState(1);
 
   const openPopup = () =>{
     setIsOpenPopup(true);
@@ -422,6 +426,7 @@ const Home = () => {
           
         }
 
+
         letter.setAttribute('data-index', i+j);
         const sender = document.createElement('span');
         const DueDate = document.createElement('span');
@@ -519,14 +524,11 @@ const Home = () => {
           } else {
               elem.style.transform = "rotateY(180deg) scale(2.0)";
               console.log(elem);
+              setBackgroundEffect(2);
 
               openPopup();
               elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
 
-              const hearts = document.getElementsByClassName('heart');
-              for( let p = 0; p < hearts.length; p++){
-                //hearts[p].style.transform = "scale(calc(1/3))";
-              }
 
 
             
@@ -552,11 +554,31 @@ const Home = () => {
     justifyContent: "center"
   }
 
+  const StyledLink = styled(Link)`
+	box-sizing: border-box;
+	margin: 0 auto;
+  height: 100%;
+  width: 100%;
+	text-align: center;
+  position: absolute;
+  z-index: 20;
+}
+`;
+function BackgroundType(){
+
+  if(background_effect_type == 1){
+    return <PopupDom><Test></Test></PopupDom>
+  } else if(background_effect_type ==2){
+    return <PopupDom><Test2></Test2></PopupDom>
+  }
+}
+
+
   return (
-  <div id="monitor">
+  <div id="monitor" class = "mainPage">
     <div id="screen">
     <div class="title-bar">
-      {isOpenPopup && <PopupDom><Test></Test></PopupDom> }
+      {isOpenPopup && BackgroundType() }
       <div>
         <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
         <button
@@ -617,9 +639,7 @@ const Home = () => {
         <div class="gallery-container" id="container">
           <div style={transparent_style} class="gallery-item gallery-item-1" data-index="1"/>
           <div style={transparent_style} class="gallery-item gallery-item-2" data-index="2"/>
-          <img class="gallery-item gallery-item-3" data-index="3" src={plusImage} onClick={()=>{
-        document.location.href = `/mypage/${id}/write`}}/>
-
+          <div class="gallery-item gallery-item-3" data-index="3" > <StyledLink to="write"></StyledLink> <img class="plus-box" src={plusImage}/> </div>
         </div>
         <div class="gallery-controls">
           <button class="gallery-controls-previous">
@@ -640,9 +660,6 @@ const Home = () => {
       // onClick={()=>{
       //   document.location.href = `/write/${id}`
       // }}>    </button>*/}
-      
-      <Link to="write"> 편지 쓰기</Link>
-      <script src="../PopupDom.js"></script>
   </div>
 
   );

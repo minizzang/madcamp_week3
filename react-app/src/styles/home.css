@@ -102,17 +102,19 @@
   cursor: pointer;
     }
 
-    #background_effect{
+    /*#background_effect{
      position:relative;   
     }
-    .screen{
+    #screen{
+        width:fit-content;
         position:absolute;
-    }
+    }*/
 
 
 
   .letter_front, .letter_back {
     display:block;
+
 	width:100%;
     height:initial;
     position: relative;
@@ -135,8 +137,8 @@
   }
   
   .letter_back {
-    background: lightgreen;
-    z-index: 10;
+    background: rgb(58, 156, 58);
+    z-index: 13;
     align-items: center;
     transform: rotateY(180deg);
   }
@@ -159,6 +161,14 @@
     text-align: center;
   }
 
+  .plus-box{
+    border-radius: 30px;
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+
+  }
+  
   .gallery-item-1 > .letterContainer{
  
     transition: 0.5s;
