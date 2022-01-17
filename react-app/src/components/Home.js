@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import React, {Component, createElement, useEffect, useState} from "react";
+import React, {Component, createElement, useEffect, useState, useRef} from "react";
 import axios from 'axios';
 import BASE_URL from "./BASE_URL";
 import 'styles/home.css';
@@ -94,6 +94,7 @@ const Home = () => {
 
       setLoading(false)
   }
+  const scrollRef = useRef(null);
  
   // console.log("curr_user : "+curr_user);
   // curr_user가 null이라면 아무도 로그인 하지 않은 상태. 아니면 누군가의 id가 저장되어 있음.
@@ -157,6 +158,7 @@ const Home = () => {
 
 
   }, []);
+  let curIdx = 0;
   
 
 
@@ -166,7 +168,7 @@ const Home = () => {
     const galleryControls = ['previous', 'add', 'next'];
     const galleryItems = document.querySelectorAll('.gallery-item');
 
-    let curIdx = 0;
+
     
     class Carousel{
       constructor(container, items, controls) {
@@ -260,7 +262,8 @@ const Home = () => {
           }*/
           this.updateGallery();
         }
-      }
+      } 
+      
     
     
       // Add a click event listener to trigger setCurrentState method to rearrange carousel
@@ -335,6 +338,13 @@ const Home = () => {
     //exampleCarousel.setControls();
     // exampleCarousel.setNav();
     exampleCarousel.useControls();
+
+
+
+
+
+
+    //onMouseDown={onDragStart} onMouseMove={isDrag ? onThrottleDragMove : null} onMouseUp={onDragEnd} onMouseLeave={onDragEnd} 
 
 
 
@@ -527,9 +537,111 @@ const Home = () => {
 
       // console.log(letterList.length);
 
+      const list = document.getElementsByClassName('gallery-item');
+      for(let m = 0; m<list.length; m++){
+        swipeList.push(list[m]);
+      }
     }
+
+
+
+
+
+//const container = document.getElementById('container');
+//container.setAttribute('onMouseDown',onDragStart);
+//container.setAttribute('onMouseMove', onDragMove);
+//container.setAttribute('onMouseUp' , onDragEnd);
+//container.setAttribute('onMouseLeave', onDragEnd);
+
+//const container = document.getElementById('container');
+
+//console.log(container)
+
+
+
     
   }, [loading])
+
+  const [swipeList, setswipeList] = useState([]);
+
+
+
+  const onDragStart = (e) => {
+    //console.log('DragStart');
+    e.preventDefault();
+    setIsDrag(true);
+    setStartX(e.pageX + scrollRef.current.scrollLeft);
+};
+
+
+
+
+const onDragMove = (e) => {
+  //console.log('dragMove');
+  if (isDrag) {
+      const {scrollWidth, clientWidth, scrollLeft} = scrollRef.current;
+      setEndX (startX - e.pageX);
+
+  }
+};
+const throttle = (func, ms) => {
+  let throttled = false;
+  return (...args) => {
+    if (!throttled) {
+      throttled = true;
+      setTimeout(() => {
+        func(...args);
+        throttled = false;
+      }, ms);
+    }
+  };
+};
+const delay = 10;
+const onThrottleDragMove = throttle(onDragMove, delay);
+
+const onDragEnd = () => {
+  console.log('DragEnd');
+  setIsDrag(false);
+  if(endX > 100){
+    console.log(curIdx)
+      //prev
+    //console.log('prev');
+    curIdx--;
+    swipeList.push(swipeList.shift());
+
+    //this.carouselArray.unshift(this.carouselArray.pop());
+
+
+  } else if (endX < -100 ){
+      //prev
+    curIdx++;
+    console.log(curIdx)
+    swipeList.unshift(swipeList.pop());
+
+  }
+
+  swipeList.forEach(el => {
+    el.classList.remove('gallery-item-1');
+    el.classList.remove('gallery-item-2');
+    el.classList.remove('gallery-item-3');
+    el.classList.remove('gallery-item-4');
+    el.classList.remove('gallery-item-5');
+
+    el.classList.add('invalid_2');
+  });
+
+  swipeList.slice(0, 5).forEach((el, i) => {
+    el.classList.remove('invalid_2');
+    el.classList.add(`gallery-item-${i+1}`);
+
+  });
+  
+
+};
+
+
+
+
 
   function click(event) {
     let elem = event.currentTarget;
@@ -540,22 +652,21 @@ const Home = () => {
 
               //opened
           } else {
+
+
               elem.style.transform = "rotateY(180deg) scale(2.0)";
               console.log(elem);
               setBackgroundEffect(2);
 
               openPopup();
+              
               elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
-
-
-
-            
+              //document.getElementById('container').setAttribute('draggable',"false");
 
               /*const content = document.getElementsByClassName('letter_content');
               for (let p = 0; p < content.length; p++){
                 content[p].style.transform = "scale(0.3)";
               }*/
-
           }
       }
 
@@ -590,6 +701,14 @@ function BackgroundType(){
     return <PopupDom><Test2></Test2></PopupDom>
   }
 }
+
+  const [positionX, changePosition] = useState(0 + 'px');
+  const [isDrag, setIsDrag] = useState(false);
+  const [startX, setStartX] = useState();
+  const [endX, setEndX] = useState();
+
+
+
 
 
   return (
@@ -654,7 +773,7 @@ function BackgroundType(){
       <p class="stacked_letter_text">쌓인 편지 <span id="before_open_letter">{letterInvalidCnt+letterValidCnt}</span> 개</p>
       <p class="unlock_info"><span id="unlocked_letter">{letterValidCnt}</span>개의 편지가 열렸어요 !</p>
       <div id= "content_zone" class="gallery">
-        <div class="gallery-container" id="container">
+        <div draggable class="gallery-container" id="container" onMouseDown={onDragStart} onMouseMove={isDrag? onThrottleDragMove : null} onMouseUp = {onDragEnd} ref={scrollRef}>
           <div style={transparent_style} class="gallery-item gallery-item-1" data-index="1"/>
           <div style={transparent_style} class="gallery-item gallery-item-2" data-index="2"/>
           <div class="gallery-item gallery-item-3" data-index="3" > <StyledLink to="write"></StyledLink> <img class="plus-box" src={plusImage}/> </div>
