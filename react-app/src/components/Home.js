@@ -523,8 +523,8 @@ const Home = () => {
     // console.log(event.currentTarget)
     let elem = event.currentTarget;
     console.log(elem)
-    console.log(elem.childNodes[0].firstChild.id) // paper_type
-    console.log(elem.childNodes[0].lastChild.id)  // effect_type
+    console.log(elem.childNodes[0].firstChild.id) //effect_type
+    console.log(elem.childNodes[0].lastChild.id)  //paper_type
     if (elem.style.transform == "rotateY(180deg) scale(2)") {
               elem.style.transform = "rotateY(0deg) scale(1.0)";
               closePopup();
@@ -534,7 +534,7 @@ const Home = () => {
               elem.style.transform = "rotateY(180deg) scale(2.0)";
               // console.log(elem);
               // console.log("opened");
-              setBackgroundEffect(Number(elem.childNodes[0].lastChild.id));
+              setBackgroundEffect(Number(elem.childNodes[0].firstChild.id));
               
               openPopup();
               elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
