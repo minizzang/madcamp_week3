@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate} from "react-router-dom";
 import DatePicker from "react-datepicker";
 import 'react-datepicker/dist/react-datepicker.css';
 import axios from "axios";
@@ -14,6 +14,8 @@ import stamp_star from '../images/stamp_star.png'
 
 const Write = () => {
 
+    let history = useNavigate();
+  
     const { id } = useParams();
     const [sender, setSender] = useState("");
     const [contents, setContents] = useState("");
@@ -67,8 +69,8 @@ const Write = () => {
         }).then(response => {
           if (response.data == "post succeed"){
             // 편지 전송 완료 -> 해당 유저의 레터 스페이스로 보내기
-            alert("편지가 무사히 전송되었습니다!")
-            window.location.href = `/mypage/${id}`
+            alert("편지가 무사히 전송되었습니다!");
+            history(-1);
             
             console.log("편지 전송됨.");
           }
