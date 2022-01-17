@@ -203,89 +203,6 @@ const Storage = () => {
 
     }, []);
 
-    // useEffect(()=>{
-        // if (loading == false) {
-            // const monthList21 = data21.forEach((item, index) => (
-                // console.log("item:"+item+"index:"+index)
-                // <div class="box"
-                //     onClick={()=>{
-                //         alert("hihi")
-                //     }}>
-                //     <div class="imgBox">
-                //         <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
-                //         <h2>{index}월</h2>
-                //     </div>
-                //     <div class="content">
-                //         <span>{item}장의 카드가 있어요!</span>
-                //     </div>
-                // </div>
-            // ))
-
-            // const monthList22 = data22.forEach((item, index) => (
-                // console.log("item:"+item+"index:"+index)
-                // <div class="box"
-                //     onClick={()=>{
-                //         alert("hihi")
-                //     }}>
-                //     <div class="imgBox">
-                //         <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
-                //         <h2>{index}월</h2>
-                //     </div>
-                //     <div class="content">
-                //         <span>{item}장의 카드가 있어요!</span>
-                //     </div>
-                // </div>
-            // ))
-        // }
-        
-    // }, [loading])
-    // console.log(data22_1)
-    const test = (item) => {
-        <div class="box"
-            onClick={()=>{
-                alert("hihi")
-            }}>
-            <div class="imgBox">
-                <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
-                <h2>{1}월</h2>
-            </div>
-            <div class="content">
-                <span>{item}장의 카드가 있어요!</span>
-            </div>
-        </div>
-    }
-    
-    // const monthList21 = data21.forEach((item, index) => (
-    //     // console.log("item:"+item+"index:"+index)
-    //     <div class="box"
-    //         onClick={()=>{
-    //             alert("hihi")
-    //         }}>
-    //         <div class="imgBox">
-    //             <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
-    //             <h2>{index}월</h2>
-    //         </div>
-    //         <div class="content">
-    //             <span>{item}장의 카드가 있어요!</span>
-    //         </div>
-    //     </div>
-    // ))
-
-    // const monthList22 = data22.forEach((item, index) => (
-    //     // console.log("item:"+item+"index:"+index)
-    //     <div class="box"
-    //         onClick={()=>{
-    //             alert("hihi")
-    //         }}>
-    //         <div class="imgBox">
-    //             <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
-    //             <h2>{index}월</h2>
-    //         </div>
-    //         <div class="content">
-    //             <span>{item}장의 카드가 있어요!</span>
-    //         </div>
-    //     </div>
-    // ))
 
 
     if (curr_user == id) {
@@ -297,146 +214,146 @@ const Storage = () => {
                     <div class="container_grid">
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2022/1`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{1}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data22_1}장의 카드가 있어요!</span>
+                                <span>{data22_1}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2022/2`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{2}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data22_2}장의 카드가 있어요!</span>
+                                <span>{data22_2}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2022/3`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{3}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data22_3}장의 카드가 있어요!</span>
+                                <span>{data22_3}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2022/4`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{4}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data22_4}장의 카드가 있어요!</span>
+                                <span>{data22_4}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2022/5`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{5}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data22_5}장의 카드가 있어요!</span>
+                                <span>{data22_5}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2022/6`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{6}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data22_6}장의 카드가 있어요!</span>
+                                <span>{data22_6}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2022/7`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{7}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data22_7}장의 카드가 있어요!</span>
+                                <span>{data22_7}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2022/8`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{8}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data22_8}장의 카드가 있어요!</span>
+                                <span>{data22_8}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2022/9`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{9}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data22_9}장의 카드가 있어요!</span>
+                                <span>{data22_9}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2022/10`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{10}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data22_10}장의 카드가 있어요!</span>
+                                <span>{data22_10}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2022/11`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{11}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data22_11}장의 카드가 있어요!</span>
+                                <span>{data22_11}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2022/12`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{12}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data22_12}장의 카드가 있어요!</span>
+                                <span>{data22_12}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                     </div>
@@ -444,146 +361,146 @@ const Storage = () => {
                     <div class="container_grid">
                     <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2021/1`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{1}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data21_1}장의 카드가 있어요!</span>
+                                <span>{data21_1}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2021/2`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{2}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data21_2}장의 카드가 있어요!</span>
+                                <span>{data21_2}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2021/3`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{3}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data21_3}장의 카드가 있어요!</span>
+                                <span>{data21_3}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2021/4`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{4}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data21_4}장의 카드가 있어요!</span>
+                                <span>{data21_4}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2021/5`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{5}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data21_5}장의 카드가 있어요!</span>
+                                <span>{data21_5}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2021/6`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{6}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data21_6}장의 카드가 있어요!</span>
+                                <span>{data21_6}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2021/7`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{7}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data21_7}장의 카드가 있어요!</span>
+                                <span>{data21_7}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2021/8`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{8}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data21_8}장의 카드가 있어요!</span>
+                                <span>{data21_8}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2021/9`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{9}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data21_9}장의 카드가 있어요!</span>
+                                <span>{data21_9}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2021/10`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{10}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data21_10}장의 카드가 있어요!</span>
+                                <span>{data21_10}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2021/11`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{11}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data21_11}장의 카드가 있어요!</span>
+                                <span>{data21_11}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                         <div class="box"
                             onClick={()=>{
-                                alert("hihi")
+                                document.location.href = `${id}/2021/12`
                             }}>
                             <div class="imgBox">
                                 <img src="https://img.freepik.com/free-photo/top-view-envelope-flower-book_23-2148213913.jpg?size=626&ext=jpg" alt=""/>
                                 <h2>{12}월</h2>
                             </div>
                             <div class="content">
-                                <span>{data21_12}장의 카드가 있어요!</span>
+                                <span>{data21_12}개의<br/>편지가<br/>있어요!</span>
                             </div>
                         </div>
                     </div>
@@ -592,7 +509,7 @@ const Storage = () => {
         );
     } else {
         return (
-            <div>잘못된 접근입니다! :(</div>
+            <div>삐빅- 잘못된 접근입니다! :(</div>
         )
     }
 
