@@ -574,7 +574,7 @@ const Home = () => {
 `;
 function BackgroundType(){
 
-  if(background_effect_type == 1){
+  if (background_effect_type == 1) {
     return <PopupDom><Test1></Test1></PopupDom>
   } else if(background_effect_type ==2){
     return <PopupDom><Test2></Test2></PopupDom>
@@ -638,7 +638,7 @@ function BackgroundType(){
     <div style={{ position: "absolute", top: "0px", display: "inline-block", visibility: "hidden" }} className="memo" ref={virtualMemo}>{memo}</div>
     <span className="memo-ddaoom-left">"</span>
       {(id == curr_user)? 
-      <input ref={memoRef} type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>
+      <input ref={memoRef} type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange} autoComplete="off"/>
       :
       <input ref={memoRef} disabled="disabled" type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>}
       
