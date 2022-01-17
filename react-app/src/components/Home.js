@@ -188,11 +188,11 @@ const Home = () => {
         if (direction.className == 'gallery-controls-previous' && curIdx >0) {
 
           curIdx--;
-          console.log(curIdx)
+          // console.log(curIdx)
           this.carouselArray.unshift(this.carouselArray.pop());
         } else if (direction.className == 'gallery-controls-next' && curIdx <this.carouselArray.length-3){
           curIdx++;
-          console.log(curIdx)
+          // console.log(curIdx)
           this.carouselArray.push(this.carouselArray.shift());
         }
 
@@ -481,7 +481,7 @@ const Home = () => {
 
       exampleCarousel.setLetterView();
 
-      console.log(letterList.length);
+      // console.log(letterList.length);
 
     }
     
