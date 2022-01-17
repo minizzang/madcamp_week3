@@ -16,6 +16,7 @@ import styles from '../styles/home.css';
 import PopupDom from '../PopupDom';
 import Test1 from "./test1";
 import Test2 from "./test2";
+import Test3 from "./test3";
 
 const Home = () => {
 
@@ -42,7 +43,7 @@ const Home = () => {
   //popup
   const [isOpenPopup,setIsOpenPopup] = useState(false);
 
-  const [background_effect_type, setBackgroundEffect] = useState(1);
+  const [background_effect_type, setBackgroundEffect] = useState(0);
 
   const openPopup = () =>{
     setIsOpenPopup(true);
@@ -425,6 +426,8 @@ const Home = () => {
         sender_back.innerText = letterValidInfo[i].sender;
         sender_front.className = "sender_text_back"
         sender_front.title = letterValidContents[i].id
+        sender_front.id = letterValidContents[i].paper_type
+        DueDate.id = letterValidContents[i].effect_type
         const front = document.createElement('div');
         front.className = 'letter_front';
         const back = document.createElement('div');
@@ -442,7 +445,6 @@ const Home = () => {
         const text = document.createElement('p');
         // const sender (위에서 이미 정의됨 )
         const written_date = document.createElement('p');
-        const index = document.createElement('p');
 
         // 태그에 아이디 추가
         //title.id = "";
@@ -454,7 +456,6 @@ const Home = () => {
         text.innerText = letterValidContents[i].text
         //sender_back.innerText 위에서 디비에서 받아왔음
         written_date.innerText = letterValidContents[i].written_date.substr(0,10)
-        index.innerText = letterValidContents[i].id
 
         //아까 만들었던 div태그에 자식 요소로 추가 
         content.appendChild(title);
@@ -510,9 +511,11 @@ const Home = () => {
   }, [loading])
 
   function click(event) {
-    console.log(event.currentTarget)
+    // console.log(event.currentTarget)
     let elem = event.currentTarget;
-    // console.log(elem.childNodes[0].firstChild.title)
+    console.log(elem)
+    console.log(elem.childNodes[0].firstChild.id) // paper_type
+    console.log(elem.childNodes[0].lastChild.id)  // effect_type
     if (elem.style.transform == "rotateY(180deg) scale(2)") {
               elem.style.transform = "rotateY(0deg) scale(1.0)";
               closePopup();
@@ -522,10 +525,11 @@ const Home = () => {
               elem.style.transform = "rotateY(180deg) scale(2.0)";
               // console.log(elem);
               // console.log("opened");
-              setBackgroundEffect(2);
+              setBackgroundEffect(Number(elem.childNodes[0].lastChild.id));
               
               openPopup();
               elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
+              
               
 
               // 카드 오픈 시에 넣기, 카드 오픈 시 유저 확인도 하기
@@ -574,8 +578,10 @@ function BackgroundType(){
 
   if(background_effect_type == 1){
     return <PopupDom><Test1></Test1></PopupDom>
-  } else if(background_effect_type ==2){
+  } else if(background_effect_type == 2){
     return <PopupDom><Test2></Test2></PopupDom>
+  } else if(background_effect_type == 3){
+    return <PopupDom><Test3></Test3></PopupDom>
   }
 }
 
