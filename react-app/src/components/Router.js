@@ -13,6 +13,7 @@ import 'styles/transition.css';
 import Home from "./Home"; 
 import Letter from "./Letter";
 import Storage from "./Storage";
+import StorageLetter from "./StorageLetter"
 import Welcome from "./Welcome";
 import Write from "./WriteLetter";
 import Test from "./test";
@@ -34,6 +35,7 @@ const AppRouter = ({isLoggedIn}) => {
           <Routes location={location}>
               <Route path="mypage/:id" element={<Home />} />  {/*  지금은 기본 path인데,  나중에 username으로 각 user 페이지에 접근 가능하도록 해야 할 듯. */}
               <Route path="storage/:id" element={<Storage/>} /> {/*  저장소 */}
+              <Route path="storage/:id/:year/:month" element={<StorageLetter/>} />
               {/* {isLoggedIn ? */}
               {/* <Route path="/:id" element={<Home />} /> : */}
               {/* <Route path="/welcome" element={<Welcome />} />  */}
