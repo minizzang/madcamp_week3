@@ -590,6 +590,7 @@ function BackgroundType(){
   <div id="monitor" class = "mainPage">
     <div id="screen">
     <div class="title-bar">
+      {isOpenPopup && BackgroundType()}
       
         <div className="title-holder">
           <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
