@@ -3,7 +3,7 @@
     justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
-    height : 100vh;
+    height : 100hx;
     
     grid-template-columns: 2fr 1fr 6fr 1fr 2fr;
   }

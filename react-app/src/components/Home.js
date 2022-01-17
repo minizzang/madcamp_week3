@@ -9,6 +9,7 @@ import { createPortal } from "react-dom";
 import Letter from "./Letter";
 import LetterItem from "../LetterItem";
 import plusImage from "../images/add_card.png";
+import styled from "styled-components";
 import Flippy from "react-flippy";
 import {FrontSide, BackSide} from "react-flippy";
 import styles from '../styles/home.css';
@@ -516,8 +517,20 @@ const Home = () => {
     justifyContent: "center"
   }
 
+  const StyledLink = styled(Link)`
+	box-sizing: border-box;
+	margin: 0 auto;
+  height: 100%;
+  width: 100%;
+	text-align: center;
+  position: absolute;
+  z-index: 20;
+}
+`;
+
+
   return (
-  <>
+  <div class = "mainPage">
     <div class="title-bar">
       <div>
         <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
@@ -579,9 +592,7 @@ const Home = () => {
         <div class="gallery-container" id="container">
           <div style={transparent_style} class="gallery-item gallery-item-1" data-index="1"/>
           <div style={transparent_style} class="gallery-item gallery-item-2" data-index="2"/>
-          <img class="gallery-item gallery-item-3" data-index="3" src={plusImage} onClick={()=>{
-        document.location.href = `/mypage/${id}/write`}}/>
-
+          <div class="gallery-item gallery-item-3" data-index="3" > <StyledLink to="write"></StyledLink> <img class="plus-box" src={plusImage}/> </div>
         </div>
         <div class="gallery-controls">
           <button class="gallery-controls-previous">
@@ -601,9 +612,7 @@ const Home = () => {
       // onClick={()=>{
       //   document.location.href = `/write/${id}`
       // }}>    </button>*/}
-      
-      <Link to="write"> 편지 쓰기</Link>
-  </>
+  </div>
 
   );
 };
