@@ -12,6 +12,7 @@ import plusImage from "../images/add_card.png";
 import Flippy from "react-flippy";
 import {FrontSide, BackSide} from "react-flippy";
 import styles from '../styles/home.css';
+import '../styles/storageletter.css';
 
 const StorageLetter = () => {
 
@@ -46,7 +47,7 @@ const StorageLetter = () => {
               text: item.text,
               paper_type: item.paper_type,
               effect_type: item.effect_type,
-              sender: item.sender
+              
             };  
           }))
         }
@@ -102,9 +103,12 @@ const StorageLetter = () => {
           el.classList.remove('gallery-item-3');
           el.classList.remove('gallery-item-4');
           el.classList.remove('gallery-item-5');
+
+          el.classList.add('invalid_2');
         });
     
         this.carouselArray.slice(0, 5).forEach((el, i) => {
+          el.classList.remove('invalid_2');
           el.classList.add(`gallery-item-${i+1}`);
 
         });
@@ -251,12 +255,12 @@ const StorageLetter = () => {
         }
 
         letter.setAttribute('data-index', i+3);
-        const sender = document.createElement('span');
+        const sender_ = document.createElement('div');
         const DueDate = document.createElement('span');
-        sender.innerText = letterSavedInfo[i].sender;
-        DueDate.innerText = letterSavedInfo[i].open_date;
+        sender_.innerText = "From . " + letterSavedInfo[i].sender;
+        DueDate.innerText = "Unlocked : " + letterSavedInfo[i].open_date;
         DueDate.className = "open_date_text"
-        sender.className = "sender_text"
+        sender_.className = "sender_text_front"
         const line = document.createElement('br');
 
         const front = document.createElement('div');
@@ -264,9 +268,11 @@ const StorageLetter = () => {
         const back = document.createElement('div');
         back.className = 'letter_back';
 
-        front.appendChild(sender);
-        front.appendChild(line);
+
+
         front.appendChild(DueDate);
+        front.appendChild(line);
+        front.appendChild(sender_);
 
         //편지 내용 불러오기
         const content = document.createElement('div'); //편지 내용 감싸기 위한 div태그
@@ -281,6 +287,9 @@ const StorageLetter = () => {
         //title.id = "";
         //text.id = "";
         //written_date.id = "";
+
+        const sender_back = document.createElement('span');
+        sender_back.innerText = letterSavedInfo[i].sender;
         
         // 태그 텍스트 설정
         title.innerText = letterSavedInfo[i].title
@@ -291,7 +300,7 @@ const StorageLetter = () => {
         //아까 만들었던 div태그에 자식 요소로 추가 
         content.appendChild(title);
         content.appendChild(text);
-        content.appendChild(sender);
+        content.appendChild(sender_back);
         content.appendChild(written_date);
 
 
@@ -307,6 +316,8 @@ const StorageLetter = () => {
         letterContainer.className="letterContainer"
         letterContainer.appendChild(front);
         letterContainer.appendChild(back);
+
+        letterContainer.style.background="rgb(200,173,226)"
 
         letterContainer.addEventListener('click',click);
 
@@ -328,16 +339,16 @@ const StorageLetter = () => {
 
   function click(event) {
     let elem = event.currentTarget;
-    if (elem.style.transform == "rotateY(180deg) scale(3)") {
+    if (elem.style.transform == "rotateY(180deg) scale(2)") {
               elem.style.transform = "rotateY(0deg) scale(1.0)";
               
 
               //opened
           } else {
-              elem.style.transform = "rotateY(180deg) scale(3.0)";
+              elem.style.transform = "rotateY(180deg) scale(2.0)";
               const content = document.getElementsByClassName('letter_content');
               for (let p = 0; p < content.length; p++){
-                content[p].style.transform = "scale(0.3)";
+                content[p].style.transform = "scale(0.5)";
               }
           }
       }

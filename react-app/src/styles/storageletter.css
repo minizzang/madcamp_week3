@@ -33,14 +33,13 @@
   }
 
   .letterContainer{
+    position: relative;
     vertical-align: middle;
     transition: transform 1s;
     transform-style:preserve-3d;
-    position:relative;
-    z-index: 15;
 
 
-    background: rgb(107, 49, 161);
+    /*background: rgb(200, 173, 226);*/
   }
 
   #before_open_letter{
@@ -191,15 +190,14 @@
 
 
   .letter_front, .letter_back {
-    display:block;
-    position:relative;
-    z-index: 20;
+    display: block;
 
 	width:100%;
-    height:initial;
-    position: relative;
+    height:300px;
+    position: absolute;
     justify-content: center;
     align-items: center;
+    backface-visibility: hidden;
   }
   .gallery-container
 
@@ -213,7 +211,6 @@
   .letter_content{
     backface-visibility: hidden;
     position: relative;
-    border-radius: 10px;
   }
 
 
@@ -232,8 +229,9 @@
   }
   
   .letter_back {
-    background: rgb(252, 252, 252);
-    z-index: 5;
+    position: relative;
+    background: rgba(255, 255, 255, 0);
+    z-index: 13;
     align-items: center;
     transform: rotateY(180deg);
   }
@@ -315,6 +313,7 @@
     border-radius: 8px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1), 0 0 60px rgba(0, 0, 0, 0.05), 0 0 110px rgba(0, 0, 0, 0.025), 0 0 100px rgba(0, 0, 0, 0.01);
     height: 300px;
+    width: 300px;
     transition: 0.5s;
   }
   .gallery-item-4>.letterContainer{

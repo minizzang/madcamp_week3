@@ -337,11 +337,11 @@ const Home = () => {
 
 
         letter.setAttribute('data-index', j+4);
-        const sender = document.createElement('span');
+        const sender = document.createElement('div');
         const DueDate = document.createElement('span');
-        sender.className = "sender_text"
-        sender.innerText = letterInvalidInfo[j].sender;
-        DueDate.innerText = letterInvalidInfo[j].open_date;
+        sender.className = "sender_text_front"
+        sender.innerText = "From . " + letterInvalidInfo[j].sender;
+        DueDate.innerText = "UNLOCKED : " + letterInvalidInfo[j].open_date;
         DueDate.className = "open_date_text"
         const line = document.createElement('br');
 
@@ -350,9 +350,11 @@ const Home = () => {
         const back = document.createElement('div');
         back.className = 'letter_back';
 
-        front.appendChild(sender);
-        front.appendChild(line);
+
         front.appendChild(DueDate);
+        front.appendChild(line);
+        front.appendChild(sender);
+ 
 
         letter.appendChild(front);
         letter.appendChild(back);
@@ -413,26 +415,35 @@ const Home = () => {
 
 
         letter.setAttribute('data-index', i+j);
-        const sender_front = document.createElement('span');
+        const sender_front = document.createElement('div');
         const DueDate = document.createElement('span');
-        sender_front.innerText = letterValidInfo[i].sender;
-        DueDate.innerText = letterValidInfo[i].open_date;
+        sender_front.innerText = "From . "+letterValidInfo[i].sender;
+        DueDate.innerText = "UNLOCKED : " + letterValidInfo[i].open_date;
         DueDate.className = "open_date_text"
         sender_front.className = "sender_text_front"
         const line = document.createElement('br');
 
         const sender_back = document.createElement('span');
         sender_back.innerText = letterValidInfo[i].sender;
-        sender_front.className = "sender_text_back"
+        sender_back.className = "sender_text_back"
         sender_front.title = letterValidContents[i].id
         const front = document.createElement('div');
         front.className = 'letter_front';
         const back = document.createElement('div');
         back.className = 'letter_back';
 
-        front.appendChild(sender_front);
-        front.appendChild(line);
+        //const txt = document.createElement('span');
+        //txt.innerText = "From.";
+        //txt.className = "front_text_sender";
+
+        
         front.appendChild(DueDate);
+        front.appendChild(line);
+
+        //front.appendChild(txt);
+        front.appendChild(sender_front);
+
+
 
         //편지 내용 불러오기
         const content = document.createElement('div'); //편지 내용 감싸기 위한 div태그
@@ -476,7 +487,7 @@ const Home = () => {
         letterContainer.appendChild(front);
         letterContainer.appendChild(back);
 
-        letterContainer.style.background="rgb(200,173,226)"
+        //letterContainer.style.background="rgb(200,173,226)"
 
         if (id == curr_user){
           letterContainer.addEventListener('click',click);
