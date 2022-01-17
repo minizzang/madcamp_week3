@@ -55,8 +55,8 @@ const Home = () => {
   const handleChange = (e) => {
     setMemo(e.target.value)
     const temp = window.getComputedStyle(virtualMemo.current).width;
-    // memoRef.current.style = `width: ${String(Number(temp.slice(0, temp.length - 2)))}px`;
-    memoRef.current.style = `width: ${temp}`;
+    memoRef.current.style = `width: ${String(Number(temp.slice(0, temp.length - 2))+10)}px`;
+    // memoRef.current.style = `width: ${temp}`;
   }
 
   const getLettersFromDB = async () => {
@@ -629,7 +629,11 @@ function BackgroundType(){
     <div class="memo-holder">
     <div style={{ position: "absolute", top: "0px", display: "inline-block", visibility: "hidden" }} className="memo" ref={virtualMemo}>{memo}</div>
     <span className="memo-ddaoom-left">"</span>
+      {(id == curr_user)? 
       <input ref={memoRef} type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>
+      :
+      <input ref={memoRef} disabled="disabled" type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>}
+      
       <span className="memo-ddaoom-right">"</span>
     {(id == curr_user)? 
       <button
