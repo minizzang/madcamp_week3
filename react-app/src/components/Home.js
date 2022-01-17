@@ -28,7 +28,6 @@ const Home = () => {
   // letterInvalidInfo는 아직 날짜가 안 지난 편지, letterValidInfo는 날짜가 지나서 볼 수 있는 편지
   const [letterInvalidInfo, setLetterInvalidInfo] = useState([]);
   const [letterValidInfo, setLetterValidInfo] = useState([]);
-  const [letterValidContents, setLetterValidContents] = useState([]);
   const [letterInfo, setLetterInfo] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -86,16 +85,6 @@ const Home = () => {
               sender: item.author,
               open_date: item.open_date
             };  
-          }))
-          setLetterValidContents(response.data.map(item => {
-            return {
-              sender: item.author,
-              written_date: item.created_date,
-              title: item.title,
-              text: item.text,
-              paper_type: item.paper_type,
-              effect_type: item.effect_type
-            }
           }))
         }
       })
@@ -195,9 +184,12 @@ const Home = () => {
           el.classList.remove('gallery-item-3');
           el.classList.remove('gallery-item-4');
           el.classList.remove('gallery-item-5');
+
+          el.classList.add('invalid_2');
         });
     
         this.carouselArray.slice(0, 5).forEach((el, i) => {
+          el.classList.remove('invalid_2');
           el.classList.add(`gallery-item-${i+1}`);
 
         });
@@ -360,11 +352,10 @@ const Home = () => {
       console.log("loading" + loading)
       console.log(letterValidInfo)
       console.log(letterInvalidInfo)
-      // console.log(letterValidContents)
 
       let j;
 
-      for(j = 0 ; j < letterInvalidInfo.length; j++){
+      for(j = 0 ; j < letterInvalidInfo.length; j++){ //invalid
         const letter = document.createElement('div');
 
           Object.assign(letter, {
@@ -395,12 +386,21 @@ const Home = () => {
 
         const letterContainer = document.createElement('div');
         letterContainer.className="letterContainer"
+        letter.classList.add('invalid');
+        
         letterContainer.appendChild(front);
         letterContainer.appendChild(back);
 
         letterContainer.addEventListener('click',click);
 
+        letterContainer.style.background="rgb(200,200,200)"
+
         letter.appendChild(letterContainer);
+
+        
+
+        //elem.style.transform = "rotateY(0deg) scale(1.0)";
+        
 
         //letter.appendChild(sender);
         //letter.appendChild(line);
@@ -418,7 +418,7 @@ const Home = () => {
 
       let i;
 
-      for(i = 0 ; i < letterValidInfo.length; i++){
+      for(i = 0 ; i < letterValidInfo.length; i++){ //valid
         const letter = document.createElement('div');
         if(i==0){
           Object.assign(letter, {
@@ -440,20 +440,24 @@ const Home = () => {
 
 
         letter.setAttribute('data-index', i+j);
-        const sender = document.createElement('span');
+        const sender_front = document.createElement('span');
         const DueDate = document.createElement('span');
-        sender.innerText = letterValidInfo[i].sender;
+        sender_front.innerText = letterValidInfo[i].sender;
         DueDate.innerText = letterValidInfo[i].open_date;
         DueDate.className = "open_date_text"
-        sender.className = "sender_text"
+        sender_front.className = "sender_text_front"
         const line = document.createElement('br');
+
+        const sender_back = document.createElement('span');
+        sender_back.innerText = letterValidInfo[i].sender;
+        sender_front.className = "sender_text_back"
 
         const front = document.createElement('div');
         front.className = 'letter_front';
         const back = document.createElement('div');
         back.className = 'letter_back';
 
-        front.appendChild(sender);
+        front.appendChild(sender_front);
         front.appendChild(line);
         front.appendChild(DueDate);
 
@@ -472,15 +476,15 @@ const Home = () => {
         //written_date.id = "";
         
         // 태그 텍스트 설정
-        title.innerText = letterValidContents[i].title
-        text.innerText = letterValidContents[i].text
-        //sender.innerText 위에서 디비에서 받아왔음
-        written_date.innerText = letterValidContents[i].written_date.substr(0,10)
+        title.innerText = "이건 타이틀입니다"
+        text.innerText = "이건 편지 내용 (text) 입니다"
+        //sender_back.innerText 위에서 디비에서 받아왔음
+        written_date.innerText = "이건 작성일 입니다"
 
         //아까 만들었던 div태그에 자식 요소로 추가 
         content.appendChild(title);
         content.appendChild(text);
-        content.appendChild(sender);
+        content.appendChild(sender_back);
         content.appendChild(written_date);
 
 
@@ -496,6 +500,8 @@ const Home = () => {
         letterContainer.className="letterContainer"
         letterContainer.appendChild(front);
         letterContainer.appendChild(back);
+
+        letterContainer.style.background="rgb(200,173,226)"
 
         letterContainer.addEventListener('click',click);
         
@@ -590,22 +596,18 @@ function BackgroundType(){
   <div id="monitor" class = "mainPage">
     <div id="screen">
     <div class="title-bar">
-      {isOpenPopup && BackgroundType()}
-      
-        <div className="title-holder">
-          <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
-          <button
-            onClick={()=>{
-              navigator.clipboard.writeText(`192.249.18.161/mypage/${id}`);
-              alert("링크가 복사되었습니다. 친구에게 공유해보세요!")
+      {isOpenPopup && BackgroundType() }
+      <div>
+        <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
+        <button
+          onClick={()=>{
+            navigator.clipboard.writeText(`192.249.18.161/mypage/${id}`);
+            alert("링크가 복사되었습니다. 친구에게 공유해보세요!")
 
-              // console.log(letterValidInfo)
-              // console.log(letterInvalidInfo)
-            }
-            }
-            className="btn_copy">링크 복사</button>
-        </div>
-        
+            // console.log(letterValidInfo)
+            // console.log(letterInvalidInfo)
+          }
+          }>링크 복사</button>
         <div class="title_menu">
           {
             id === curr_user
@@ -627,29 +629,26 @@ function BackgroundType(){
               }
             }}>보관함</span>
         </div>
-      
+      </div>
     </div>
-    
-    <div className="memo-holder">
-      <span className="memo-ddaoom-left">"</span>
-      <input type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>
-      <span className="memo-ddaoom-right">"</span>
-
+    <div class="memo">
+      <p>" {memo} "</p>
+    </div>
+      {/* <span>"</span>
+      <input type="text" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>
+      <span>"</span>
       <button
-        onClick={()=>{
-          // db에 메모 수정된 것 저장
-          axios.post(BASE_URL+"/account/updateUserMemo", {
-            id : id,
-            memo : memo
-          }).then(response => {
-            console.log(response);
-          }).catch(error => {
-            console.log("updateUserMemo errror!"+error);
-          });
-        }}
-        className="btn_edit">수정<br/>하기</button>
-    </div>
-    
+      onClick={()=>{
+        // db에 메모 수정된 것 저장
+        axios.post(BASE_URL+"/account/updateUserMemo", {
+          id : id,
+          memo : memo
+        }).then(response => {
+          console.log(response);
+        }).catch(error => {
+          console.log("updateUserMemo errror!"+error);
+        });
+      }}>수정하기</button> */}
     
     <div class="contents">
       <p class="stacked_letter_text">쌓인 편지 <span id="before_open_letter">{letterInvalidCnt+letterValidCnt}</span> 개</p>

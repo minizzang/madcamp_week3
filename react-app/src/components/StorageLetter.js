@@ -140,7 +140,7 @@ const StorageLetter = () => {
         let latestItem = this.carouselArray.length;
         const latestIndex = this.carouselArray.findIndex(item => item.getAttribute('data-index') == this.carouselArray.length)+1;
 
-        latestItem =3;
+        latestItem =1;
 
         for(let j = 0; j <letterList.length; j++){
           this.carouselArray.splice(latestIndex,0,letterList[j]);
@@ -190,7 +190,7 @@ const StorageLetter = () => {
               letterItem.appendChild(nickname);
               letterItem.appendChild(dueDate);
 
-              latestItem =2;
+              latestItem =1;
         
               for(let j = 0; j <letterList.length; j++){
                 this.carouselArray.splice(latestIndex,0,letterList[j]);
@@ -222,59 +222,6 @@ const StorageLetter = () => {
       console.log(letterSavedCnt)
       console.log(letterSavedInfo)
 
-      let j;
-
-      for(j = 0 ; j < letterSavedInfo.length; j++){
-        const letter = document.createElement('div');
-
-          Object.assign(letter, {
-            className: 'gallery-item'
-          });
-
-
-        letter.setAttribute('data-index', j+4);
-        const sender = document.createElement('span');
-        const DueDate = document.createElement('span');
-        sender.className = "sender_text"
-        sender.innerText = letterSavedInfo[j].sender;
-        DueDate.innerText = letterSavedInfo[j].open_date;
-        DueDate.className = "open_date_text"
-        const line = document.createElement('br');
-
-        const front = document.createElement('div');
-        front.className = 'letter_front';
-        const back = document.createElement('div');
-        back.className = 'letter_back';
-
-        front.appendChild(sender);
-        front.appendChild(line);
-        front.appendChild(DueDate);
-
-        letter.appendChild(front);
-        letter.appendChild(back);
-
-        const letterContainer = document.createElement('div');
-        letterContainer.className="letterContainer"
-        letterContainer.appendChild(front);
-        letterContainer.appendChild(back);
-
-        letterContainer.addEventListener('click',click);
-
-        letter.appendChild(letterContainer);
-
-        //letter.appendChild(sender);
-        //letter.appendChild(line);
-        //letter.appendChild(DueDate);
-        //letter.addEventListener('click',click)
-        //letter.onClick= click;
-
-
-        console.log(letter);
-
-        letterList.push(letter);
-        //letterList.push(filpCard);
-      }
-
 
       let i;
 
@@ -282,23 +229,28 @@ const StorageLetter = () => {
         const letter = document.createElement('div');
         if(i==0){
           Object.assign(letter, {
-            className: 'gallery-item gallery-item-4'
+            className: 'gallery-item gallery-item-3'
           });
           
           
         }else if(i==1){
           Object.assign(letter, {
-            className: 'gallery-item gallery-item-5'
+            className: 'gallery-item gallery-item-4'
           });
 
-        }else{
+        }else if(i==2){
+          Object.assign(letter, {
+            className: 'gallery-item gallery-item-5'
+          });
+        }
+        else{
           Object.assign(letter, {
             className: 'gallery-item'
           });
           
         }
 
-        letter.setAttribute('data-index', i+j);
+        letter.setAttribute('data-index', i+3);
         const sender = document.createElement('span');
         const DueDate = document.createElement('span');
         sender.innerText = letterSavedInfo[i].sender;
@@ -443,8 +395,6 @@ const StorageLetter = () => {
             <div class="gallery-container" id="container">
               <div style={transparent_style} class="gallery-item gallery-item-1" data-index="1"/>
               <div style={transparent_style} class="gallery-item gallery-item-2" data-index="2"/>
-              <img class="gallery-item gallery-item-3" data-index="3" src={plusImage} onClick={()=>{
-            document.location.href = `/mypage/${id}/write`}}/>
     
             </div>
             <div class="gallery-controls">
