@@ -20,8 +20,8 @@ const Write = () => {
     const [sender, setSender] = useState("");
     const [contents, setContents] = useState("");
     const [subject, setSubject] = useState("");
-    const [paperType, setpaperType] = useState("");
-    const [effectType, setEffectType] = useState("");
+    const [paperType, setpaperType] = useState(0);
+    const [effectType, setEffectType] = useState(0);
     const [error, setError] = useState("");
     const [startDate, setStartDate] = useState(new Date());
     const [stampImg, setStampImg] = useState(null);

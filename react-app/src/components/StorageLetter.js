@@ -383,7 +383,7 @@ const StorageLetter = () => {
                   } else {
                     alert("자신의 보관함만 열람 가능합니다.")
                   }
-                }}>레터스페이스</span>
+                }}>내 레터스페이스</span>
             </div>
           
         </div>

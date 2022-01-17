@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import React, {Component, createElement, useEffect, useState} from "react";
+import React, {Component, createElement, useEffect, useState, useRef } from "react";
 import axios from 'axios';
 import BASE_URL from "./BASE_URL";
 import 'styles/home.css';
@@ -25,11 +25,15 @@ const Home = () => {
   const [memo, setMemo] = useState("");
   const [letterInvalidCnt, setLetterInvalidCnt] = useState(0);
   const [letterValidCnt, setLetterValidCnt] = useState(0);
+  const [letterValidContents, setLetterValidContents] = useState([]);
   // letterInvalidInfo는 아직 날짜가 안 지난 편지, letterValidInfo는 날짜가 지나서 볼 수 있는 편지
   const [letterInvalidInfo, setLetterInvalidInfo] = useState([]);
   const [letterValidInfo, setLetterValidInfo] = useState([]);
   const [letterInfo, setLetterInfo] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [width, setWidth] = useState("");
+  const virtualMemo = useRef();
+  const memoRef = useRef();
 
   const [letterList, setLetterList] = useState([]);
 
@@ -50,6 +54,9 @@ const Home = () => {
 
   const handleChange = (e) => {
     setMemo(e.target.value)
+    const temp = window.getComputedStyle(virtualMemo.current).width;
+    // memoRef.current.style = `width: ${String(Number(temp.slice(0, temp.length - 2)))}px`;
+    memoRef.current.style = `width: ${temp}`;
   }
 
   const getLettersFromDB = async () => {
@@ -86,6 +93,17 @@ const Home = () => {
               open_date: item.open_date
             };  
           }))
+          setLetterValidContents(response.data.map(item => {
+            return {
+              id: item.id,
+              sender: item.author,
+              written_date: item.created_date,
+              title: item.title,
+              text: item.text,
+              paper_type: item.paper_type,
+              effect_type: item.effect_type,
+            }
+          }))
         }
       })
       .catch(error => {
@@ -98,8 +116,6 @@ const Home = () => {
   // console.log("curr_user : "+curr_user);
   // curr_user가 null이라면 아무도 로그인 하지 않은 상태. 아니면 누군가의 id가 저장되어 있음.
   useEffect(()=>{
-
-  
     
     // 유저의 닉네임, 메모 불러오기
     axios.get(BASE_URL+`/account/getUserInfo/${id}`)
@@ -113,52 +129,16 @@ const Home = () => {
 
     getLettersFromDB()
 
-    // 유저에게 온 모든 편지의 닉네임, open_date 받기
-    // axios.get(BASE_URL+`/letter/getLetters/${id}`)
-    // .then(response => {
-    //   if (response.data == "편지가 없어요") {
-    //     console.log("no letter!")
-    //   } else {
-    //     const today = moment().format('YYYY-MM-DD')
-    //     response.data.map(item => {
-    //       console.log(item.open_date)
-    //       // console.log(moment().format('YYYY-MM-DD'))
-
-    //       if (item.open_date <= today) {
-    //         setLetterValidInfo([...letterValidInfo, {
-    //           sender : item.author,
-    //           open_date : item.open_date
-    //         }])
-    //         // console.log(item.author)
-            
-    //       } else {
-    //         setLetterInvalidInfo([...letterInvalidInfo, {
-    //           sender : item.author,
-    //           open_date : item.open_date
-    //         }])
-    //       }
-    //     }) 
-        
-    //     // setLetterInfo(response.data.map(item => {
-    //     //   return {
-    //     //     sender: item.author,
-    //     //     open_date: item.open_date
-    //     //   };
-    //     // }))
-    //   }
-    // })
-    // .catch(error => {
-    //     console.log(error);
-    // })
-
-    
-
-
-
-
   }, []);
   
+  useEffect(() => {
+    const temp = window.getComputedStyle(virtualMemo.current).width;
+    setWidth(`width: ${String(Number(temp.slice(0, temp.length - 2)) + 5)}px`);
+  }, [memo]);
 
+  useEffect(() => {
+    memoRef.current.style = width;
+  }, [width])
 
   useEffect(()=>{
     const galleryContainer = document.querySelector('.gallery-container');
@@ -193,13 +173,6 @@ const Home = () => {
           el.classList.add(`gallery-item-${i+1}`);
 
         });
-
-        
-        
-
-
-
-
       }
     
       // Update the current order of the carouselArray and gallery
@@ -320,7 +293,7 @@ const Home = () => {
     
             } else {
               // 아닐 경우
-
+              console.log(curIdx);
               this.setCurrentState(control);
 
             }
@@ -451,7 +424,7 @@ const Home = () => {
         const sender_back = document.createElement('span');
         sender_back.innerText = letterValidInfo[i].sender;
         sender_front.className = "sender_text_back"
-
+        sender_front.title = letterValidContents[i].id
         const front = document.createElement('div');
         front.className = 'letter_front';
         const back = document.createElement('div');
@@ -469,6 +442,7 @@ const Home = () => {
         const text = document.createElement('p');
         // const sender (위에서 이미 정의됨 )
         const written_date = document.createElement('p');
+        const index = document.createElement('p');
 
         // 태그에 아이디 추가
         //title.id = "";
@@ -476,10 +450,11 @@ const Home = () => {
         //written_date.id = "";
         
         // 태그 텍스트 설정
-        title.innerText = "이건 타이틀입니다"
-        text.innerText = "이건 편지 내용 (text) 입니다"
+        title.innerText = letterValidContents[i].title
+        text.innerText = letterValidContents[i].text
         //sender_back.innerText 위에서 디비에서 받아왔음
-        written_date.innerText = "이건 작성일 입니다"
+        written_date.innerText = letterValidContents[i].written_date.substr(0,10)
+        index.innerText = letterValidContents[i].id
 
         //아까 만들었던 div태그에 자식 요소로 추가 
         content.appendChild(title);
@@ -503,7 +478,10 @@ const Home = () => {
 
         letterContainer.style.background="rgb(200,173,226)"
 
-        letterContainer.addEventListener('click',click);
+        if (id == curr_user){
+          letterContainer.addEventListener('click',click);
+        }
+        
         
 
         letter.appendChild(letterContainer);
@@ -532,25 +510,33 @@ const Home = () => {
   }, [loading])
 
   function click(event) {
+    console.log(event.currentTarget)
     let elem = event.currentTarget;
+    // console.log(elem.childNodes[0].firstChild.title)
     if (elem.style.transform == "rotateY(180deg) scale(2)") {
               elem.style.transform = "rotateY(0deg) scale(1.0)";
               closePopup();
               
-
               //opened
           } else {
               elem.style.transform = "rotateY(180deg) scale(2.0)";
-              console.log(elem);
+              // console.log(elem);
+              // console.log("opened");
               setBackgroundEffect(2);
-
+              
               openPopup();
               elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
+              
 
-
-
-            
-
+              // 카드 오픈 시에 넣기, 카드 오픈 시 유저 확인도 하기
+              axios.post(BASE_URL+"/letter/setOpened", {
+                id: Number(elem.childNodes[0].firstChild.title)
+              }).then(response => {
+                console.log(response);
+              }).catch(error => {
+                console.log("setOpened errror!"+error);
+              });
+              
               /*const content = document.getElementsByClassName('letter_content');
               for (let p = 0; p < content.length; p++){
                 content[p].style.transform = "scale(0.3)";
@@ -558,6 +544,8 @@ const Home = () => {
 
           }
       }
+
+      
 
   const transparent_style = {
     opacity: 0
@@ -597,23 +585,30 @@ function BackgroundType(){
     <div id="screen">
     <div class="title-bar">
       {isOpenPopup && BackgroundType() }
-      <div>
+      <div className="title-holder">
         <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
         <button
           onClick={()=>{
             navigator.clipboard.writeText(`192.249.18.161/mypage/${id}`);
             alert("링크가 복사되었습니다. 친구에게 공유해보세요!")
-
+            console.log(window.getComputedStyle(virtualMemo.current).width);
             // console.log(letterValidInfo)
             // console.log(letterInvalidInfo)
-          }
-          }>링크 복사</button>
+          }}
+          className="btn_copy">링크 복사</button>
+        </div>
         <div class="title_menu">
           {
             id === curr_user
             ?
               <span id="welcome">{nickname}님</span>
-            :
+            : 
+              (curr_user != null) ? 
+              <span id="welcome"
+              onClick={()=>{
+                document.location.href = `/mypage/${curr_user}`       //로그인 여부에 따라 다르게
+              }}>내 레터스페이스</span>
+             : 
               <span id="welcome"
               onClick={()=>{
                 document.location.href = `/welcome`       //로그인 여부에 따라 다르게
@@ -622,33 +617,40 @@ function BackgroundType(){
           
           <span id="storage"
             onClick={()=>{
-              if (curr_user == id) {
-                document.location.href = `/storage/${id}` // 유저의 보관함으로 이동 (로그인 유저와 같아야 함)
-              } else {
-                alert("자신의 보관함만 열람 가능합니다.")
-              }
+              // if (curr_user == id) {
+                document.location.href = `/storage/${curr_user}` // 유저의 보관함으로 이동 (로그인 유저와 같아야 함)
+              // } else {
+                // alert("자신의 보관함만 열람 가능합니다.")
+              // }
             }}>보관함</span>
         </div>
       </div>
-    </div>
-    <div class="memo">
-      <p>" {memo} "</p>
-    </div>
-      {/* <span>"</span>
-      <input type="text" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>
-      <span>"</span>
+
+    <div class="memo-holder">
+    <div style={{ position: "absolute", top: "0px", display: "inline-block", visibility: "hidden" }} className="memo" ref={virtualMemo}>{memo}</div>
+    <span className="memo-ddaoom-left">"</span>
+      <input ref={memoRef} type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>
+      <span className="memo-ddaoom-right">"</span>
+    {(id == curr_user)? 
       <button
-      onClick={()=>{
-        // db에 메모 수정된 것 저장
-        axios.post(BASE_URL+"/account/updateUserMemo", {
-          id : id,
-          memo : memo
-        }).then(response => {
-          console.log(response);
-        }).catch(error => {
-          console.log("updateUserMemo errror!"+error);
-        });
-      }}>수정하기</button> */}
+        onClick={()=>{
+          // db에 메모 수정된 것 저장
+          
+            axios.post(BASE_URL+"/account/updateUserMemo", {
+              id : id,
+              memo : memo
+            }).then(response => {
+              console.log(response);
+              alert("메모가 수정되었습니다.")
+            }).catch(error => {
+              console.log("updateUserMemo errror!"+error);
+            });
+        }}
+        className="btn_edit">수정<br/>하기</button> : 
+          <div/>
+    }
+      
+    </div>
     
     <div class="contents">
       <p class="stacked_letter_text">쌓인 편지 <span id="before_open_letter">{letterInvalidCnt+letterValidCnt}</span> 개</p>
