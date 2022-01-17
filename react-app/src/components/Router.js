@@ -19,6 +19,7 @@ import Write from "./WriteLetter";
 import Test from "./test";
 import Test2 from "./test2";
 import Test4 from "./test4";
+import Test5 from "./test5";
 import Test_animation from "./test_animation"
 
 //로그인 되어있다면 바로 메인으로 이동할 수 있도록 처리하기. Router에서. 
@@ -47,6 +48,7 @@ const AppRouter = ({isLoggedIn}) => {
               <Route path="test" element={<Test/> }/>
               <Route path="test2" element={<Test2/> }/>
               <Route path="test4" element={<Test4/> }/>
+              <Route path="test5" element={<Test5/> }/>
               <Route path="test_animation" element={<Test_animation/> }/>
           </Routes>
         </CSSTransition>

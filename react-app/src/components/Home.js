@@ -17,6 +17,7 @@ import PopupDom from '../PopupDom';
 import Test from "./test";
 import Test2 from "./test2";
 import Test4 from "./test4";
+import Test5 from "./test5";
 
 const Home = () => {
 
@@ -569,7 +570,7 @@ const Home = () => {
 function BackgroundType(){
 
   if(background_effect_type == 1){
-    return <PopupDom><Test></Test></PopupDom>
+    return <PopupDom><Test5></Test5></PopupDom>
   } else if(background_effect_type ==2){
     return <PopupDom><Test2></Test2></PopupDom>
   } else if(background_effect_type ==4){
