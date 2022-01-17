@@ -150,15 +150,18 @@ const Write = () => {
   
 
   return (
-      <>
+      <div class = "write_page">
       <div class = "write_letter_box">
 
       <div class = "custom_tab">
-        <h3>편지지를 골라요!</h3>
-        <div className="btn" type= "paper" name="paper1" onClick={onSelectPaper}>편지지 1</div>
-        <div className="btn" type= "paper" name="paper2" onClick={onSelectPaper}>편지지 2</div>
-        <div className="btn" type= "paper" name="paper3" onClick={onSelectPaper}>편지지 3</div>
-        <div className="btn" type= "paper" name="paper4" onClick={onSelectPaper}>편지지 4</div>
+        <div class = "tab_subject">편지지를 골라요!</div>
+        <div class = "btn_container">
+          <div className="btn" type= "paper" name="paper1" onClick={onSelectPaper}>편지지 1</div>
+          <div className="btn" type= "paper" name="paper2" onClick={onSelectPaper}>편지지 2</div>
+          <div className="btn" type= "paper" name="paper3" onClick={onSelectPaper}>편지지 3</div>
+          <div className="btn" type= "paper" name="paper4" onClick={onSelectPaper}>편지지 4</div>
+        </div>
+
       </div>
 
       <div class = "Blank"></div>
@@ -172,7 +175,7 @@ const Write = () => {
               value={startDate}
               onChange={(date) => setStartDate(date)}
               dateFormat="yyyy년 M월 d일에 메시지가 열립니다."
-              popperPlacement="left-start"
+              popperPlacement="right-start"
               customInput={<ExampleCustomInput />}
             />
             <div className="stamp-container bubbly-button" type="stampContainer">
@@ -219,15 +222,17 @@ const Write = () => {
         <div class = "Blank"></div>
 
         <div class = "custom_tab">
-          <h3>효과를 골라요!</h3>
-          <div className="btn" type= "effect" name="effect1" onClick={onSelectEffect}>효과 1</div>
-          <div className="btn" type= "effect" name="effect2" onClick={onSelectEffect}>효과 2</div>
-          <div className="btn" type= "effect" name="effect3" onClick={onSelectEffect}>효과 3</div>
-          <div className="btn" type= "effect" name="effect4" onClick={onSelectEffect}>효과 4</div>
+          <div class = "tab_subject">효과를 골라요!</div>
+          <div class = "btn_container">
+            <div className="btn" type= "effect" name="effect1" onClick={onSelectEffect}>효과 1</div>
+            <div className="btn" type= "effect" name="effect2" onClick={onSelectEffect}>효과 2</div>
+            <div className="btn" type= "effect" name="effect3" onClick={onSelectEffect}>효과 3</div>
+            <div className="btn" type= "effect" name="effect4" onClick={onSelectEffect}>효과 4</div>
+          </div>
           </div>
 
         </div>
-    </>
+    </div>
   );
 }
 
