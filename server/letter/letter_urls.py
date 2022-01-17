@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
-from .views import getAllLetters, postLetter, getMyValidLetters, getMyInvalidLetters, getLetters, setOpened, getSavedLetters
+from .views import getAllLetters, postLetter, getMyValidLetters, getMyInvalidLetters, getLetters, setOpened, getSavedLetters, getSavedLettersDetail
 
 urlpatterns = [
     # path('', LetterList.as_view()),
@@ -11,6 +11,7 @@ urlpatterns = [
     path('getLetters/<str:param>', getLetters),
     path('setOpened', setOpened),
     path('getSavedLetters/<str:param>', getSavedLetters),
+    path('getSavedLettersDetail/<str:id>/<str:year>/<str:month>', getSavedLettersDetail),
     # path('sendEmail', sendEmail),
 ]
 

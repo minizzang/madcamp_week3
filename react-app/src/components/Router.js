@@ -13,6 +13,7 @@ import 'styles/transition.css';
 import Home from "./Home"; 
 import Letter from "./Letter";
 import Storage from "./Storage";
+import StorageLetter from "./StorageLetter"
 import Welcome from "./Welcome";
 import Write from "./WriteLetter";
 import Test from "./test";

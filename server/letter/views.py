@@ -82,6 +82,17 @@ def getSavedLetters(request, param):
         return Response("편지가 없어요")
     # serializer = LetterSerializer(letters, many=True)
     return Response(letters)
+
+# (open_date가 지난 && opened = True인 && year, month 조건에 따른) 유저에게 온 모든 편지 보기
+# BASEURL/letter/getSavedLettersDetail/{id}
+@api_view(['GET'])
+def getSavedLettersDetail(request, id, year, month):
+    date_now = datetime.datetime.now().strftime('%Y-%m-%d')
+    letters = Letter.objects.filter(Q(recipient=id) & Q(open_date__year=year) & Q(open_date__month = month) & Q(opened = True)).values().order_by('-open_date')
+    if (len(letters)==0) :
+        return Response("편지가 없어요")
+    # serializer = LetterSerializer(letters, many=True)
+    return Response(letters)
     
 
 # 메일 보내기 test
