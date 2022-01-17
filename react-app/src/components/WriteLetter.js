@@ -12,6 +12,7 @@ import stamp_heart from '../images/stamp_heart.png'
 import stamp_star from '../images/stamp_star.png'
 import stamp_cloud from '../images/stamp_cloud.png'
 import stamp_party from '../images/stamp_party.png'
+import stamp_bus from '../images/stamp_bus.png'
 
 
 const Write = () => {
@@ -145,6 +146,9 @@ const Write = () => {
       case "effect4" :
         setStampImg(<img src={stamp_party} id="stamp-front" className="stamp-front"></img>)
         break;
+      case "effect5" :
+        setStampImg(<img src={stamp_bus} id="stamp-front" className="stamp-front"></img>)
+        break;
     }
   };
   
@@ -195,7 +199,8 @@ const Write = () => {
                           required
                           value={subject}
                           onChange={onChange}
-                          className="writeInput"/>
+                          className="writeInput"
+                          autoComplete="off"/>
 
             <textarea placeholder="내용을 적어주세요"
             type="contents"
@@ -211,7 +216,8 @@ const Write = () => {
                     className="writeInput"
                     required
                     value={sender}
-                    onChange={onChange}/>
+                    onChange={onChange}
+                    autoComplete="off"/>
             <input
             type="submit"
             className="writeInput writeSubmit"
@@ -228,6 +234,7 @@ const Write = () => {
             <div className="btn" type= "effect" name="effect2" onClick={onSelectEffect}>효과 2</div>
             <div className="btn" type= "effect" name="effect3" onClick={onSelectEffect}>효과 3</div>
             <div className="btn" type= "effect" name="effect4" onClick={onSelectEffect}>효과 4</div>
+            <div className="btn" type= "effect" name="effect5" onClick={onSelectEffect}>효과 5</div>
           </div>
           </div>
 
