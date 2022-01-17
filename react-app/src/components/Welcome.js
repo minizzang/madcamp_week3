@@ -87,7 +87,7 @@ const Welcome = () => {
     <>
     <div className="wrapWelcome">
     <div>
-      <p className="welcomeTxt"> Welcome! 오늘도 즐거운 하루 보내세요~ </p>
+      <p className="welcomeTxt"> {newAccount ? "만나서 반가워요!" : "편지 보러 오셨나요?"} </p>
     </div>
     <form onSubmit={onSubmit} className="welcomeContainer">
     {newAccount ? (    
@@ -135,7 +135,7 @@ const Welcome = () => {
       {newAccount ? "Sign In" : "아직 계정이 없으신가요?"}
     </span>
 
-    <div className="authBtns">
+    {/*<div className="authBtns">
         <button name="google"  className="authBtn">
           Continue with Google
         </button>
@@ -143,6 +143,7 @@ const Welcome = () => {
           Continue with Github
         </button>
       </div>
+    */}
       </div>
     </>
   );

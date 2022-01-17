@@ -11,23 +11,26 @@
 }
 
 
+
 @keyframes leaveToLeft {
   from {
     opacity: 1;
+    transform: translateY(-30%);
   }
   to {
     opacity: 0;
-    filter: brightness(0.5);
+    transform: translateY(-100%);
+    filter: brightness(0.7);
   }
 }
 
 @keyframes enterFromRight {
   from {
     opacity: 0;
-    transform: translateY(50%);
+    transform: translateY(100%);
   }
   to {
     opacity: 1;
-    transform: translateY(0%);
+    transform: translateY(0);
   }
 }
