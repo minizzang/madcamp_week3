@@ -1,37 +1,37 @@
-import 'styles/test.css';
+import 'styles/test3.css';
 
-const Test = () => {
+const Test3 = () => {
 
     return (
         <>
-            <div className="back"></div>
+            <div className="cloud_back"></div>
             <div style={{
-                marginRight : 100,
-                marginTop : 60,
+                marginRight : 130,
+                marginTop : 160,
                 animationDelay : `115ms`
-                }} className="heart"></div>
+                }} className="cloud"></div>
             <div style={{
                 marginLeft : 120,
                 marginTop : 40,
                 animationDelay : `300ms`
-                }} className="heart"></div>
+                }} className="cloud"></div>
             <div style={{
                 marginRight : 300,
                 marginTop : 200,
-                }} className="heart"></div>
+                }} className="cloud"></div>
             <div style={{
                 marginLeft : 160,
                 marginTop : 140,
                 animationDelay : `140ms`
-                }} className="heart"></div>
+                }} className="cloud"></div>
             <div style={{
                 marginRight : 160,
                 marginTop : 0,
                 animationDelay : `280ms`
-                }} className="heart"></div>
+                }} className="cloud"></div>
         </>
     );
 }
   
-export default Test;
+export default Test3;
   

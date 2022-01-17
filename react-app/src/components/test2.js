@@ -16,6 +16,15 @@ const Test2 = () => {
                     <div className='shooting_star'></div>
                     <div className='shooting_star'></div>
                     <div className='shooting_star'></div>
+                </div>
+
+                <div className='night-left'>
+                    <div className='shooting_star'></div>
+                    <div className='shooting_star'></div>
+                    <div className='shooting_star'></div>
+                    <div className='shooting_star'></div>
+                    <div className='shooting_star'></div>
+                    <div className='shooting_star'></div>
                     <div className='shooting_star'></div>
                     <div className='shooting_star'></div>
                     <div className='shooting_star'></div>
