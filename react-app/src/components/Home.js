@@ -12,6 +12,8 @@ import plusImage from "../images/add_card.png";
 import Flippy from "react-flippy";
 import {FrontSide, BackSide} from "react-flippy";
 import styles from '../styles/home.css';
+import PopupDom from '../PopupDom';
+import Test from "./test";
 
 const Home = () => {
 
@@ -30,6 +32,17 @@ const Home = () => {
   const [letterList, setLetterList] = useState([]);
 
   const [navIdx, setnavIdx]= useState(0);
+
+  //popup
+  const [isOpenPopup,setIsOpenPopup] = useState(false);
+
+  const openPopup = () =>{
+    setIsOpenPopup(true);
+  }
+  const closePopup = () => {
+    setIsOpenPopup(false);
+  }
+
 
   const handleChange = (e) => {
     setMemo(e.target.value)
@@ -320,6 +333,13 @@ const Home = () => {
 
     if (!loading) {
 
+      const background_effect = document.createElement('div');
+      const monitor = document.getElementById('monitor');
+      
+      background_effect.id = "background_effect";
+
+      monitor.appendChild(background_effect);
+
 
       // 민채 여기서 하세요!!
       console.log("loading" + loading)
@@ -461,6 +481,7 @@ const Home = () => {
         letterContainer.appendChild(back);
 
         letterContainer.addEventListener('click',click);
+        
 
         letter.appendChild(letterContainer);
 
@@ -489,17 +510,32 @@ const Home = () => {
 
   function click(event) {
     let elem = event.currentTarget;
-    if (elem.style.transform == "rotateY(180deg) scale(3)") {
+    if (elem.style.transform == "rotateY(180deg) scale(2)") {
               elem.style.transform = "rotateY(0deg) scale(1.0)";
+              closePopup();
               
 
               //opened
           } else {
-              elem.style.transform = "rotateY(180deg) scale(3.0)";
-              const content = document.getElementsByClassName('letter_content');
+              elem.style.transform = "rotateY(180deg) scale(2.0)";
+              console.log(elem);
+
+              openPopup();
+              elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
+
+              const hearts = document.getElementsByClassName('heart');
+              for( let p = 0; p < hearts.length; p++){
+                //hearts[p].style.transform = "scale(calc(1/3))";
+              }
+
+
+            
+
+              /*const content = document.getElementsByClassName('letter_content');
               for (let p = 0; p < content.length; p++){
                 content[p].style.transform = "scale(0.3)";
-              }
+              }*/
+
           }
       }
 
@@ -517,8 +553,10 @@ const Home = () => {
   }
 
   return (
-  <>
+  <div id="monitor">
+    <div id="screen">
     <div class="title-bar">
+      {isOpenPopup && <PopupDom><Test></Test></PopupDom> }
       <div>
         <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
         <button
@@ -556,10 +594,10 @@ const Home = () => {
     <div class="memo">
       <p>" {memo} "</p>
     </div>
-    <span>"</span>
-    <input type="text" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>
-    <span>"</span>
-    <button
+      <span>"</span>
+      <input type="text" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>
+      <span>"</span>
+      <button
       onClick={()=>{
         // db에 메모 수정된 것 저장
         axios.post(BASE_URL+"/account/updateUserMemo", {
@@ -596,6 +634,7 @@ const Home = () => {
         </div>
       </div>
     </div>
+    </div>
 
     {/*    <button
       // onClick={()=>{
@@ -603,7 +642,8 @@ const Home = () => {
       // }}>    </button>*/}
       
       <Link to="write"> 편지 쓰기</Link>
-  </>
+      <script src="../PopupDom.js"></script>
+  </div>
 
   );
 };
