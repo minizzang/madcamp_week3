@@ -48,7 +48,7 @@ body .circle:hover h2 {
 }
 .circle_inner__layer:nth-of-type(1) {
   width: 50000px;
-  height: 10000px;
+  height: 100vh;
   left:-5000px;
   background: url('images/city_background.png');
   background-repeat: repeat-x;
@@ -59,7 +59,7 @@ body .circle:hover h2 {
     background-repeat: repeat-x;
     width: 500vw;
     height: 100vh;
-    left:-5000px;
+    left:-2500px;
     top: -8em;
     animation: slide 6s linear infinite;
     object-fit: fill;
@@ -69,7 +69,7 @@ body .circle:hover h2 {
     background-repeat: repeat-x;
     width: 500vw;
     height: 100vh;
-    top: -13em;
+    top: -12em;
   animation: slide3 2s linear infinite;
 }
 
@@ -78,8 +78,8 @@ body .circle:hover h2 {
     background-repeat: repeat-x;
     width: 500vw;
     height: 100vh;
-    top: -6em;
-  animation: slide3 4s linear infinite;
+    top: -7em;
+  animation: slide3 5s linear infinite;
 }
 
 @keyframes slide {
