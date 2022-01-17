@@ -649,21 +649,6 @@ function BackgroundType(){
         }}
         className="btn_edit">수정<br/>하기</button>
     </div>
-      <span>"</span>
-      <input type="text" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>
-      <span>"</span>
-      <button
-      onClick={()=>{
-        // db에 메모 수정된 것 저장
-        axios.post(BASE_URL+"/account/updateUserMemo", {
-          id : id,
-          memo : memo
-        }).then(response => {
-          console.log(response);
-        }).catch(error => {
-          console.log("updateUserMemo errror!"+error);
-        });
-      }}>수정하기</button>
     
     
     <div class="contents">
