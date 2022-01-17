@@ -16,6 +16,8 @@ import styles from '../styles/home.css';
 import PopupDom from '../PopupDom';
 import Test1 from "./test1";
 import Test2 from "./test2";
+import Test4 from "./test4";
+import Test5 from "./test5";
 import Test3 from "./test3";
 
 const Home = () => {
@@ -311,7 +313,6 @@ const Home = () => {
     exampleCarousel.useControls();
 
 
-
     if (!loading) {
 
       const background_effect = document.createElement('div');
@@ -320,7 +321,6 @@ const Home = () => {
       background_effect.id = "background_effect";
 
       monitor.appendChild(background_effect);
-
 
       // 민채 여기서 하세요!!
       console.log("loading" + loading)
@@ -463,8 +463,6 @@ const Home = () => {
         content.appendChild(sender_back);
         content.appendChild(written_date);
 
-
-
         //div 태그를 div class= letter_back의 자식 요소로 추가
         back.appendChild(content);
 
@@ -578,11 +576,15 @@ function BackgroundType(){
 
   if(background_effect_type == 1){
     return <PopupDom><Test1></Test1></PopupDom>
-  } else if(background_effect_type == 2){
+  } else if(background_effect_type ==2){
     return <PopupDom><Test2></Test2></PopupDom>
   } else if(background_effect_type == 3){
-    return <PopupDom><Test3></Test3></PopupDom>
-  }
+    return <PopupDom><Test3></Test3></PopupDom>}
+    else if(background_effect_type ==4){
+    return <PopupDom><Test4></Test4></PopupDom>
+  } else if(background_effect_type ==5){
+    return <PopupDom><Test5></Test5></PopupDom>
+  } 
 }
 
 
