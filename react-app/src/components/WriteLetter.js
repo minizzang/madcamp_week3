@@ -113,10 +113,10 @@ const Write = () => {
   const onSelectEffect = (event) => {
     document.querySelectorAll(`div[type=effect]`).forEach(el => el.className = "btn"); //모든걸 버튼으로 바꿔주기!
 
-    document.querySelector(`form[type=writeContainer]`).classList.remove('animate');
-    document.querySelector(`form[type=writeContainer]`).classList.add('animate');
+    document.querySelector(`div[type=stampContainer]`).classList.remove('animate');
+    document.querySelector(`div[type=stampContainer]`).classList.add('animate');
     setTimeout(function(){
-      document.querySelector(`form[type=writeContainer]`).classList.remove('animate');
+      document.querySelector(`div[type=stampContainer]`).classList.remove('animate');
     },700); //컨테이너를 queryselector로 가져와서 classlist에 animate 추가 -> 애니메이션 실행
 
     event.target.className = "btn_selected" //내가 선택한 건 selected로 바꿔주기!
@@ -175,7 +175,7 @@ const Write = () => {
               popperPlacement="left-start"
               customInput={<ExampleCustomInput />}
             />
-            <div className="stamp-container">
+            <div className="stamp-container bubbly-button" type="stampContainer">
               <img src={stamp_back} className="stamp"></img>
               {stampImg}
               {/* <img src={stampImg} id="stamp-front" className="stamp-front"></img> */}
