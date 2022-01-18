@@ -19,6 +19,8 @@ import Test2 from "./test2";
 import Test4 from "./test4";
 import Test5 from "./test5";
 import Test3 from "./test3";
+import button_image from "../images/button_image.png";
+import button_image_next from "../images/button_image_next.png";
 
 const Home = () => {
 
@@ -46,6 +48,9 @@ const Home = () => {
   const [isOpenPopup,setIsOpenPopup] = useState(false);
 
   const [background_effect_type, setBackgroundEffect] = useState(0);
+
+  const [buttonImage, setButtonImage] = useState();
+  const [buttonImageNext, setButtonImageNext] = useState();
 
   const openPopup = () =>{
     setIsOpenPopup(true);
@@ -515,6 +520,10 @@ const Home = () => {
 
       // console.log(letterList.length);
 
+
+      setButtonImage(<img id ="prev_button_image" src = {button_image}/>);
+      setButtonImageNext(<img id ="next_button_image" src = {button_image_next}/>);
+
     }
     
   }, [loading])
@@ -686,13 +695,13 @@ function BackgroundType(){
         </div>
         <div class="gallery-controls">
           <button class="gallery-controls-previous">
-            "previous"
+            {buttonImage}
           </button>
-          <button class="gallery-controls-add">
+          {/* <button class="gallery-controls-add">
             add
-          </button>
+          </button> */}
           <button class="gallery-controls-next">
-            "next"
+            {buttonImageNext}
           </button>
         </div>
       </div>
