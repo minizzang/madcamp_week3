@@ -660,12 +660,12 @@ function BackgroundType(){
       </div>
 
     <div class="memo-holder">
-    <div style={{ position: "absolute", top: "0px", display: "inline-block", visibility: "hidden" }} className="memo" ref={virtualMemo}>{memo}</div>
+    <div style={{ position: "absolute", top: "0px", visibility: "hidden"}} className="memo" ref={virtualMemo}>{memo}</div>
     <span className="memo-ddaoom-left">"</span>
       {(id == curr_user)? 
-      <input ref={memoRef} type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange} autoComplete="off"/>
+      <input ref={memoRef} type="text" width={"100px"} className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange} autoComplete="off"/>
       :
-      <input ref={memoRef} disabled="disabled" type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange}/>}
+      <input ref={memoRef} disabled="disabled" type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo}/>}
       
       <span className="memo-ddaoom-right">"</span>
     {(id == curr_user)? 

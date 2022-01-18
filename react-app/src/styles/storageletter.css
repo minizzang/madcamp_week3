@@ -69,34 +69,6 @@
     float: left;
   }
 
-  .memo-holder {
-    display: flex;
-    padding-top: 20px;
-  }
-
-  .memo-ddaoom-left {
-    margin-left: 100px;
-    font-size: 20px;
-    font-weight: 600;
-  }
-
-  .memo-ddaoom-right {
-    font-size: 20px;
-    font-weight: 600;
-  }
-
-  .memo {
-    width: 400px;
-    margin-left: 10px; 
-    margin-right: 10px;
-    font-size: 25px;
-    /* background: white; */
-    border-bottom: solid;
-    padding: 10px;
-    border-width: 2px;
-    font-family: "Kkomi";
-  }
-
   .btn_copy {
     background-color: white;
     border-color: #937FE2;

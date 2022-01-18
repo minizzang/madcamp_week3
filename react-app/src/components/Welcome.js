@@ -114,7 +114,7 @@ const Welcome = () => {
       <input
         name="password"
         type="password"
-        placeholdeer="Password"
+        placeholder="Password"
         required
         value={password}
         className="authInput"

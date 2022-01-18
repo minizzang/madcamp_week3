@@ -86,13 +86,14 @@
   }
 
   .memo {
-    width: 400px;
+    /* width: 0px; */
+    text-align: center;
     margin-left: 10px; 
     margin-right: 10px;
     font-size: 25px;
     /* background: white; */
     border-bottom: solid;
-    padding: 10px;
+    /* padding: 10px; */
     border-width: 2px;
     font-family: "Kkomi";
   }
