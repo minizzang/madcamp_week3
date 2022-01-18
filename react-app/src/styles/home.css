@@ -291,116 +291,112 @@ body {
   padding-top: 60px;
 }
 
-  .gallery-item-1 > .letterContainer{
-    transition: 0.5s;
-    height: 100px;
-    border-radius: 5px;
-    
-  }
-  .gallery-item-2> .letterContainer{
-    border-radius: 7px;
-    height: 200px;
-    transition: 0.5s;
-  }
-  .gallery-item-3>.letterContainer{
-    border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1), 0 0 60px rgba(0, 0, 0, 0.05), 0 0 110px rgba(0, 0, 0, 0.025), 0 0 100px rgba(0, 0, 0, 0.01);
-    height: 300px;
-    transition: 0.5s;
-  }
-  .gallery-item-4>.letterContainer{
-    border-radius: 7px;
-    height: 200px;
-    transition: 0.5s;
-  }
-  .gallery-item-5> .letterContainer{
-    height: 100px;
-    transition: 0.5s;
-    border-radius: 5px;
-  }
-  
-  .gallery-item-1 {
-    pointer-events: none;
-    font-size: 15%;
-    left: 15%;
-    opacity: .4;
-    transform: translateX(-50%);
-  }
-  
-  .gallery-item-2,
-  .gallery-item-4{
-    pointer-events: none;
-    font-size: 20px;
-    height: 200px;
-    opacity: 1;
-    width: 200px;
-    z-index: 1;
-  }
-  
-  .gallery-item-2 {
-    left: 30%;
-    transform: translateX(-50%);
-  }
-  
-  .gallery-item-3 {
-    
-    font-size: 25px;
+.gallery-item-1 > .letterContainer {
+  transition: 0.5s;
+  height: 100px;
+  border-radius: 5px;
+}
+.gallery-item-2 > .letterContainer {
+  border-radius: 7px;
+  height: 200px;
+  transition: 0.5s;
+}
+.gallery-item-3 > .letterContainer {
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1), 0 0 60px rgba(0, 0, 0, 0.05),
+    0 0 110px rgba(0, 0, 0, 0.025), 0 0 100px rgba(0, 0, 0, 0.01);
+  height: 300px;
+  transition: 0.5s;
+}
+.gallery-item-4 > .letterContainer {
+  border-radius: 7px;
+  height: 200px;
+  transition: 0.5s;
+}
+.gallery-item-5 > .letterContainer {
+  height: 100px;
+  transition: 0.5s;
+  border-radius: 5px;
+}
 
-    height: 300px;
-    opacity: 1;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    z-index: 2;
-  }
-  
-  .gallery-item-4 {
-    left: 70%;
-    transform: translateX(-50%);
-  }
-  
-  .gallery-item-5 {
-    pointer-events: none;
-    left: 85%;
-    opacity: .4;
-    transform: translateX(-50%);
-  }
-  
-  .gallery-controls {
-    display: flex;
-    justify-content: center;
-    margin: 30px 0;
-  }
-  
-  .gallery-controls button {
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 0 20px;
-    padding: 0 12px;
-    text-transform: capitalize;
-  }
-  
-  .gallery-controls button:focus {
-    outline: none;
-  }
-  
-  .gallery-controls-previous {
-      
-    position: relative;
+.gallery-item-1 {
+  pointer-events: none;
+  font-size: 15%;
+  left: 15%;
+  opacity: 0.4;
+  transform: translateX(-50%);
+}
 
-  }
+.gallery-item-2,
+.gallery-item-4 {
+  pointer-events: none;
+  font-size: 20px;
+  height: 200px;
+  opacity: 1;
+  width: 200px;
+  z-index: 1;
+}
 
-  #prev_button_image {
-    transform: translateX(20px);
-      width:15px;
-      height: 15px;
-      transition:all .3s;
+.gallery-item-2 {
+  left: 30%;
+  transform: translateX(-50%);
+}
 
-  }
-  
-  /*.gallery-controls-previous::before {
+.gallery-item-3 {
+  font-size: 25px;
+
+  height: 300px;
+  opacity: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  z-index: 2;
+}
+
+.gallery-item-4 {
+  left: 70%;
+  transform: translateX(-50%);
+}
+
+.gallery-item-5 {
+  pointer-events: none;
+  left: 85%;
+  opacity: 0.4;
+  transform: translateX(-50%);
+}
+
+.gallery-controls {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.gallery-controls button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 20px;
+  padding: 0 12px;
+  text-transform: capitalize;
+}
+
+.gallery-controls button:focus {
+  outline: none;
+}
+
+.gallery-controls-previous {
+  position: relative;
+}
+
+#prev_button_image {
+  transform: translateX(20px);
+  width: 15px;
+  height: 15px;
+  transition: all 0.3s;
+}
+
+/*.gallery-controls-previous::before {
     border: solid #000;
     border-width: 0 2px 2px 0;
     content: '';
@@ -416,31 +412,28 @@ body {
     
     width: 4px;
   }*/
-  
-  #prev_button_image:hover {
-    transform: translateX(-8px);
 
-  }
+#prev_button_image:hover {
+  transform: translateX(-8px);
+}
 
-  #next_button_image {
-    transform: translateX(-20px);
-    width:15px;
-    height: 15px;
-    transition:all .3s;
-
+#next_button_image {
+  transform: translateX(-20px);
+  width: 15px;
+  height: 15px;
+  transition: all 0.3s;
 }
 
 #next_button_image:hover {
   transform: translateX(8px);
-
 }
-  
-  .gallery-controls-next {
-    position: relative;
-    transition:all .3s;
-  }
-  
-  /*.gallery-controls-next::before {
+
+.gallery-controls-next {
+  position: relative;
+  transition: all 0.3s;
+}
+
+/*.gallery-controls-next::before {
     border: solid #000;
     border-width: 0 2px 2px 0;
     content: '';
@@ -458,35 +451,35 @@ body {
   .gallery-controls-next:hover::before {
     right: -18px;
   }*/
-  
-  .gallery-nav {
-    bottom: -15px;
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 10px;
-    position: absolute;
-    width: 100%;
-  }
-  
-  .gallery-nav li {
-    background: #ccc;
-    border-radius: 50%;
-    height: 10px;
-    margin: 0 16px;
-    width: 10px;
-  }
-  
-  .gallery-nav li.gallery-item-selected {
-    background: #555;
-  }
 
-  @font-face {
-    font-family: "Kkomi";
-    src: url("../fonts/KNPSKkomi.otf");
-  }
+.gallery-nav {
+  bottom: -15px;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 10px;
+  position: absolute;
+  width: 100%;
+}
 
-  @font-face {
-    font-family: "AppleSD";
-    src: url("../fonts/AppleSDGothicNeoM.ttf");
-  }
+.gallery-nav li {
+  background: #ccc;
+  border-radius: 50%;
+  height: 10px;
+  margin: 0 16px;
+  width: 10px;
+}
+
+.gallery-nav li.gallery-item-selected {
+  background: #555;
+}
+
+@font-face {
+  font-family: "Kkomi";
+  src: url("../fonts/KNPSKkomi.otf");
+}
+
+@font-face {
+  font-family: "AppleSD";
+  src: url("../fonts/AppleSDGothicNeoM.ttf");
+}
