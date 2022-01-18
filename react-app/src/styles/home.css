@@ -11,6 +11,51 @@
     -moz-osx-font-smoothing: grayscale;
     background-color:rgb(243, 243, 243)
   }
+  .letter_title {
+      text-align: center;
+      padding: 5px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      height: 10%;
+      font-size: 5px;
+  }
+
+  .letter_text{
+      text-align:start;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      height: 65%;
+      margin-top: 15px;
+      padding:10px;
+      padding-left: 15px;
+      padding-right: 15px;
+      
+  }
+  .letter_sender {
+      text-align: middle;
+        margin-top: 15px;
+      float:left;
+      background: rgba(255, 255, 255, 0.5);
+      width:60%;
+      border-radius: 10px;
+      height: 10%;
+      padding : 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+  }
+  
+  .letter_written_date{
+    text-align: middle;
+    margin-top: 15px;
+    background: rgba(255, 255, 255, 0.5);
+    float:right;
+      border-radius: 10px;
+      height: 10%;
+      width: 37%;
+      padding : 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+  }
 
   .title-bar {
       display: flex;
@@ -190,7 +235,7 @@
 
 
 
-  .letter_front, .letter_back {
+  /*.letter_front, .letter_back {
     display:block;
     position:relative;
     z-index: 20;
@@ -200,7 +245,7 @@
     position: relative;
     justify-content: center;
     align-items: center;
-  }
+  }*/
   .gallery-container
 
   .open_date_text {
@@ -208,6 +253,13 @@
 
       font-size: 20px;
       
+  }
+  .letter_content{
+    padding:30px;
+    height:300px;
+    width: 300px;
+    position: relative;
+    font-size: 10px;
   }
 
   .letter_content{
@@ -233,7 +285,7 @@
   
   .letter_back {
     background: rgb(252, 252, 252);
-    z-index: 5;
+    z-index: 15;
     align-items: center;
     transform: rotateY(180deg);
   }
@@ -443,6 +495,8 @@
   transform: translateX(8px);
 
 }
+
+
   
   .gallery-controls-next {
     position: relative;

@@ -159,6 +159,10 @@
         width: 10px;
     }
 
+    .gallery-item-3 > .letter_back>.letter_content {
+       transform: translateX(-100px);
+
+    }
 
 
   .letter_front, .letter_back {
@@ -171,7 +175,7 @@
     align-items: center;
     backface-visibility: hidden;
   }
-  .gallery-container
+
 
   .open_date_text {
       color:white;
@@ -180,10 +184,8 @@
       
   }
 
-  .letter_content{
-    backface-visibility: hidden;
-    position: relative;
-  }
+
+
 
 
   .sender_text_front{
