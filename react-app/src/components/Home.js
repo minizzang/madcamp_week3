@@ -621,6 +621,30 @@ function BackgroundType(){
   } 
 }
 
+function copyToClipboard(textToCopy) {
+  // navigator clipboard api needs a secure context (https)
+  if (navigator.clipboard && window.isSecureContext) {
+      // navigator clipboard api method'
+      return navigator.clipboard.writeText(textToCopy);
+  } else {
+      // text area method
+      let textArea = document.createElement("textarea");
+      textArea.value = textToCopy;
+      // make the textarea out of viewport
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      return new Promise((res, rej) => {
+          // here the magic happens
+          document.execCommand('copy') ? res() : rej();
+          textArea.remove();
+      });
+  }
+}
+
 
   return (
   <div id="monitor" class = "mainPage">
@@ -631,9 +655,11 @@ function BackgroundType(){
         <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
         <button
           onClick={()=>{
-            navigator.clipboard.writeText(`192.249.18.161/mypage/${id}`);
+            // if (na)
+            copyToClipboard(`http://192.249.18.161/mypage/${id}`);
+            // navigator.clipboard.writeText(`192.249.18.161/mypage/${id}`);
             alert("링크가 복사되었습니다. 친구에게 공유해보세요!")
-            console.log(window.getComputedStyle(virtualMemo.current).width);
+            // console.log(window.getComputedStyle(virtualMemo.current).width);
             // console.log(letterValidInfo)
             // console.log(letterInvalidInfo)
           }}
