@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import styled, { ThemeConsumer } from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
@@ -239,6 +240,10 @@ const Write = () => {
               value={startDate}
               onChange={(date) => setStartDate(date)}
               dateFormat="yyyy년 M월 d일에 편지가 열립니다."
+              popperModifiers={{
+                //화면을  벗어나지 않도록 하는 설정
+                preventOverflow: { enabled: true },
+              }}
               popperPlacement="right-start"
               customInput={<ExampleCustomInput />}
             />
