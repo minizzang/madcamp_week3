@@ -443,16 +443,16 @@ const Home = () => {
         sender_front.className = "sender_text_front";
         const line = document.createElement("br");
 
-        const sender_back = document.createElement("span");
-        sender_back.innerText = letterValidInfo[i].sender;
-        sender_back.className = "sender_text_back";
-        sender_front.title = letterValidContents[i].id;
-        sender_front.id = letterValidContents[i].paper_type;
-        DueDate.id = letterValidContents[i].effect_type;
-        const front = document.createElement("div");
-        front.className = "letter_front";
-        const back = document.createElement("div");
-        back.className = "letter_back";
+        const sender_back = document.createElement('span');
+        sender_back.innerText = "From . " + letterValidInfo[i].sender;
+        sender_back.className = "letter_sender"
+        sender_front.title = letterValidContents[i].id
+        sender_front.id = letterValidContents[i].paper_type
+        DueDate.id = letterValidContents[i].effect_type
+        const front = document.createElement('div');
+        front.className = 'letter_front';
+        const back = document.createElement('div');
+        back.className = 'letter_back';
 
         //const txt = document.createElement('span');
         //txt.innerText = "From.";
@@ -471,7 +471,11 @@ const Home = () => {
         const title = document.createElement("p");
         const text = document.createElement("p");
         // const sender (위에서 이미 정의됨 )
-        const written_date = document.createElement("p");
+        const written_date = document.createElement('div');
+
+        title.className = "letter_title";
+        text.className = "letter_text";
+        written_date.className = "letter_written_date";
 
         // 태그에 아이디 추가
         //title.id = "";
@@ -565,7 +569,7 @@ const Home = () => {
               setBackgroundEffect(Number(elem.childNodes[0].firstChild.id));
               
               openPopup();
-              elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
+              //elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
               
               console.log(elem)
 

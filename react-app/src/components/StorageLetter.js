@@ -14,6 +14,9 @@ import { FrontSide, BackSide } from "react-flippy";
 import styles from "../styles/home.css";
 import "../styles/storageletter.css";
 
+import button_image from "../images/button_image.png";
+import button_image_next from "../images/button_image_next.png";
+
 const StorageLetter = () => {
   const { id, year, month } = useParams(); // url의 파라미터로 넘겨져 온 것.
   const curr_user = sessionStorage.getItem("user_id"); // 현재 로그인한 유저
@@ -26,6 +29,11 @@ const StorageLetter = () => {
   const [loading, setLoading] = useState(true);
 
   const [letterList, setLetterList] = useState([]);
+
+  const [buttonImage, setButtonImage] = useState();
+  const [buttonImageNext, setButtonImageNext] = useState();
+
+
 
   const getLettersFromDB = async () => {
     // (opened = True인) 유저에게 온 편지 닉네임, open_date 받기
@@ -282,16 +290,19 @@ const StorageLetter = () => {
         const title = document.createElement("p");
         const text = document.createElement("p");
         // const sender (위에서 이미 정의됨 )
-        const written_date = document.createElement("p");
+        const written_date = document.createElement('div');
 
         // 태그에 아이디 추가
-        //title.id = "";
-        //text.id = "";
-        //written_date.id = "";
+        title.className = "letter_title";
+        text.className = "letter_text";
+        written_date.className = "letter_written_date";
 
-        const sender_back = document.createElement("span");
-        sender_back.innerText = letterSavedInfo[i].sender;
+        
 
+        const sender_back = document.createElement('div');
+        sender_back.innerText = "From . " + letterSavedInfo[i].sender;
+        sender_back.className = "letter_sender";
+        
         // 태그 텍스트 설정
         title.innerText = letterSavedInfo[i].title;
         text.innerText = letterSavedInfo[i].text;
@@ -329,21 +340,27 @@ const StorageLetter = () => {
 
       // console.log(letterList.length);
     }
-  }, [loading]);
+
+    setButtonImage(<img id ="prev_button_image" src = {button_image}/>);
+    setButtonImageNext(<img id ="next_button_image" src = {button_image_next}/>);
+
+    
+  }, [loading])
 
   function click(event) {
     let elem = event.currentTarget;
     if (elem.style.transform == "rotateY(180deg) scale(2)") {
-      elem.style.transform = "rotateY(0deg) scale(1.0)";
+              elem.style.transform = "rotateY(0deg) scale(1.0)";
+              
 
-      //opened
-    } else {
-      elem.style.transform = "rotateY(180deg) scale(2.0)";
-      const content = document.getElementsByClassName("letter_content");
-      for (let p = 0; p < content.length; p++) {
-        content[p].style.transform = "scale(0.5)";
-      }
-    }
+              //opened
+          } else {
+              elem.style.transform = "rotateY(180deg) scale(2.0)";
+              const content = document.getElementsByClassName('letter_content');
+              for (let p = 0; p < content.length; p++){
+                //content[p].style.transform = "scale(0.5)";
+              }
+          }
   }
 
   const transparent_style = {
@@ -419,9 +436,15 @@ const StorageLetter = () => {
               />
             </div>
             <div class="gallery-controls">
-              <button class="gallery-controls-previous">"previous"</button>
-              <button class="gallery-controls-add">add</button>
-              <button class="gallery-controls-next">"next"</button>
+              <button class="gallery-controls-previous">
+              {buttonImage}
+              </button>
+              {/* <button class="gallery-controls-add">
+                add
+              </button> */}
+              <button class="gallery-controls-next">
+              {buttonImageNext}
+              </button>
             </div>
           </div>
         </div>
