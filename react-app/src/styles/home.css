@@ -15,19 +15,19 @@ body {
 }
 .letter_title {
   text-align: center;
-  padding: 5px;
+  padding: 3px;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
   height: 10%;
-  font-size: 5px;
+  font-size: 15px;
 }
 
 .letter_text {
   text-align: start;
   background: rgba(255, 255, 255, 0.5);
   border-radius: 10px;
-  height: 65%;
-  margin-top: 15px;
+  height: 70%;
+  margin-top: 5px;
   padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
@@ -40,7 +40,7 @@ body {
   width: 60%;
   border-radius: 10px;
   height: 10%;
-  padding: 5px;
+  padding: 7px;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -53,7 +53,7 @@ body {
   border-radius: 10px;
   height: 10%;
   width: 37%;
-  padding: 5px;
+  padding: 7px;
   padding-left: 10px;
   padding-right: 10px;
 }
@@ -149,7 +149,7 @@ body {
 }
 
 .memo-ddaoom-left {
-  margin-left: 1em;
+  margin-left: 3em;
   font-size: 1.5em;
   font-weight: 600;
 }
