@@ -13,39 +13,10 @@ body {
   background-color: rgb(243, 243, 243);
 }
 
-.stacked_letter_text {
-  text-align: center;
-  font-size: 20px;
-}
-
-.unlock_info {
-  padding-top: 10px;
-  text-align: center;
-  font-size: 30px;
-  color: rgb(151, 105, 194);
-}
-
-.letterContainer {
-  position: relative;
-  vertical-align: middle;
-  transition: transform 1s;
-  transform-style: preserve-3d;
-
-  /*background: rgb(200, 173, 226);*/
-}
-
-#before_open_letter {
-  color: rgb(151, 105, 194);
-  font-size: 30px;
-}
-
 #name {
   color: rgb(151, 105, 194);
 }
 
-.title {
-  font-size: 25px;
-}
 .contents {
   margin-top: 40px;
 }
@@ -58,20 +29,6 @@ body {
   display: table-cell;
   vertical-align: middle;
   float: left;
-}
-
-.btn_copy {
-  background-color: white;
-  border-color: #937fe2;
-  border-style: solid;
-  border-width: 3px;
-  width: 80px;
-  height: 40px;
-  border-radius: 20px;
-  color: black;
-  margin-left: 20px;
-  font-size: 15px;
-  font-weight: 600;
 }
 
 .btn_edit {
@@ -122,49 +79,46 @@ body {
   transition: transform 1s;
   transform-style: preserve-3d;
   cursor: pointer;
-    }
+}
 
-    #background_effect{
-     position:relative;  
-     width:100%;
-     height: 80%;
-    }
-    #screen{
-        width:100%;
-        height: 80%;
-        position:absolute;
-    }
+#background_effect {
+  position: relative;
+  width: 100%;
+  height: 80%;
+}
+#screen {
+  width: 100%;
+  height: 80%;
+  position: absolute;
+}
 
-    .invalid{
-        pointer-events: none !important;
-        
-    }
-    .invalid_2{
-        pointer-events: none !important;
-    }
+.invalid {
+  pointer-events: none !important;
+}
+.invalid_2 {
+  pointer-events: none !important;
+}
 
-    .invalid_2 > .letterContainer {
-        height: 10px;
-        width: 10px;
-    }
+.invalid_2 > .letterContainer {
+  height: 10px;
+  width: 10px;
+}
 
-    .gallery-item-3 > .letter_back>.letter_content {
-       transform: translateX(-100px);
+.gallery-item-3 > .letter_back > .letter_content {
+  transform: translateX(-100px);
+}
 
-    }
+.letter_front,
+.letter_back {
+  display: block;
 
-
-  .letter_front, .letter_back {
-    display: block;
-
-	width:100%;
-    height:300px;
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    backface-visibility: hidden;
-  }
-
+  width: 100%;
+  height: 300px;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+}
 
 #background_effect {
   position: relative;
@@ -199,11 +153,6 @@ body {
   justify-content: center;
   align-items: center;
   backface-visibility: hidden;
-}
-.gallery-container .open_date_text {
-  color: white;
-
-  font-size: 20px;
 }
 
 .letter_content {
@@ -289,108 +238,107 @@ body {
   padding-top: 60px;
 }
 
-  .gallery-item-1 > .letterContainer{
-    transition: 0.5s;
-    height: 100px;
-    border-radius: 5px;
-    
-  }
-  .gallery-item-2> .letterContainer{
-    border-radius: 7px;
-    height: 200px;
-    transition: 0.5s;
-  }
-  .gallery-item-3>.letterContainer{
-    border-radius: 8px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1), 0 0 60px rgba(0, 0, 0, 0.05), 0 0 110px rgba(0, 0, 0, 0.025), 0 0 100px rgba(0, 0, 0, 0.01);
-    height: 300px;
-    width: 300px;
-    transition: 0.5s;
-  }
-  .gallery-item-4>.letterContainer{
-    border-radius: 7px;
-    height: 200px;
-    transition: 0.5s;
-  }
-  .gallery-item-5> .letterContainer{
-    height: 100px;
-    transition: 0.5s;
-    border-radius: 5px;
-  }
-  
-  .gallery-item-1 {
-    pointer-events: none;
-    font-size: 15%;
-    left: 15%;
-    opacity: .4;
-    transform: translateX(-50%);
-  }
-  
-  .gallery-item-2,
-  .gallery-item-4{
-    pointer-events: none;
-    font-size: 20px;
-    height: 200px;
-    opacity: 1;
-    width: 200px;
-    z-index: 1;
-  }
-  
-  .gallery-item-2 {
-    left: 30%;
-    transform: translateX(-50%);
-  }
-  
-  .gallery-item-3 {
-    
-    font-size: 25px;
+.gallery-item-1 > .letterContainer {
+  transition: 0.5s;
+  height: 100px;
+  border-radius: 5px;
+}
+.gallery-item-2 > .letterContainer {
+  border-radius: 7px;
+  height: 200px;
+  transition: 0.5s;
+}
+.gallery-item-3 > .letterContainer {
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1), 0 0 60px rgba(0, 0, 0, 0.05),
+    0 0 110px rgba(0, 0, 0, 0.025), 0 0 100px rgba(0, 0, 0, 0.01);
+  height: 300px;
+  width: 300px;
+  transition: 0.5s;
+}
+.gallery-item-4 > .letterContainer {
+  border-radius: 7px;
+  height: 200px;
+  transition: 0.5s;
+}
+.gallery-item-5 > .letterContainer {
+  height: 100px;
+  transition: 0.5s;
+  border-radius: 5px;
+}
 
-    height: 300px;
-    opacity: 1;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 300px;
-    z-index: 2;
-  }
-  
-  .gallery-item-4 {
-    left: 70%;
-    transform: translateX(-50%);
-  }
-  
-  .gallery-item-5 {
-    pointer-events: none;
-    left: 85%;
-    opacity: .4;
-    transform: translateX(-50%);
-  }
-  
-  .gallery-controls {
-    display: flex;
-    justify-content: center;
-    /* margin: 30px 0; */
-    padding-bottom: 20px;
-  }
-  
-  .gallery-controls button {
-    background-color: transparent;
-    border: 0;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 0 20px;
-    padding: 0 12px;
-    text-transform: capitalize;
-  }
-  
-  .gallery-controls button:focus {
-    outline: none;
-  }
-  
-  .gallery-controls-previous {
-    position: relative;
-  }
-  
-  /*.gallery-controls-previous::before {
+.gallery-item-1 {
+  pointer-events: none;
+  font-size: 15%;
+  left: 15%;
+  opacity: 0.4;
+  transform: translateX(-50%);
+}
+
+.gallery-item-2,
+.gallery-item-4 {
+  pointer-events: none;
+  font-size: 20px;
+  height: 200px;
+  opacity: 1;
+  width: 200px;
+  z-index: 1;
+}
+
+.gallery-item-2 {
+  left: 30%;
+  transform: translateX(-50%);
+}
+
+.gallery-item-3 {
+  font-size: 25px;
+
+  height: 300px;
+  opacity: 1;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  z-index: 2;
+}
+
+.gallery-item-4 {
+  left: 70%;
+  transform: translateX(-50%);
+}
+
+.gallery-item-5 {
+  pointer-events: none;
+  left: 85%;
+  opacity: 0.4;
+  transform: translateX(-50%);
+}
+
+.gallery-controls {
+  display: flex;
+  justify-content: center;
+  /* margin: 30px 0; */
+  padding-bottom: 20px;
+}
+
+.gallery-controls button {
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 20px;
+  padding: 0 12px;
+  text-transform: capitalize;
+}
+
+.gallery-controls button:focus {
+  outline: none;
+}
+
+.gallery-controls-previous {
+  position: relative;
+}
+
+/*.gallery-controls-previous::before {
     border: solid #000;
     border-width: 0 2px 2px 0;
     content: '';
@@ -408,12 +356,12 @@ body {
   .gallery-controls-previous:hover::before {
     left: -18px;
   }*/
-  
-  .gallery-controls-next {
-    position: relative;
-  }
-  
-  /*.gallery-controls-next::before {
+
+.gallery-controls-next {
+  position: relative;
+}
+
+/*.gallery-controls-next::before {
     border: solid #000;
     border-width: 0 2px 2px 0;
     content: '';
@@ -431,30 +379,30 @@ body {
   .gallery-controls-next:hover::before {
     right: -18px;
   }*/
-  
-  .gallery-nav {
-    bottom: -15px;
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    padding: 0;
-    position: absolute;
-    width: 100%;
-  }
-  
-  .gallery-nav li {
-    background: #ccc;
-    border-radius: 50%;
-    height: 10px;
-    margin: 0 16px;
-    width: 10px;
-  }
-  
-  .gallery-nav li.gallery-item-selected {
-    background: #555;
-  }
 
-  @font-face {
-    font-family: "Kkomi";
-    src: url("../fonts/KNPSKkomi.otf");
-  }
+.gallery-nav {
+  bottom: -15px;
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  position: absolute;
+  width: 100%;
+}
+
+.gallery-nav li {
+  background: #ccc;
+  border-radius: 50%;
+  height: 10px;
+  margin: 0 16px;
+  width: 10px;
+}
+
+.gallery-nav li.gallery-item-selected {
+  background: #555;
+}
+
+@font-face {
+  font-family: "Kkomi";
+  src: url("../fonts/KNPSKkomi.otf");
+}
