@@ -151,13 +151,16 @@ const Write = () => {
     // console.log(document.querySelector(`textarea[type=contents]`).classList)
     // document.querySelector(`textarea[type=contents]`).classList.add(event.target.getAttribute('name')); //effect1, effect2 등으로 클래스 추가해서 배경변경
 
-    
-    switch (event.target.getAttribute('name')) {
-      case "effect1" : 
-        setStampImg(<img src={stamp_heart} id="stamp-front" className="stamp-front"></img>)
+    switch (event.target.getAttribute("name")) {
+      case "effect1":
+        setStampImg(
+          <img src={stamp_heart} id="stamp-front" className="stamp-front"></img>
+        );
         break;
-      case "effect2" :
-        setStampImg(<img src={stamp_star} id="stamp-front" className="stamp-front"></img>)
+      case "effect2":
+        setStampImg(
+          <img src={stamp_star} id="stamp-front" className="stamp-front"></img>
+        );
         break;
       case "effect3":
         setStampImg(
