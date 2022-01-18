@@ -22,7 +22,7 @@ body {
 .letter_box {
   justify-content: center;
   max-width: 1200px;
-  padding: 4em 2em 0 2em;
+  padding: 1em 2em 0 2em;
   margin: 0 auto;
 }
 
@@ -32,6 +32,7 @@ body {
   width: 1200px;
   border-top: 1px solid #686868;
   grid-template-columns: repeat(6, 1fr);
+  margin-bottom: 3em;
 }
 
 @media (min-width: 481px) and (max-width: 767px) {
@@ -52,6 +53,7 @@ body {
 
 .storage_year {
   font-size: 2rem;
+  padding-top: 2em;
   padding-bottom: 2rem;
   width: 8em;
   border-bottom: 0.5rem solid;

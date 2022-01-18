@@ -81,6 +81,31 @@
   font-family: "Kkomi";
 }
 
+.react-datepicker__header {
+  text-align: center;
+  background-color: #ffffff;
+  border-bottom: 0px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding-top: 1em;
+  position: relative;
+}
+
+.react-datepicker__day--selected {
+  background: #ff8192 !important;
+}
+
+.react-datepicker {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  background-color: rgb(255, 255, 255);
+  color: #000;
+  border: 0px;
+  border-radius: 10px;
+  display: inline-block;
+  position: relative;
+}
+
 .dateInput {
   width: 100%;
   padding: 15px;
@@ -107,7 +132,6 @@
   padding: 1em;
   margin-bottom: 10px;
   border: none;
-
   text-rendering: auto;
   background-color: rgba(255, 255, 255, 0.7);
   letter-spacing: normal;
@@ -148,20 +172,20 @@
 }
 
 .btn:hover {
-  background-color: #937fe2;
-  border-color: #937fe2;
+  background-color: #ffa1ae;
+  border-color: #ffa1ae;
   color: #f1f2f2;
 }
 .btn:active {
-  background-color: #937fe2;
-  border-color: #937fe2;
+  background-color: #ffa1ae;
+  border-color: #ffa1ae;
   color: #f1f2f2;
   box-shadow: none;
 }
 
 .btn:visited {
-  background-color: #937fe2;
-  border-color: #937fe2;
+  background-color: #ffa1ae;
+  border-color: #ffa1ae;
 }
 
 .btn_selected {
@@ -172,11 +196,11 @@
   font-size: 1.15em;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: #937fe2;
-  background-color: #937fe2;
+  color: #ffa1ae;
+  background-color: #ffa1ae;
   transition: all 0.25s ease-in-out;
   color: #f1f2f2;
-  outline: 5px auto #937fe2;
+  outline: 5px auto #ffa1ae;
   box-shadow: rgba(99, 99, 99, 0.4) 0px 2px 8px 0px;
 }
 
@@ -192,7 +216,7 @@
   margin-left: 15px;
   position: relative;
   background-image: url(images/stamp_back.png);
-  /* background-color: #937FE2; */
+  /* background-color: #ffa1ae; */
 }
 
 .stamp {

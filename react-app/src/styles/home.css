@@ -205,6 +205,11 @@ body {
 #welcome {
   padding-right: 20px;
 }
+
+#to-my-space {
+  padding-right: 20px;
+  cursor: pointer;
+}
 #stroage {
   padding-right: 20px;
 }

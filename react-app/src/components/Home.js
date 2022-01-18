@@ -26,8 +26,8 @@ import Test4 from "./test4";
 import Test5 from "./test5";
 import Test3 from "./test3";
 
-import 'styles/test1.css';
-import 'animate.css';
+import "styles/test1.css";
+import "animate.css";
 
 import button_image from "../images/button_image.png";
 import button_image_next from "../images/button_image_next.png";
@@ -61,7 +61,7 @@ const Home = () => {
   const [buttonImage, setButtonImage] = useState();
   const [buttonImageNext, setButtonImageNext] = useState();
 
-  const openPopup = () =>{
+  const openPopup = () => {
     setIsOpenPopup(true);
   };
   const closePopup = () => {
@@ -447,16 +447,16 @@ const Home = () => {
         sender_front.className = "sender_text_front";
         const line = document.createElement("br");
 
-        const sender_back = document.createElement('span');
+        const sender_back = document.createElement("span");
         sender_back.innerText = "From . " + letterValidInfo[i].sender;
-        sender_back.className = "letter_sender"
-        sender_front.title = letterValidContents[i].id
-        sender_front.id = letterValidContents[i].paper_type
-        DueDate.id = letterValidContents[i].effect_type
-        const front = document.createElement('div');
-        front.className = 'letter_front';
-        const back = document.createElement('div');
-        back.className = 'letter_back';
+        sender_back.className = "letter_sender";
+        sender_front.title = letterValidContents[i].id;
+        sender_front.id = letterValidContents[i].paper_type;
+        DueDate.id = letterValidContents[i].effect_type;
+        const front = document.createElement("div");
+        front.className = "letter_front";
+        const back = document.createElement("div");
+        back.className = "letter_back";
 
         //const txt = document.createElement('span');
         //txt.innerText = "From.";
@@ -475,24 +475,40 @@ const Home = () => {
         const title = document.createElement("p");
         const text = document.createElement("p");
         // const sender (위에서 이미 정의됨 )
-        const written_date = document.createElement('div');
+        const written_date = document.createElement("div");
 
         switch (letterValidContents[i].effect_type) {
-          case 0 : title.className = ("letter_title");
-            break
-          case 1 : title.className = ("letter_title", "animate__animated animate__rubberBand animate__repeat-2");
-            break
-          case 2 : title.className = ("letter_title", "animate__animated animate__bounceIn animate__repeat-2");
-            break
-          case 3 : title.className = ("letter_title", "animate__animated animate__tada animate__repeat-2");
-            break
-          case 4 : title.className = ("letter_title", "animate__animated animate__shakeX animate__repeat-2");
-            break
-          case 5 : title.className = ("letter_title", "animate__animated animate__swing animate__repeat-2");
-            break
+          case 0:
+            title.className = "letter_title";
+            break;
+          case 1:
+            title.className =
+              ("letter_title",
+              "animate__animated animate__rubberBand animate__repeat-2");
+            break;
+          case 2:
+            title.className =
+              ("letter_title",
+              "animate__animated animate__bounceIn animate__repeat-2");
+            break;
+          case 3:
+            title.className =
+              ("letter_title",
+              "animate__animated animate__tada animate__repeat-2");
+            break;
+          case 4:
+            title.className =
+              ("letter_title",
+              "animate__animated animate__shakeX animate__repeat-2");
+            break;
+          case 5:
+            title.className =
+              ("letter_title",
+              "animate__animated animate__swing animate__repeat-2");
+            break;
         }
-        
-        // title.classList.add("animate__animated animate__rubberBand animate__repeat-2"); 
+
+        // title.classList.add("animate__animated animate__rubberBand animate__repeat-2");
         text.className = "letter_text";
         written_date.className = "letter_written_date";
 
@@ -531,18 +547,23 @@ const Home = () => {
         // 편지 색상 설정
         var color = "#ffd6da";
         switch (letterValidContents[i].paper_type) {
-          case 1: color = "#EDB2B5";
+          case 1:
+            color = "#EDB2B5";
             break;
-          case 2: color = "#E6C596";
+          case 2:
+            color = "#E6C596";
             break;
-          case 3: color = "#BDDE8C";
+          case 3:
+            color = "#BDDE8C";
             break;
-          case 4: color = "#8BBBE0";
+          case 4:
+            color = "#8BBBE0";
             break;
-          case 5: color = "#C9B6DE";
+          case 5:
+            color = "#C9B6DE";
             break;
         }
-        letterContainer.style.background=color
+        letterContainer.style.background = color;
 
         if (id == curr_user) {
           letterContainer.addEventListener("click", click);
@@ -563,10 +584,10 @@ const Home = () => {
 
       // console.log(letterList.length);
 
-
-      setButtonImage(<img id ="prev_button_image" src = {button_image}/>);
-      setButtonImageNext(<img id ="next_button_image" src = {button_image_next}/>);
-
+      setButtonImage(<img id="prev_button_image" src={button_image} />);
+      setButtonImageNext(
+        <img id="next_button_image" src={button_image_next} />
+      );
     }
   }, [loading]);
 
@@ -577,33 +598,34 @@ const Home = () => {
     console.log(elem.childNodes[0].firstChild.id); //effect_type
     console.log(elem.childNodes[0].lastChild.id); //paper_type
     if (elem.style.transform == "rotateY(180deg) scale(2)") {
-              elem.style.transform = "rotateY(0deg) scale(1.0)";
-              closePopup();
-              
-              //opened
-          } else {
-              elem.style.transform = "rotateY(180deg) scale(2.0)";
-              // console.log(elem);
-              // console.log("opened");
-              setBackgroundEffect(Number(elem.childNodes[0].firstChild.id));
-              
-              openPopup();
-              //elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
-              
-              console.log(elem)
+      elem.style.transform = "rotateY(0deg) scale(1.0)";
+      closePopup();
 
+      //opened
+    } else {
+      elem.style.transform = "rotateY(180deg) scale(2.0)";
+      // console.log(elem);
+      // console.log("opened");
+      setBackgroundEffect(Number(elem.childNodes[0].firstChild.id));
 
+      openPopup();
+      //elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
 
-              // 카드 오픈 시에 넣기, 카드 오픈 시 유저 확인도 하기
-              axios.post(BASE_URL+"/letter/setOpened", {
-                id: Number(elem.childNodes[0].lastChild.title)
-              }).then(response => {
-                console.log(response);
-              }).catch(error => {
-                console.log("setOpened errror!"+error);
-              });
-              
-              /*const content = document.getElementsByClassName('letter_content');
+      console.log(elem);
+
+      // 카드 오픈 시에 넣기, 카드 오픈 시 유저 확인도 하기
+      axios
+        .post(BASE_URL + "/letter/setOpened", {
+          id: Number(elem.childNodes[0].lastChild.title),
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log("setOpened errror!" + error);
+        });
+
+      /*const content = document.getElementsByClassName('letter_content');
               for (let p = 0; p < content.length; p++){
                 content[p].style.transform = "scale(0.3)";
               }*/
@@ -633,73 +655,94 @@ const Home = () => {
   z-index: 20;
   }
   `;
-  function BackgroundType(){
-
+  function BackgroundType() {
     if (background_effect_type == 1) {
-      return <PopupDom><Test1></Test1></PopupDom>
-    } else if(background_effect_type ==2){
-      return <PopupDom><Test2></Test2></PopupDom>
-    } else if(background_effect_type == 3){
-      return <PopupDom><Test3></Test3></PopupDom>}
-      else if(background_effect_type ==4){
-      return <PopupDom><Test4></Test4></PopupDom>
-    } else if(background_effect_type ==5){
-      return <PopupDom><Test5></Test5></PopupDom>
-    } 
+      return (
+        <PopupDom>
+          <Test1></Test1>
+        </PopupDom>
+      );
+    } else if (background_effect_type == 2) {
+      return (
+        <PopupDom>
+          <Test2></Test2>
+        </PopupDom>
+      );
+    } else if (background_effect_type == 3) {
+      return (
+        <PopupDom>
+          <Test3></Test3>
+        </PopupDom>
+      );
+    } else if (background_effect_type == 4) {
+      return (
+        <PopupDom>
+          <Test4></Test4>
+        </PopupDom>
+      );
+    } else if (background_effect_type == 5) {
+      return (
+        <PopupDom>
+          <Test5></Test5>
+        </PopupDom>
+      );
+    }
   }
 
   function copyToClipboard(textToCopy) {
     // navigator clipboard api needs a secure context (https)
     if (navigator.clipboard && window.isSecureContext) {
-        // navigator clipboard api method'
-        return navigator.clipboard.writeText(textToCopy);
+      // navigator clipboard api method'
+      return navigator.clipboard.writeText(textToCopy);
     } else {
-        // text area method
-        let textArea = document.createElement("textarea");
-        textArea.value = textToCopy;
-        // make the textarea out of viewport
-        textArea.style.position = "fixed";
-        textArea.style.left = "-999999px";
-        textArea.style.top = "-999999px";
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        return new Promise((res, rej) => {
-            // here the magic happens
-            document.execCommand('copy') ? res() : rej();
-            textArea.remove();
-        });
+      // text area method
+      let textArea = document.createElement("textarea");
+      textArea.value = textToCopy;
+      // make the textarea out of viewport
+      textArea.style.position = "fixed";
+      textArea.style.left = "-999999px";
+      textArea.style.top = "-999999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      return new Promise((res, rej) => {
+        // here the magic happens
+        document.execCommand("copy") ? res() : rej();
+        textArea.remove();
+      });
     }
   }
 
-
   return (
-  <div id="monitor" class = "mainPage">
-    <div id="screen">
-    <div class="title-bar">
-      {isOpenPopup && BackgroundType() }
-      <div className="title-holder">
-        <span class= "title"><span id="name">{nickname}</span> 님의 레터스페이스 입니다.</span>
-        <button
-          onClick={()=>{
-            // if (na)
-            copyToClipboard(`http://192.249.18.161/mypage/${id}`);
-            // navigator.clipboard.writeText(`192.249.18.161/mypage/${id}`);
-            alert("링크가 복사되었습니다. 친구에게 공유해보세요!")
-            // console.log(window.getComputedStyle(virtualMemo.current).width);
-            // console.log(letterValidInfo)
-            // console.log(letterInvalidInfo)
-          }}
-          className="btn_copy">링크 복사</button>
-        </div>
-        <div class="title_menu">
-          {
-            id === curr_user
-            ?
+    <div id="monitor" class="mainPage">
+      <div id="screen">
+        <div class="title-bar">
+          {isOpenPopup && BackgroundType()}
+          <div className="title-holder">
+            <span class="title">
+              <span id="name">{nickname}</span> 님의 레터스페이스 입니다.
+            </span>
+            <button
+              onClick={() => {
+                // if (na)
+                copyToClipboard(`http://192.249.18.161/mypage/${id}`);
+                // navigator.clipboard.writeText(`192.249.18.161/mypage/${id}`);
+                alert("링크가 복사되었습니다. 친구에게 공유해보세요!");
+                // console.log(window.getComputedStyle(virtualMemo.current).width);
+                // console.log(letterValidInfo)
+                // console.log(letterInvalidInfo)
+              }}
+              className="btn_copy"
+            >
+              링크 복사
+            </button>
+          </div>
+          <div class="title_menu">
+            {id === curr_user ? (
               <span id="welcome">{nickname}님</span>
-             : curr_user != null ? (
+            ) : curr_user != null ? (
               <span
-                id="welcome"
+                id="to-my-space"
                 onClick={() => {
                   document.location.href = `/mypage/${curr_user}`; //로그인 여부에 따라 다르게
                 }}
@@ -708,7 +751,7 @@ const Home = () => {
               </span>
             ) : (
               <span
-                id="welcome"
+                id="to-my-space"
                 onClick={() => {
                   document.location.href = `/welcome`; //로그인 여부에 따라 다르게
                 }}
@@ -732,64 +775,112 @@ const Home = () => {
           </div>
         </div>
 
-    <div class="memo-holder">
-    <div style={{ position: "absolute", top: "0px", visibility: "hidden"}} className="memo" ref={virtualMemo}>{memo}</div>
-    <span className="memo-ddaoom-left">"</span>
-      {(id == curr_user)? 
-      <input ref={memoRef} type="text" width={"100px"} className = "memo" placeholder={"소개를 적어주세요."} value={memo} onChange={handleChange} autoComplete="off"/>
-      :
-      <input ref={memoRef} disabled="disabled" type="text" className = "memo" placeholder={"소개를 적어주세요."} value={memo}/>}
-      
-      <span className="memo-ddaoom-right">"</span>
-    {(id == curr_user)? 
-      <button
-        onClick={()=>{
-          // db에 메모 수정된 것 저장
-          
-            axios.post(BASE_URL+"/account/updateUserMemo", {
-              id : id,
-              memo : memo
-            }).then(response => {
-              console.log(response);
-              alert("메모가 수정되었습니다.")
-            }).catch(error => {
-              console.log("updateUserMemo errror!"+error);
-            });
-        }}
-        className="btn_edit">수정<br/>하기</button> : 
-          <div/>
-    }
-      
-    </div>
-    
-    <div class="contents">
-      <p class="stacked_letter_text">쌓인 편지 <span id="before_open_letter">{letterInvalidCnt+letterValidCnt}</span> 개</p>
-      <p class="unlock_info"><span id="unlocked_letter">{letterValidCnt}</span>개의 편지가 열렸어요 !</p>
-      <div id= "content_zone" class="gallery">
-        <div class="gallery-container" id="container">
-          <div style={transparent_style} class="gallery-item gallery-item-1" data-index="1"/>
-          <div style={transparent_style} class="gallery-item gallery-item-2" data-index="2"/>
-          <div class="gallery-item gallery-item-3" data-index="3" > <StyledLink to="write"></StyledLink> <img class="plus-box" src={plusImage}/> </div>
+        <div class="memo-holder">
+          <div
+            style={{ position: "absolute", top: "0px", visibility: "hidden" }}
+            className="memo"
+            ref={virtualMemo}
+          >
+            {memo}
+          </div>
+          <span className="memo-ddaoom-left">"</span>
+          {id == curr_user ? (
+            <input
+              ref={memoRef}
+              type="text"
+              width={"100px"}
+              className="memo"
+              placeholder={"소개를 적어주세요."}
+              value={memo}
+              onChange={handleChange}
+              autoComplete="off"
+            />
+          ) : (
+            <input
+              ref={memoRef}
+              disabled="disabled"
+              type="text"
+              className="memo"
+              placeholder={"소개를 적어주세요."}
+              value={memo}
+            />
+          )}
+
+          <span className="memo-ddaoom-right">"</span>
+          {id == curr_user ? (
+            <button
+              onClick={() => {
+                // db에 메모 수정된 것 저장
+
+                axios
+                  .post(BASE_URL + "/account/updateUserMemo", {
+                    id: id,
+                    memo: memo,
+                  })
+                  .then((response) => {
+                    console.log(response);
+                    alert("메모가 수정되었습니다.");
+                  })
+                  .catch((error) => {
+                    console.log("updateUserMemo errror!" + error);
+                  });
+              }}
+              className="btn_edit"
+            >
+              수정
+              <br />
+              하기
+            </button>
+          ) : (
+            <div />
+          )}
         </div>
-        <div class="gallery-controls">
-          <button class="gallery-controls-previous">
-            {buttonImage}
-          </button>
-          {/* <button class="gallery-controls-add">
+
+        <div class="contents">
+          <p class="stacked_letter_text">
+            쌓인 편지{" "}
+            <span id="before_open_letter">
+              {letterInvalidCnt + letterValidCnt}
+            </span>{" "}
+            개
+          </p>
+          <p class="unlock_info">
+            <span id="unlocked_letter">{letterValidCnt}</span>개의 편지가
+            열렸어요 !
+          </p>
+          <div id="content_zone" class="gallery">
+            <div class="gallery-container" id="container">
+              <div
+                style={transparent_style}
+                class="gallery-item gallery-item-1"
+                data-index="1"
+              />
+              <div
+                style={transparent_style}
+                class="gallery-item gallery-item-2"
+                data-index="2"
+              />
+              <div class="gallery-item gallery-item-3" data-index="3">
+                {" "}
+                <StyledLink to="write"></StyledLink>{" "}
+                <img class="plus-box" src={plusImage} />{" "}
+              </div>
+            </div>
+            <div class="gallery-controls">
+              <button class="gallery-controls-previous">{buttonImage}</button>
+              {/* <button class="gallery-controls-add">
             add
           </button> */}
-          <button class="gallery-controls-next">
-            {buttonImageNext}
-          </button>
-        </div>
-      </div>
+              <button class="gallery-controls-next">{buttonImageNext}</button>
+            </div>
+          </div>
 
-      {/*    <button
+          {/*    <button
       // onClick={()=>{
       //   document.location.href = `/write/${id}`
       // }}>    </button>*/}
-    </div>
-    </div>
+        </div>
+      </div>
     </div>
   );
 };
