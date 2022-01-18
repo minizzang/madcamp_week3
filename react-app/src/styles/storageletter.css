@@ -370,7 +370,7 @@
     position: relative;
   }
   
-  .gallery-controls-previous::before {
+  /*.gallery-controls-previous::before {
     border: solid #000;
     border-width: 0 2px 2px 0;
     content: '';
@@ -387,13 +387,13 @@
   
   .gallery-controls-previous:hover::before {
     left: -18px;
-  }
+  }*/
   
   .gallery-controls-next {
     position: relative;
   }
   
-  .gallery-controls-next::before {
+  /*.gallery-controls-next::before {
     border: solid #000;
     border-width: 0 2px 2px 0;
     content: '';
@@ -410,7 +410,7 @@
   
   .gallery-controls-next:hover::before {
     right: -18px;
-  }
+  }*/
   
   .gallery-nav {
     bottom: -15px;
