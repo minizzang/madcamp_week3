@@ -25,6 +25,10 @@ import Test2 from "./test2";
 import Test4 from "./test4";
 import Test5 from "./test5";
 import Test3 from "./test3";
+
+import 'styles/test1.css';
+import 'animate.css';
+
 import button_image from "../images/button_image.png";
 import button_image_next from "../images/button_image_next.png";
 
@@ -473,7 +477,22 @@ const Home = () => {
         // const sender (위에서 이미 정의됨 )
         const written_date = document.createElement('div');
 
-        title.className = "letter_title";
+        switch (letterValidContents[i].effect_type) {
+          case 0 : title.className = ("letter_title");
+            break
+          case 1 : title.className = ("letter_title", "animate__animated animate__rubberBand animate__repeat-2");
+            break
+          case 2 : title.className = ("letter_title", "animate__animated animate__bounceIn animate__repeat-2");
+            break
+          case 3 : title.className = ("letter_title", "animate__animated animate__tada animate__repeat-2");
+            break
+          case 4 : title.className = ("letter_title", "animate__animated animate__shakeX animate__repeat-2");
+            break
+          case 5 : title.className = ("letter_title", "animate__animated animate__swing animate__repeat-2");
+            break
+        }
+        
+        // title.classList.add("animate__animated animate__rubberBand animate__repeat-2"); 
         text.className = "letter_text";
         written_date.className = "letter_written_date";
 
@@ -572,6 +591,8 @@ const Home = () => {
               //elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
               
               console.log(elem)
+
+
 
               // 카드 오픈 시에 넣기, 카드 오픈 시 유저 확인도 하기
               axios.post(BASE_URL+"/letter/setOpened", {

@@ -66,3 +66,13 @@
 	--animate-duration: 3s;
 	--animate-repeat: 20;
 }
+
+.animate__animated.animate__shakeX {
+	--animate-duration: 3s;
+	--animate-repeat: 20;
+}
+
+.animate__animated.animate__swing {
+	--animate-duration: 3s;
+	--animate-repeat: 20;
+}

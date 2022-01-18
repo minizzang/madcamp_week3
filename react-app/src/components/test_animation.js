@@ -4,8 +4,9 @@ import { useState } from 'react/cjs/react.development';
 
 const Test = () => {
 
-    const [content, setContent] = useState("캬캬캬 김민채 바보~~")
+    // const [content, setContent] = useState("캬캬캬 김민채 바보~~")
 
+    const content = <p>하아하이</p>
     // function Effect1(props) {
     //     return 
     // }
