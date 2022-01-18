@@ -94,7 +94,7 @@
 
 .writeSubmit {
   text-align: center;
-  background: #ffe2e4;
+  background-color: rgba(19, 35, 46, 0.2);
   color: white;
   margin-top: 10px;
   cursor: pointer;
