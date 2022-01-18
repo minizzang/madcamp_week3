@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: "AppleSD";
   }
 
   body {
@@ -38,8 +39,6 @@
     transform-style:preserve-3d;
     position:relative;
     z-index: 15;
-
-
     background: rgb(107, 49, 161);
   }
 
@@ -466,4 +465,9 @@
   @font-face {
     font-family: "Kkomi";
     src: url("../fonts/KNPSKkomi.otf");
+  }
+
+  @font-face {
+    font-family: "AppleSD";
+    src: url("../fonts/AppleSDGothicNeoM.ttf");
   }

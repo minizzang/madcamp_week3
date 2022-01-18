@@ -119,5 +119,10 @@ body {
   }
 }
 
+@font-face {
+  font-family: "AppleSD";
+  src: url("../fonts/AppleSDGothicNeoM.ttf");
+}
+
 /*그리드를 짜자!!*/
 

@@ -135,10 +135,10 @@ const Write = () => {
     
     switch (event.target.getAttribute('name')) {
       case "effect1" : 
-        setStampImg(<img src={stamp_star} id="stamp-front" className="stamp-front"></img>)
+        setStampImg(<img src={stamp_heart} id="stamp-front" className="stamp-front"></img>)
         break;
       case "effect2" :
-        setStampImg(<img src={stamp_heart} id="stamp-front" className="stamp-front"></img>)
+        setStampImg(<img src={stamp_star} id="stamp-front" className="stamp-front"></img>)
         break;
       case "effect3" :
         setStampImg(<img src={stamp_cloud} id="stamp-front" className="stamp-front"></img>)

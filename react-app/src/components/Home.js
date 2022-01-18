@@ -486,7 +486,21 @@ const Home = () => {
         letterContainer.appendChild(front);
         letterContainer.appendChild(back);
 
-        //letterContainer.style.background="rgb(200,173,226)"
+        // 편지 색상 설정
+        var color = "#ffd6da";
+        switch (letterValidContents[i].paper_type) {
+          case 1: color = "#EDB2B5";
+            break;
+          case 2: color = "#E6C596";
+            break;
+          case 3: color = "#BDDE8C";
+            break;
+          case 4: color = "#8BBBE0";
+            break;
+          case 5: color = "#C9B6DE";
+            break;
+        }
+        letterContainer.style.background=color
 
         if (id == curr_user){
           letterContainer.addEventListener('click',click);
@@ -539,11 +553,11 @@ const Home = () => {
               openPopup();
               elem.childNodes[1].firstChild.style.transform = "scale(0.5)";
               
-              
+              console.log(elem)
 
               // 카드 오픈 시에 넣기, 카드 오픈 시 유저 확인도 하기
               axios.post(BASE_URL+"/letter/setOpened", {
-                id: Number(elem.childNodes[0].firstChild.title)
+                id: Number(elem.childNodes[0].lastChild.title)
               }).then(response => {
                 console.log(response);
               }).catch(error => {
